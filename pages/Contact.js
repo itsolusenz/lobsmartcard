@@ -19,7 +19,7 @@ function Contact() {
         alert();
         let str = '';
         fetch(
-            'http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_addcontact&name='
+            'https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_addcontact&name='
             + str + '&name=' + name + '&message=' + mess + '&email=' + email
         )
             .then((res) => res.json())

@@ -23,7 +23,7 @@ export default function MainPg(props) {
     useEffect(() => {
         const getProfile = async () => {
             try {
-                const response = await fetch('http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=' + pid);
+                const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=' + pid);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

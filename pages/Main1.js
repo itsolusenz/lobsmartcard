@@ -13,7 +13,7 @@ export default function MainPg() {
   useEffect(() => {
     const getCountry = async () => {
       try {
-        const response = await fetch('http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=1084285344');
+        const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=1084285344');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -29,7 +29,7 @@ export default function MainPg() {
 
   }, []); // Empty dependency array means this effect runs once after initial render
 
-//  console.log(Countrylist[0]);
+  //  console.log(Countrylist[0]);
   if (Countrylist.length > 0) {
 
     return (
@@ -49,9 +49,9 @@ export default function MainPg() {
                           <h1 className='profile-name mt-3 mb-3'>{Countrylist[0].name}  {Countrylist[0].lname}</h1>
                           <h3 className="text-secondary mb-4">{Countrylist[0].designation}</h3>
                           <div className='d-flex justify-content-center'>
-                          { Countrylist[0].social == "facebook" &&
-                            <a href={Countrylist[0].social_url}><span className='social-btn me-2'><i class="bi bi-facebook"></i></span></a>
-                          }
+                            {Countrylist[0].social == "facebook" &&
+                              <a href={Countrylist[0].social_url}><span className='social-btn me-2'><i class="bi bi-facebook"></i></span></a>
+                            }
 
                             <a href='/'><span className='social-btn me-2'><i class="bi bi-twitter"></i></span> </a>
                             <a href='/'><span className='social-btn me-2'><i class="bi bi-browser-chrome"></i></span></a>
