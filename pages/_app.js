@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="google-site-verification" content="dHQiJc4A21xoI78RdLo2zkXowPbpqVDJ2cdPhx8eBYk" />
         <meta name="robots" content="all" />
+        <title>LobSmartCard</title>
       </Head>
       <Component {...pageProps} />
     </div>

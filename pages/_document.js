@@ -17,7 +17,7 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
           <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
           <link href="/css/app.css" rel="stylesheet" />
-          <title>LobSmartCard</title>
+
           {/*} <link href="/css/style.css" rel="stylesheet"  defer/>    
             <link href="/css/responsive.css" rel="stylesheet"  />    
     <link href="/css/color.css" rel="stylesheet"   /> */}
