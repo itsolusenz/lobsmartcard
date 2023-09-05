@@ -1,8 +1,0 @@
-# Allow all crawlers
-User-agent: *
-Allow: /pages/*
-Allow: /pages/locations/*
-Allow: /pages/blog/*
-Allow: /pages/blog/darshanblog/*
-Allow: /pages/pricing/*
-Sitemap: https://www.darshandrivingschool.com.au/sitemap.xml
