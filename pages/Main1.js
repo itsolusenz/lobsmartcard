@@ -13,7 +13,7 @@ export default function MainPg() {
   useEffect(() => {
     const getCountry = async () => {
       try {
-        const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=1084285344');
+        const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=202300010144');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
