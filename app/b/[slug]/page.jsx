@@ -19,7 +19,7 @@ export default function Page({params}) {
   return (
     <><Preloader/>
   
-   <div className="page-wrapper home-3" >
+      <div className="page-wrapper home-3" >
         
         <HeaderFour/>
         <div className="container z-index-3">
@@ -28,13 +28,14 @@ export default function Page({params}) {
                 <PersonalInfoThree id={params.slug}/>
                 <div className="col-xxl-8 col-xl-8 col-lg-8">
                     <HeaderThree />
-                    <AboutThree/>
+                    <AboutThree id={params.slug}/>
                 </div>
 
 
             </div>
             </div>
         </div>
+      
   </>
    
   )

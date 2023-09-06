@@ -164,7 +164,7 @@ if (Profilelist.length > 0) {
         </div>
       </div>
     </div>
-      <div className="nav__menu nav__mobile" id="nav-menu">
+     {/*} <div className="nav__menu nav__mobile" id="nav-menu">
       <ul className="nav__list">
      
           <li className="nav__item">
@@ -178,7 +178,7 @@ if (Profilelist.length > 0) {
                 </div>
               
               </div>
-                 {/*} <i className='fa fa-address-card fa-2x'></i>*/}
+                 
                   
               </a>
           </li>
@@ -195,7 +195,7 @@ if (Profilelist.length > 0) {
               
               </div>
                  
-                {/*}  <i className='fa fa-envelope fa-2x'></i>*/}
+              
                  
               </a>
           </li>
@@ -213,7 +213,7 @@ if (Profilelist.length > 0) {
                 </div>
               
               </div>
-                {/*}  <i className='fa fa-whatsapp fa-2x'></i>*/}
+               
                  
               </a>
           </li>
@@ -230,7 +230,7 @@ if (Profilelist.length > 0) {
               
               </div>
                  
-                 {/*} <i className='fa fa-phone-square fa-2x'></i>*/}
+                
                  
               </a>
           </li>
@@ -250,7 +250,7 @@ if (Profilelist.length > 0) {
              
           </li>
       </ul>
-</div>
+</div>*/}
 </>
      );
  }
