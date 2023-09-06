@@ -24,7 +24,7 @@ export default function page() {
         <div className="container z-index-3">
             <div className="row">
 
-                <PersonalInfoThree/>
+                <PersonalInfoThree  />
                 <div className="col-xxl-8 col-xl-8 col-lg-8">
                     <HeaderThree/>
                     <AboutThree/>

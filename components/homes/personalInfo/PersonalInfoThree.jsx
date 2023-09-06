@@ -36,8 +36,16 @@ export default function PersonalInfoThree({id}) {
 
 
 }, [pid]);
+const Gomap = ()=>{
+
+  let address = Profilelist[0].flat+','+Profilelist[0].street+','+Profilelist[0].city+','+Profilelist[0].postcode+','+Profilelist[0].state+','+Profilelist[0].country+','
+ // console.log(address,'add');
+ address
+  window.location.href='https://maps.google.com/maps?q=' + address+', _blank';
+}
 if (Profilelist.length > 0) {
   return (
+    <>
     <div className="col-xxl-4 col-xl-4 col-lg-4">
       <div className="LobSmartCard-parsonal-info-area">
         <div className="LobSmartCard-parsonal-info-wrap">
@@ -123,9 +131,104 @@ if (Profilelist.length > 0) {
         </div>
       </div>
     </div>
-  );
-            }
+      <div className="nav__menu nav__mobile" id="nav-menu">
+      <ul className="nav__list">
+     
+          <li className="nav__item">
+              <a href={Profilelist[0].fb} className="nav__link">
+                  <i className='fa fa-address-card fa-2x'></i>
+                  
+              </a>
+          </li>
+          
+          <li className="nav__item">
+              <a href={`mailto:${Profilelist[0].mail}`} className="nav__link">
+                  <i className='fa fa-envelope fa-2x'></i>
+                 
+              </a>
+          </li>
+
+          <li className="nav__item">
+              <a href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}  className="nav__link">
+                  <i className='fa fa-whatsapp fa-2x'></i>
+                 
+              </a>
+          </li>
+
+          <li className="nav__item">
+              <a href={Profilelist[0].mobile} className="nav__link">
+                  <i className='fa fa-phone-square fa-2x'></i>
+                 
+              </a>
+          </li>
+          <li className="nav__item">
+              <a href="#" onClick={()=>Gomap()} className="nav__link">
+                  <i className='fa fa-map-marker fa-2x'></i>
+                 
+              </a>
+          </li>
+      </ul>
+</div>
+</>
+     );
+ }
             else{
-              <>loading..</>
+              return(
+                <div className="col-xxl-4 col-xl-4 col-lg-4">
+                <div className="bostami-parsonal-info-area">
+                  <div className="bostami-parsonal-info-wrap">
+                  {/*}  <div className="bostami-parsonal-info-img">
+                      <Image
+                        width={240}
+                        height={240}
+                        src={profileInfo.imageSrcTwo}
+                        alt="author"
+                      />
+                    </div>
+          
+                    <h4 className="bostami-parsonal-info-name">
+                      <a href="#">{profileInfo.name}</a>
+                    </h4>
+                    <span className="bostami-parsonal-info-bio mb-15">{profileInfo.title}</span>
+          
+                    <ul className="bostami-parsonal-info-social-link mb-30">
+                      {socialMediaData.map((elm, i) => (
+                        <li key={i}>
+                          <a style={{ color: elm.color }} href={elm.href}>
+                            <i className={elm.className}></i>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+          
+                    <div className="bostami-parsonal-info-contact mb-30">
+                      {contactData.map((elm, i) => (
+                        <div key={i} className="bostami-parsonal-info-contact-item">
+                          <div
+                            style={{ color: `${elm.color}`, fontSize: `${elm.fontSize}` }}
+                            className="icon"
+                          >
+                            <i className={elm.iconClass}></i>
+                          </div>
+                          <div className="text">
+                            <span>{elm.text.label}</span>
+                            <p>{elm.text.value}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+          
+                    <div className="bostami-parsonal-info-btn">
+                      <a className="btn-2" href="/cv.pdf" download>
+                        <span style={{ color: "#fff" }} className="icon">
+                          <i className="fa-regular fa-download"></i>
+                        </span>
+                        download cv
+                      </a>
+                      </div>*/}
+                  </div>
+                </div>
+              </div>
+              );
             }
 }
