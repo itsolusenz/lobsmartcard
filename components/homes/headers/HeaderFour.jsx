@@ -76,7 +76,7 @@ export default function HeaderFour() {
                     <i class="moonicon fa-solid fa-moon"></i>
                   )}
                 </div>
-                <div
+               {/*} <div
                   className={`menu-btn toggle_menu d-lg-none ${
                     menuOpen && "active"
                   } `}
@@ -85,7 +85,7 @@ export default function HeaderFour() {
                   <span></span>
                   <span></span>
                   <span></span>
-                </div>
+                </div>*/}
               </div>
             </div>
           </div>

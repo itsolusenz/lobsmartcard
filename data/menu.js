@@ -26,7 +26,10 @@ export const menuItemsTwo = [
 
 export const menuItemsThree = [
   { id: 1, href: "/home-3", icon: "fa-light fa-user", text: "About" },
-  { id: 2, href: "/resume-3", icon: "fa-light fa-file-lines", text: "Resume" },
+
+];
+{/* 
+ { id: 2, href: "/resume-3", icon: "fa-light fa-file-lines", text: "Resume" },
   { id: 3, href: "/portfolio-3", icon: "fa-light fa-briefcase", text: "Works" },
   { id: 4, href: "/blog-3", icon: "fa-brands fa-blogger", text: "Blogs" },
   {
@@ -34,5 +37,4 @@ export const menuItemsThree = [
     href: "/contact-3",
     icon: "size-22 fa-light fa-address-book",
     text: "Contact",
-  },
-];
+  },*/}

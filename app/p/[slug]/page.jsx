@@ -28,7 +28,7 @@ export default function Page({params}) {
                 <PersonalInfoThree id={params.slug}/>
                 <div className="col-xxl-8 col-xl-8 col-lg-8">
                     <HeaderThree />
-                    <AboutThree/>
+                    <AboutThree id={params.slug}/>
                 </div>
 
 
