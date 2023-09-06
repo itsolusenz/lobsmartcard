@@ -20,4 +20,11 @@ export const contactItems = [
     content: ["Maount View, Oval", "Road, New York, USA"],
     bgColor: "bg-prink",
   },
+  {
+    id: 4,
+    iconSrc: "/assets/img/icon/website.jpg",
+    title: "website ",
+    content: ["Maount View, Oval", "Road, New York, USA"],
+    bgColor: "bg-prink",
+  },
 ];

@@ -72,9 +72,13 @@ if (Profilelist.length > 0) {
           <h4 className="LobSmartCard-parsonal-info-name">
             <a href="#">{Profilelist[0].name} {Profilelist[0].lname}</a>
           </h4>
+          <h5 LobSmartCard-parsonal-info-contact-item>
+             {Profilelist[0].org}
+          </h5>
+
           <span className="LobSmartCard-parsonal-info-bio mb-15">{Profilelist[0].designation}</span>
 
-          <ul className="LobSmartCard-parsonal-info-social-link mb-30">
+              <ul className="LobSmartCard-parsonal-info-social-link mb-30">
             {socialMediaData.map((elm, i) => (
               <li key={i}>
                 {elm.id=='1' && Profilelist[0].fb!='' &&
@@ -103,6 +107,23 @@ if (Profilelist.length > 0) {
 
           <div className="LobSmartCard-parsonal-info-contact mb-30">
             {contactData.map((elm, i) => (
+              <>
+              { (elm.id=='4' && Profilelist[0].website!='' && Profilelist[0].website!=undefined && Profilelist[0].website!=null ) ?
+              <div key={i} className="LobSmartCard-parsonal-info-contact-item">
+                <div
+                  style={{ color: `${elm.color}`, fontSize: `${elm.fontSize}` }}
+                  className="icon"
+                >
+                  <i className={elm.iconClass}></i>
+                </div>
+                <div className="text">
+                  <span>{elm.text.label}</span>                  
+                   <p>{Profilelist[0].website}</p>
+                </div>
+              </div>
+                  
+                  :
+               elm.id!='4' && 
               <div key={i} className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `${elm.color}`, fontSize: `${elm.fontSize}` }}
@@ -114,9 +135,21 @@ if (Profilelist.length > 0) {
                   <span>{elm.text.label}</span>
                   <p>{elm.text.label=='Phone' &&   `+${Profilelist[0].mobile}`}
                   {elm.text.label=='Email' &&   `${Profilelist[0].email}`}
-                  {elm.text.label=='Location' &&   `${Profilelist[0].state}  `}</p>
+                  {elm.text.label=='Location' &&(   
+                  <>
+                       { Profilelist[0].flat+','+Profilelist[0].street}<br/>
+                       {Profilelist[0].landmard ? Profilelist[0].landmard +'<br/>': ''}
+                       {Profilelist[0].city+' - '+Profilelist[0].postcode}<br/>
+                       {Profilelist[0].state+', '+Profilelist[0].country+',' }
+                  </>
+                  
+                  )}
+                   
+                  </p>
                 </div>
               </div>
+            }
+            </>
             ))}
           </div>
 
@@ -136,36 +169,85 @@ if (Profilelist.length > 0) {
      
           <li className="nav__item">
               <a href={Profilelist[0].fb} className="nav__link">
-                  <i className='fa fa-address-card fa-2x'></i>
+              <div  className="LobSmartCard-parsonal-info-contact-item">
+                <div
+                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  className="icon"
+                >
+                  <i className="fa-duotone fa-contact-book"></i>
+                </div>
+              
+              </div>
+                 {/*} <i className='fa fa-address-card fa-2x'></i>*/}
                   
               </a>
           </li>
           
           <li className="nav__item">
               <a href={`mailto:${Profilelist[0].mail}`} className="nav__link">
-                  <i className='fa fa-envelope fa-2x'></i>
+              <div  className="LobSmartCard-parsonal-info-contact-item">
+                <div
+                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  className="icon"
+                >
+                  <i className="fa-regular fa-envelope-open-text"></i>
+                </div>
+              
+              </div>
+                 
+                {/*}  <i className='fa fa-envelope fa-2x'></i>*/}
                  
               </a>
           </li>
 
           <li className="nav__item">
               <a href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}  className="nav__link">
-                  <i className='fa fa-whatsapp fa-2x'></i>
+                 
+              <div  className="LobSmartCard-parsonal-info-contact-item">
+                <div
+                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  className="icon"
+                >
+                 <i class="fa fa-whatsapp" aria-hidden="true"></i>
+
+                </div>
+              
+              </div>
+                {/*}  <i className='fa fa-whatsapp fa-2x'></i>*/}
                  
               </a>
           </li>
 
           <li className="nav__item">
               <a href={Profilelist[0].mobile} className="nav__link">
-                  <i className='fa fa-phone-square fa-2x'></i>
+              <div  className="LobSmartCard-parsonal-info-contact-item">
+                <div
+                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  className="icon"
+                >
+                  <i className="fa-regular fa-mobile"></i>
+                </div>
+              
+              </div>
+                 
+                 {/*} <i className='fa fa-phone-square fa-2x'></i>*/}
                  
               </a>
           </li>
-          <li className="nav__item">
-              <a href="#" onClick={()=>Gomap()} className="nav__link">
-                  <i className='fa fa-map-marker fa-2x'></i>
+          <li className="nav__item"> <a href="#" onClick={()=>Gomap()} className="nav__link" style={{color:'#FD7590'}}>
+            <div  className="LobSmartCard-parsonal-info-contact-item">
+                <div
+                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  className="icon"
+                >
+                  <i className="fa-solid fa-location-dot"></i>
+                </div>
+              
+              </div>
                  
               </a>
+          
+             
           </li>
       </ul>
 </div>

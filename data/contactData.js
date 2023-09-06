@@ -29,5 +29,15 @@ export const contactData = [
       value: "Hong kong china",
     },
   },
+  {
+    id: 4,
+    color: "#6AB5B9",
+    fontSize: "22px",
+    iconClass: "fa-solid fa-globe",
+    text: {
+      label: "Website",
+      value: "Hong kong china",
+    },
+  },
 
 ];

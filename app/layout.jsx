@@ -3,7 +3,7 @@
 import { ToastContainer } from 'react-toastify'
 import '../public/main.scss'
 import '../public/assets/css/styles.css'
-import '../public/assets/font-awesome/css/font-awesome.min.css'
+//import '../public/assets/font-awesome/css/font-awesome.min.css'
 
 
 
