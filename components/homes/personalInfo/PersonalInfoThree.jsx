@@ -238,7 +238,7 @@ if (Profilelist.length > 0) {
           </li>
 
           <li className="nav__item">
-              <a href={Profilelist[0].mobile} className="nav__link">
+              <a href={`tel:${Profilelist[0].mobile}`} className="nav__link">
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `#6AB5B9`, fontSize: `22px` }}
