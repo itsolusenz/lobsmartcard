@@ -206,7 +206,7 @@ if (Profilelist.length > 0) {
               <a href={`mailto:${Profilelist[0].mail}`} className="nav__link">
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
-                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  style={{ color: `#6AB5B9`, fontSize: `22px` }}
                   className="icon"
                 >
                   <i className="fa-regular fa-envelope-open-text"></i>
@@ -227,7 +227,7 @@ if (Profilelist.length > 0) {
                   style={{ color: `#FD7590`, fontSize: `22px` }}
                   className="icon"
                 >
-                 <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
 
                 </div>
               
@@ -241,7 +241,7 @@ if (Profilelist.length > 0) {
               <a href={Profilelist[0].mobile} className="nav__link">
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
-                  style={{ color: `#FD7590`, fontSize: `22px` }}
+                  style={{ color: `#6AB5B9`, fontSize: `22px` }}
                   className="icon"
                 >
                   <i className="fa-regular fa-mobile"></i>
