@@ -23,4 +23,10 @@ export const socialMediaData = [
     href: "#",
     color: "#144679",
   },
+  {
+    id: 5,
+    className: "fa-brands fa-youtube",
+    href: "#",
+    color: "#e12a72",
+  },
 ];

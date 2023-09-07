@@ -4,7 +4,7 @@ import { profileInfo } from "@/data/profileInfo";
 import { socialMediaData } from "@/data/socials";
 import Image from "next/image";
 import React, { useEffect, useState } from 'react';
-
+import '../../../public/assets/css/styles.css'
 export default function PersonalInfoThree({id}) {
   //console.log('---',params)
     const pid = id;
@@ -79,30 +79,49 @@ if (Profilelist.length > 0) {
           <span className="LobSmartCard-parsonal-info-bio mb-15">{Profilelist[0].designation}</span>
 
               <ul className="LobSmartCard-parsonal-info-social-link mb-30">
-            {socialMediaData.map((elm, i) => (
-              <li key={i}>
-                {elm.id=='1' && Profilelist[0].fb!='' &&
+            {socialMediaData.map((elm, i) =>(<> 
+              
+              {elm.id=='1' && Profilelist[0].fb!='' &&
+                  <li key={i}>
                 <a style={{ color: elm.color }} href={Profilelist[0].fb}>
                   <i className={elm.className}></i>
                 </a>
-                 }
-                 {elm.id=='4' && Profilelist[0].youtube!='' &&
-                <a style={{ color: elm.color }} href={Profilelist[0].youtube}>
-                  <i className={elm.className}></i>
-                </a>
-                 }
+                </li>  
+                 }  
+                      
                  {elm.id=='2' && Profilelist[0].twitter!='' &&
-                <a style={{ color: elm.color }} href={Profilelist[0].twitter}>
-                  <i className={elm.className}></i>
-                </a>
+                    <li key={i}>      
+                          <a style={{ color: elm.color }} href={Profilelist[0].twitter}>
+                            <i className={elm.className}></i>
+                          </a>
+                    </li>  
                  }
+                 
                  {elm.id=='3' && Profilelist[0].linkedin!='' &&
+                 <li key={i}>
                 <a style={{ color: elm.color }} href={Profilelist[0].linkedin}>
                   <i className={elm.className}></i>
                 </a>
+                </li>  
                  }
-              </li>
-            ))}
+                
+                  {elm.id=='4' && Profilelist[0].insta!='' &&
+                  <li key={i}>
+                <a style={{ color: elm.color }} href={Profilelist[0].insta}>
+                  <i className={elm.className}></i>
+                </a>
+                </li>  
+                 }
+                
+                  {elm.id=='5' && Profilelist[0].youtube!='' &&
+                  <li key={i}>
+                    <a style={{ color: elm.color }} href={Profilelist[0].youtube}>
+                      <i className={elm.className}></i>
+                    </a>
+                  </li> 
+                 }
+             
+             </>))}
           </ul>
 
           <div className="LobSmartCard-parsonal-info-contact mb-30">
@@ -164,7 +183,7 @@ if (Profilelist.length > 0) {
         </div>
       </div>
     </div>
-     {/*} <div className="nav__menu nav__mobile" id="nav-menu">
+     <div className="nav__menu nav__mobile" id="nav-menu">
       <ul className="nav__list">
      
           <li className="nav__item">
@@ -250,7 +269,7 @@ if (Profilelist.length > 0) {
              
           </li>
       </ul>
-</div>*/}
+</div>
 </>
      );
  }
