@@ -169,7 +169,7 @@ if (Profilelist.length > 0) {
                   </a>
                 </li> 
                 <li >
-                    <a style={{ color: "green" }} href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}>
+                    <a style={{ color: "green" }} target="_blank" href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}>
                       <i className="fa-brands fa-whatsapp"></i>
                     </a>
                 </li> 
