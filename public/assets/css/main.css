@@ -2594,7 +2594,7 @@ textarea:focus::placeholder {
   border-radius: 20px;
   background-color: var(--common-white);
   text-align: center;
-  padding: 40px 30px;
+  padding: 40px 15px;
   margin-left: -100px;
   position: sticky;
   top: 100px;
@@ -2635,9 +2635,10 @@ textarea:focus::placeholder {
     padding: 40px 30px;
   }
 }
+/*width: 240px;
+height: 240px;*/
 .LobSmartCard-parsonal-info-img {
-  width: 240px;
-  height: 240px;
+  
   border-radius: 20px;
   overflow: hidden;
   margin: auto;
@@ -2658,7 +2659,7 @@ textarea:focus::placeholder {
     margin-top: 0px;
   }
 }
-.LobSmartCard-parsonal-info-img img {
+ img {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -5,6 +5,7 @@ import { socialMediaData } from "@/data/socials";
 import Image from "next/image";
 import React, { useEffect, useState } from 'react';
 import '../../../public/assets/css/styles.css'
+var vCardsJS = require('vcards-js');
 export default function PersonalInfoThree({id}) {
   //console.log('---',params)
     const pid = id;
@@ -20,6 +21,7 @@ export default function PersonalInfoThree({id}) {
                 throw new Error('Network response was not ok');
             }
             const json = await response.json();
+            console.log('json',json);
             if (json[0].profileimage != '') {
                 setProfileimage(json[0].profileimage);
             }
@@ -33,15 +35,97 @@ export default function PersonalInfoThree({id}) {
     if (pid != '' && pid != null && pid != undefined) {
         getProfile(pid);
     }
-
+    
 
 }, [pid]);
+
+const GetVcard = ()=>{
+
+  var vCard = vCardsJS();
+
+  //set properties
+  vCard.firstName = Profilelist[0].name;
+  //vCard.middleName = 'J';
+  vCard.lastName =  Profilelist[0].lname;
+  vCard.organization = Profilelist[0].org;
+  vCard.email = Profilelist[0].email; 
+  vCard.photo.attachFromUrl(`${Profilelist[0].proimage}`);
+  if(Profilelist[0].phonew!='' && Profilelist[0].phonew!=null && Profilelist[0].mobile!= 'null' && Profilelist[0].phonew!=undefined)
+  {
+  vCard.workPhone = '+' + Profilelist[0].phonew;
+  }
+  if(Profilelist[0].phonep !='' && Profilelist[0].phonep!= null && Profilelist[0].mobile!= 'null' && Profilelist[0].phonep!=undefined)
+  {
+    vCard.homePhone =  '+' + Profilelist[0].phonep;
+  }  
+  if(Profilelist[0].mobile !='' && Profilelist[0].mobile!= null && Profilelist[0].mobile!= 'null' && Profilelist[0].mobile!= undefined)
+  {
+    vCard.cellPhone =  '+' + Profilelist[0].mobile;
+  }
+  vCard.homeAddress.label = 'Address';
+  vCard.homeAddress.street = Profilelist[0].flat;
+  vCard.homeAddress.city =  Profilelist[0].city;
+  vCard.homeAddress.stateProvince =  Profilelist[0].state;
+  vCard.homeAddress.postalCode = Profilelist[0].postcode;
+  vCard.homeAddress.countryRegion = Profilelist[0].country;
+ 
+ // vCard.birthday = new Date(1985, 0, 1);
+  vCard.title = Profilelist[0].designation;
+  vCard.socialUrls['facebook'] = Profilelist[0].fb;
+  vCard.socialUrls['linkedIn'] =Profilelist[0].linkedin;
+  vCard.socialUrls['twitter'] = Profilelist[0].twitter;
+  vCard.socialUrls['instagram'] = Profilelist[0].insta;
+  vCard.socialUrls['youtube'] = Profilelist[0].youtube;
+ 
+  vCard.url = 'https://www.lobsmartcard.me/'+Profilelist[0].type+'/'+Profilelist[0].uriid;
+ // vCard.note = 'Notes on Eric';
+ vCard.version = '3.0';
+  //save to file
+  //vCard.saveToFile('eric-nesser.vcf');
+  //vCard.send(vCard.getFormattedString());
+  var blob = new Blob([vCard.getFormattedString()], {
+    type: "text/vcard"
+  });
+  var url = URL.createObjectURL(blob);
+  
+  const newLink = document.createElement('a');
+  newLink.download = Profilelist[0].name + ".vcf";
+  newLink.textContent = "Contact Save";
+  newLink.href = url;
+  
+  newLink.click();
+  
+  //get as formatted string
+  console.log(vCard.getFormattedString());
+
+}
+const Gosocial = (a)=>{
+  if(a=='0')
+  {
+    window.location.href="tel:"+Profilelist[0].mobile;
+  }
+  if(a=='1')
+  {
+   // window.location.href= "mailto:"+ Profilelist[0].mail;
+    window.open("mailto:"+Profilelist[0].mail, "_blank");
+  }
+  if(a=='2')
+  {
+    Gomap();
+  }
+  if(a=='3')
+  {
+    window.open("https://"+Profilelist[0].website, "_blank");
+   // window.location.href = "https://"+Profilelist[0].website+ ", _blank";
+  }
+}
+
 const Gomap = ()=>{
 
   let address = Profilelist[0].flat+','+Profilelist[0].street+','+Profilelist[0].city+','+Profilelist[0].postcode+','+Profilelist[0].state+','+Profilelist[0].country+','
  // console.log(address,'add');
- address
-  window.location.href='https://maps.google.com/maps?q=' + address+', _blank';
+   window.open("https://maps.google.com/maps?q="+ address + ", _blank");
+ // window.location.href='https://maps.google.com/maps?q=' + address+', _blank';
 }
 if (Profilelist.length > 0) {
   return (
@@ -53,7 +137,7 @@ if (Profilelist.length > 0) {
         {/*}  <img src={`${Profilelist[0].proimage}`} alt="Admin" className="profile-img" width="250" />
 
   */}  {Profilelist[0].proimage!='https://www.laabamone.com/Lobsmart/images/' ?
-            <Image
+            <Image              
               width={240}
               height={240}
               src={`${Profilelist[0].proimage}`}
@@ -77,13 +161,25 @@ if (Profilelist.length > 0) {
           </h5>
 
           <span className="LobSmartCard-parsonal-info-bio mb-15">{Profilelist[0].designation}</span>
-
+          <ul className="LobSmartCard-parsonal-info-social-link mb-30">
+                <li>
+                  <a style={{ color: "#1773EA" }} href="#" onClick={()=>GetVcard()}>
+                    <i className="fa-duotone fa-contact-book"></i>
+                  </a>
+                </li> 
+                <li >
+                    <a style={{ color: "green" }} href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}>
+                      <i className="fa-brands fa-whatsapp"></i>
+                    </a>
+                </li> 
+                </ul>
               <ul className="LobSmartCard-parsonal-info-social-link mb-30">
+               
             {socialMediaData.map((elm, i) =>(<> 
               
               {elm.id=='1' && Profilelist[0].fb!='' &&
-                  <li key={i}>
-                <a style={{ color: elm.color }} href={Profilelist[0].fb}>
+                  <li key={i} >
+                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].fb}`}>
                   <i className={elm.className}></i>
                 </a>
                 </li>  
@@ -91,7 +187,7 @@ if (Profilelist.length > 0) {
                       
                  {elm.id=='2' && Profilelist[0].twitter!='' &&
                     <li key={i}>      
-                          <a style={{ color: elm.color }} href={Profilelist[0].twitter}>
+                          <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].twitter}`}>
                             <i className={elm.className}></i>
                           </a>
                     </li>  
@@ -99,7 +195,7 @@ if (Profilelist.length > 0) {
                  
                  {elm.id=='3' && Profilelist[0].linkedin!='' &&
                  <li key={i}>
-                <a style={{ color: elm.color }} href={Profilelist[0].linkedin}>
+                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].linkedin}`}>
                   <i className={elm.className}></i>
                 </a>
                 </li>  
@@ -107,7 +203,7 @@ if (Profilelist.length > 0) {
                 
                   {elm.id=='4' && Profilelist[0].insta!='' &&
                   <li key={i}>
-                <a style={{ color: elm.color }} href={Profilelist[0].insta}>
+                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].insta}`}>
                   <i className={elm.className}></i>
                 </a>
                 </li>  
@@ -115,7 +211,7 @@ if (Profilelist.length > 0) {
                 
                   {elm.id=='5' && Profilelist[0].youtube!='' &&
                   <li key={i}>
-                    <a style={{ color: elm.color }} href={Profilelist[0].youtube}>
+                    <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].youtube}`}>
                       <i className={elm.className}></i>
                     </a>
                   </li> 
@@ -128,7 +224,7 @@ if (Profilelist.length > 0) {
             {contactData.map((elm, i) => (
               <>
               { (elm.id=='4' && Profilelist[0].website!='' && Profilelist[0].website!=undefined && Profilelist[0].website!=null ) ?
-              <div key={i} className="LobSmartCard-parsonal-info-contact-item">
+              <div key={i} style={{cursor:'pointer'}} onClick={()=>Gosocial(i)} className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `${elm.color}`, fontSize: `${elm.fontSize}` }}
                   className="icon"
@@ -143,7 +239,7 @@ if (Profilelist.length > 0) {
                   
                   :
                elm.id!='4' && 
-              <div key={i} className="LobSmartCard-parsonal-info-contact-item">
+              <div key={i} onClick={()=>Gosocial(i)} style={{cursor:'pointer'}} className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `${elm.color}`, fontSize: `${elm.fontSize}` }}
                   className="icon"
@@ -156,10 +252,10 @@ if (Profilelist.length > 0) {
                   {elm.text.label=='Email' &&   `${Profilelist[0].email}`}
                   {elm.text.label=='Location' &&(   
                   <>
-                       { Profilelist[0].flat+','+Profilelist[0].street}<br/>
+                       { Profilelist[0].flat  +' '+Profilelist[0].street}<br/>
                        {Profilelist[0].landmard ? Profilelist[0].landmard +'<br/>': ''}
                        {Profilelist[0].city+' - '+Profilelist[0].postcode}<br/>
-                       {Profilelist[0].state+', '+Profilelist[0].country+',' }
+                       {Profilelist[0].state+'  '+Profilelist[0].country+',' }
                   </>
                   
                   )}
@@ -187,7 +283,7 @@ if (Profilelist.length > 0) {
       <ul className="nav__list">
      
           <li className="nav__item">
-              <a href={Profilelist[0].fb} className="nav__link">
+              <a href="#" onClick={()=>GetVcard()} className="nav__link">
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `#FD7590`, fontSize: `22px` }}
@@ -203,7 +299,7 @@ if (Profilelist.length > 0) {
           </li>
           
           <li className="nav__item">
-              <a href={`mailto:${Profilelist[0].mail}`} className="nav__link">
+              <a  href="#" onClick={()=>Gosocial(1)} className="nav__link">
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `#6AB5B9`, fontSize: `22px` }}
@@ -220,7 +316,7 @@ if (Profilelist.length > 0) {
           </li>
 
           <li className="nav__item">
-              <a href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}  className="nav__link">
+              <a href={`https://api.whatsapp.com/send?phone=${Profilelist[0].phonewhat}`}  target="_blank" className="nav__link">
                  
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
@@ -238,7 +334,7 @@ if (Profilelist.length > 0) {
           </li>
 
           <li className="nav__item">
-              <a href={`tel:${Profilelist[0].mobile}`} className="nav__link">
+              <a href="#" onClick={()=>Gosocial(0)}  className="nav__link">
               <div  className="LobSmartCard-parsonal-info-contact-item">
                 <div
                   style={{ color: `#6AB5B9`, fontSize: `22px` }}

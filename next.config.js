@@ -10,6 +10,7 @@ const nextConfig = {
             },
         ],
     },
+    fs: false,
 }
 
 module.exports = nextConfig
