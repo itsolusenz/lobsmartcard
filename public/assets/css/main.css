@@ -2594,7 +2594,7 @@ textarea:focus::placeholder {
   border-radius: 20px;
   background-color: var(--common-white);
   text-align: center;
-  padding: 40px 15px;
+  padding: 10px;
   margin-left: -100px;
   position: sticky;
   top: 100px;
@@ -2618,7 +2618,7 @@ textarea:focus::placeholder {
   .LobSmartCard-parsonal-info-area {
     width: 100%;
     margin-left: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     top: -40px;
   }
 }
@@ -2627,7 +2627,7 @@ textarea:focus::placeholder {
     width: 100%;
     margin-left: 0px;
     margin-bottom: 30px;
-    padding: 40px 20px;
+    padding: 20px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -2665,7 +2665,7 @@ height: 240px;*/
   object-fit: cover;
 }
 .LobSmartCard-parsonal-info-name {
-  font-size: 26px;
+  font-size: 21px;
   text-transform: capitalize;
   font-weight: 500;
   color: var(--common-black);

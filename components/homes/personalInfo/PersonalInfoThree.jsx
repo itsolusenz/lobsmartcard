@@ -107,7 +107,7 @@ const Gosocial = (a)=>{
   if(a=='1')
   {
    // window.location.href= "mailto:"+ Profilelist[0].mail;
-    window.open("mailto:"+Profilelist[0].mail, "_blank");
+    window.open("mailto:"+Profilelist[0].email, "_blank");
   }
   if(a=='2')
   {
@@ -153,15 +153,16 @@ if (Profilelist.length > 0) {
 }
           </div>
 
-          <h4 className="LobSmartCard-parsonal-info-name">
+          <span className="LobSmartCard-parsonal-info-name">
             <a href="#">{Profilelist[0].name} {Profilelist[0].lname}</a>
-          </h4>
-          <h5 LobSmartCard-parsonal-info-contact-item>
+          </span>
+          
+          <h4 >
              {Profilelist[0].org}
-          </h5>
+          </h4>
 
           <span className="LobSmartCard-parsonal-info-bio mb-15">{Profilelist[0].designation}</span>
-          <ul className="LobSmartCard-parsonal-info-social-link mb-30">
+          <ul className="LobSmartCard-parsonal-info-social-link">
                 <li>
                   <a style={{ color: "#1773EA" }} href="#" onClick={()=>GetVcard()}>
                     <i className="fa-duotone fa-contact-book"></i>
@@ -173,7 +174,7 @@ if (Profilelist.length > 0) {
                     </a>
                 </li> 
                 </ul>
-              <ul className="LobSmartCard-parsonal-info-social-link mb-30">
+              <ul className="LobSmartCard-parsonal-info-social-link">
                
             {socialMediaData.map((elm, i) =>(<> 
               
@@ -191,19 +192,19 @@ if (Profilelist.length > 0) {
                             <i className={elm.className}></i>
                           </a>
                     </li>  
-                 }
+                 }                 
                  
-                 {elm.id=='3' && Profilelist[0].linkedin!='' &&
-                 <li key={i}>
-                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].linkedin}`}>
+                
+                  {elm.id=='3' && Profilelist[0].insta!='' &&
+                  <li key={i}>
+                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].insta}`}>
                   <i className={elm.className}></i>
                 </a>
                 </li>  
                  }
-                
-                  {elm.id=='4' && Profilelist[0].insta!='' &&
-                  <li key={i}>
-                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].insta}`}>
+                 {elm.id=='4' && Profilelist[0].linkedin!='' &&
+                 <li key={i}>
+                <a style={{ color: elm.color }} target="_blank" href={`https://${Profilelist[0].linkedin}`}>
                   <i className={elm.className}></i>
                 </a>
                 </li>  
@@ -220,7 +221,7 @@ if (Profilelist.length > 0) {
              </>))}
           </ul>
 
-          <div className="LobSmartCard-parsonal-info-contact mb-30">
+          <div className="LobSmartCard-parsonal-info-contact ">
             {contactData.map((elm, i) => (
               <>
               { (elm.id=='4' && Profilelist[0].website!='' && Profilelist[0].website!=undefined && Profilelist[0].website!=null ) ?

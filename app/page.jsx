@@ -8,8 +8,8 @@ import Home3 from "@/app/(homes)/home-3/page";
 import "../public/assets/css/style.css";
 import Preloader from "@/components/homes/Preloader";
 export const metadata = {
-  title: 'Preview || LobSmartCard - Professional portfolio NextJS Template',
-  description: 'Discover Botami,the most impressive portfolio template for work showcase, blog'
+  title: 'Preview || LobSmartCard ',
+  description: 'LobSmartCard'
 }
 export default function page() {
   return (
