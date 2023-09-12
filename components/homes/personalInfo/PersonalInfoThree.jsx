@@ -79,7 +79,7 @@ const GetVcard = ()=>{
  
   vCard.url = 'https://www.lobsmartcard.me/'+Profilelist[0].type+'/'+Profilelist[0].uriid;
  // vCard.note = 'Notes on Eric';
- vCard.version = '3.0';
+ vCard.version = '4.0';
   //save to file
   //vCard.saveToFile('eric-nesser.vcf');
   //vCard.send(vCard.getFormattedString());
