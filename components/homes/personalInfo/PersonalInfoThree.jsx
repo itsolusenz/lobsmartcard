@@ -48,7 +48,7 @@ const GetVcard = ()=>{
   //vCard.middleName = 'J';
   vCard.lastName =  Profilelist[0].lname;
   vCard.organization = Profilelist[0].org;
-  vCard.email = Profilelist[0].email; 
+  vCard.email = Profilelist[0].email;  
   vCard.photo.attachFromUrl(`${Profilelist[0].proimage}`);
   if(Profilelist[0].phonew!='' && Profilelist[0].phonew!=null && Profilelist[0].mobile!= 'null' && Profilelist[0].phonew!=undefined)
   {
@@ -83,7 +83,35 @@ const GetVcard = ()=>{
   //save to file
   //vCard.saveToFile('eric-nesser.vcf');
   //vCard.send(vCard.getFormattedString());
+
+ // var blob = new Blob([vCard], { type: "text/vcard" });
+ // var url = URL.createObjectURL(blob);
   var blob = new Blob([vCard.getFormattedString()], {
+    type: "text/vcard"
+  });
+  var url = URL.createObjectURL(blob);
+  if (navigator.share) {
+  
+    navigator.share({
+    
+      title: 'New Contacts',
+      text: 'Save contacts',
+      files: [new File([blob], 'newcontact.vcf', { type: 'text/vcard' })],
+    }).then(() => { });
+
+  } else {
+      const newLink = document.createElement('a');
+      newLink.download =  Profilelist[0].name + ".vcf";
+      newLink.textContent = "Contact Save";
+      newLink.href = url;
+
+      newLink.click();
+
+      // window.close();
+  
+  }
+
+var blob = new Blob([vCard.getFormattedString()], {
     type: "text/vcard"
   });
   var url = URL.createObjectURL(blob);
