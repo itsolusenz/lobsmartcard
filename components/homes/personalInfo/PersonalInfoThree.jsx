@@ -281,10 +281,17 @@ if (Profilelist.length > 0) {
                   {elm.text.label=='Email' &&   `${Profilelist[0].email}`}
                   {elm.text.label=='Location' &&(   
                   <>
-                       { Profilelist[0].flat  +' '+Profilelist[0].street}<br/>
-                       {Profilelist[0].landmard ? Profilelist[0].landmard +'<br/>': ''}
-                       {Profilelist[0].city+' - '+Profilelist[0].postcode}<br/>
-                       {Profilelist[0].state+'  '+Profilelist[0].country+',' }
+                       { Profilelist[0].flat  +' '+Profilelist[0].street}                    
+                       {(Profilelist[0].landmark !='' && Profilelist[0].landmark !='null' &&  Profilelist[0].landmark !=undefined) ? ', '+ Profilelist[0].landmark :''}
+                       <br></br>
+                       {(Profilelist[0].city !='' && Profilelist[0].city !=null &&  Profilelist[0].city !=undefined) ? Profilelist[0].city :''}
+
+                       {(Profilelist[0].postcode !='' && Profilelist[0].postcode !=null &&  Profilelist[0].postcode !=undefined) ? ' - '+Profilelist[0].postcode +',':''}
+                            <br></br>
+                       {(Profilelist[0].state !='' && Profilelist[0].state !=null &&  Profilelist[0].state !=undefined) ? Profilelist[0].state :''}
+                       {(Profilelist[0].country !='' && Profilelist[0].country !=null &&  Profilelist[0].country !=undefined) ? ', '+Profilelist[0].country +'.':''}
+
+                     
                   </>
                   
                   )}

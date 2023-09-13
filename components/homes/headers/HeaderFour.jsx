@@ -53,20 +53,21 @@ export default function HeaderFour() {
       <div className="container">
         <div className="LobSmartCard-header-wrap">
           <div className="row">
-            <div className="col-6">
+           
+            <div className="col-lg-2 col-md-6 col-sm-4 col-4 d-flex align-items-center">
               <div className="LobSmartCard-header-logo">
-                <Link className="site-logo" href="/" style={{  color: '#e5316d',fontSize:'24px' }}>
-                 {/*} <Image
+                <Link className="site-logo" href="#">
+                  <Image
                     width={153}
-                    height={32}
-                    src="/assets/img/logo/logo-2.png"
+                    height={52}
+                    src="/img/favicon.png"
                     alt="logo"
-  />*/}LobSmartCard
+                  />
                 </Link>
               </div>
             </div>
 
-            <div className="col-6">
+            <div className="col-lg-10 col-md-6 col-sm-8 col-8">
               <div className="LobSmartCard-header-menu-btn text-right mb-0">
                 <div className="dark-btn mode-btn" onClick={handleDarkmode}>
                 {darkMode ? (
