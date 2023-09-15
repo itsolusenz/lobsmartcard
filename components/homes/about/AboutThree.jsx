@@ -134,6 +134,7 @@ export default function AboutThree({id}) {
       </div>*/}
 
       <div className="footer-copyright text-center pt-25 pb-25">
+      <a href="/privacy-policy">Privacy Policy </a> &nbsp;&nbsp; 
         <span>
           © {new Date().getFullYear()} All Rights Reserved by LobSmartCard.
         </span>
@@ -236,7 +237,8 @@ export default function AboutThree({id}) {
                         </div>
                       </div>*/}
                 
-                      <div className="footer-copyright text-center pt-25 pb-25">
+                      <div className="footer-copyright text-center pt-25 pb-25" style={{paddingTop:'20px',backgroundColor:'#e7f0ed'}}>
+                      <a href="/privacy-policy">Privacy Policy </a> &nbsp;&nbsp; 
                         <span>
                           © {new Date().getFullYear()} All Rights Reserved by LobSmartCard.
                         </span>
