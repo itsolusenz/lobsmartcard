@@ -6,6 +6,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from 'react';
 import '../../../public/assets/css/styles.css'
 var vCardsJS = require('vcards-js');
+import { decode as base64_decode, encode as base64_encode } from 'base-64';
+
 export default function PersonalInfoThree({id}) {
   //console.log('---',params)
     const pid = id;
@@ -22,8 +24,8 @@ export default function PersonalInfoThree({id}) {
             }
             const json = await response.json();
             console.log('json',json);
-            if (json[0].profileimage != '') {
-                setProfileimage(json[0].profileimage);
+            if (json[0].proimage != '') {
+                setProfileimage(base64_decode(json[0].proimage));
             }
             // setCountryval(json);
             setProfilelist(json);
@@ -49,7 +51,7 @@ const GetVcard = ()=>{
   vCard.lastName =  Profilelist[0].lname;
   vCard.organization = Profilelist[0].org;
   vCard.email = Profilelist[0].email;  
-  vCard.photo.attachFromUrl(`${Profilelist[0].proimage}`);
+  vCard.photo.attachFromUrl(`${Profileimage}`);
   if(Profilelist[0].phonew!='' && Profilelist[0].phonew!=null && Profilelist[0].mobile!= 'null' && Profilelist[0].phonew!=undefined)
   {
   vCard.workPhone = '+' + Profilelist[0].phonew;
@@ -164,11 +166,11 @@ if (Profilelist.length > 0) {
           <div className="LobSmartCard-parsonal-info-img">
         {/*}  <img src={`${Profilelist[0].proimage}`} alt="Admin" className="profile-img" width="250" />
 
-  */}  {Profilelist[0].proimage!='https://www.laabamone.com/Lobsmart/images/' ?
+  */}  {Profileimage!='https://www.laabamone.com/Lobsmart/images/' ?
             <Image              
               width={240}
               height={240}
-              src={`${Profilelist[0].proimage}`}
+              src={`${Profileimage}`}
               alt="author"
             />
             :
