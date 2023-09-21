@@ -165,14 +165,18 @@ if (Profilelist.length > 0) {
         <div className="LobSmartCard-parsonal-info-wrap">
           <div className="LobSmartCard-parsonal-info-img">
         {/*}  <img src={`${Profilelist[0].proimage}`} alt="Admin" className="profile-img" width="250" />
-
-  */}  {Profileimage!='https://www.laabamone.com/Lobsmart/images/' ?
-            <Image              
+ 
+  */} 
+  {/*}  <Image              
               width={240}
               height={240}
               src={`${Profileimage}`}
               alt="author"
-            />
+/>*/}
+   {Profileimage!='https://www.laabamone.com/Lobsmart/images/' ?
+            <img src={`${Profileimage}`}  width={240}
+            height={240} alt="Profile" />
+         
             :
             <Image
               width={240}
