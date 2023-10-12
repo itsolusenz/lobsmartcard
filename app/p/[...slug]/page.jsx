@@ -11,10 +11,7 @@ import HeaderFour from '@/components/homes/headers/HeaderFour'
 import HeaderThree from '@/components/homes/headers/HeaderThree'
 import PersonalInfoThree from '@/components/homes/personalInfo/PersonalInfoThree'
 //import React from 'react'
-export const metadata = {
-    title: 'LobSmartCard ',
-    description: 'Discover LobSmartCard,the most impressive portfolio template for work showcase, blog'
-  }
+
 export default function Page({params}) {
  const slug1 = params.slug[0];
  const slug2 = params.slug[1];
