@@ -49,7 +49,7 @@ if(Profilelist.length>0)
   
       <div className="page-wrapper home-3" >
         
-       {/*} <HeaderFour  />*/}
+        <HeaderFour  slug="p" slug1={slug1} slug2={slug2} plen={Profilelist[0].proudctdetails[0].count} slen={Profilelist[0].servicedetails[0].count}/>
         <div className="container z-index-3">
             <div className="row">
 

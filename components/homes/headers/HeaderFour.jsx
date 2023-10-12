@@ -4,9 +4,11 @@ import Menu from "../menus/Menu";
 import { menuItemsThree } from "@/data/menu";
 import Image from "next/image";
 import Link from "next/link";
-
-export default function HeaderFour() {
+import { usePathname } from "next/navigation";
+export default function HeaderFour(props) {
+  const pathname = usePathname();
   const [darkMode, setDarkMode] = useState(false);
+  const {slug, slug1,slug2,plen,slen} = props;
   const addDarkbg = () => {
     const elements = document.querySelectorAll(".home-3");
     elements.forEach((element) => {
@@ -77,7 +79,7 @@ export default function HeaderFour() {
                     <i class="moonicon fa-solid fa-moon"></i>
                   )}
                 </div>
-               {/*} <div
+              <div
                   className={`menu-btn toggle_menu d-lg-none ${
                     menuOpen && "active"
                   } `}
@@ -86,7 +88,7 @@ export default function HeaderFour() {
                   <span></span>
                   <span></span>
                   <span></span>
-                </div>*/}
+                </div>
               </div>
             </div>
           </div>
@@ -94,7 +96,7 @@ export default function HeaderFour() {
 
         <div className="mobile-menu-wrap">
           <div className={`mobile-menu mobile_menu_3 ${menuOpen && "active"} `}>
-            <Menu setMenuOpen={setMenuOpen} data={menuItemsThree} />
+            <Menu setMenuOpen={setMenuOpen} data={''} slug={slug} slug1={slug1} slug2={slug2} plen={plen} slen={slen} />
           </div>
         </div>
       </div>

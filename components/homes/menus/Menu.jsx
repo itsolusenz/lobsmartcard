@@ -3,7 +3,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-export default function Menu({ setMenuOpen, data }) {
+export default function Menu({ setMenuOpen, data,slug,slug1,slug2,plen,slen }) {
   const pathname = usePathname();
 
   return (
@@ -20,7 +20,7 @@ export default function Menu({ setMenuOpen, data }) {
         </span>
       </a>
       <nav className="mean-nav">
-        <ul>
+       {/*} <ul>
           {data.map((elm, i) => (
             <li
               className={` ${i + 1 == data.length && "mean-last"} ${
@@ -42,7 +42,68 @@ export default function Menu({ setMenuOpen, data }) {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul>*/}
+        <ul>
+       
+
+              <li  className={pathname == `/${slug}/${slug1}` ? "active" : ""}
+              style={{paddingTop:'5px',paddingBottom:'4px'}}>
+                <Link
+                  href={`/${slug}/${slug1}`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span style={{ fontSize: "24px", marginBottom: "12px" }}>
+                    <i className="fa-light fa-user"></i>
+                  </span>
+                  <div>About</div>
+                </Link>
+              </li>
+              {plen > 0 && 
+              <li  className={pathname == `/${slug}/${slug1}/products` ? "active" : ""}>
+              <Link
+                href={`/${slug}/${slug1}/products`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <span style={{ fontSize: "24px", marginBottom: "12px" }}>
+                  <i className="fa-light fa-user"></i>
+                </span>
+                <div>Product</div>
+              </Link>
+              </li>
+               }
+               {slen >0 &&
+                <li  className={pathname == `/${slug}/${slug1}/services` ? "active" : ""}>
+                <Link
+                  href={`/${slug}/${slug1}/services`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span style={{ fontSize: "24px", marginBottom: "12px" }}>
+                    <i className="fa-light fa-user"></i>
+                  </span>
+                  <div>Services</div>
+                </Link>
+                </li>
+               }
+             
+              
+              
+        
+          </ul>
       </nav>
     </div>
   );
