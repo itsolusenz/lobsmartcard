@@ -32,25 +32,25 @@ export default function Modal({ modalContent, setModalContent }) {
               <Image
                 width={800}
                 height={800}
-                src={modalContent?.imgSrc}
+                src={modalContent?.image}
                 style={{ width: "100%",height: "fit-content",maxHeight: "450px",objectFit:'cover'  }}
                 alt="blog"
               />
             </div>
 
             <div className="blog-meta">
-              <span className="blog-date">{modalContent?.date}</span>
-              <span className="blog-cetagory">{modalContent?.category}</span>
+              {/*<span className="blog-date">{modalContent?.date}</span>*/}
+              <span className="blog-cetagory">{modalContent?.message}</span>
             </div>
 
-            <h6 className="blog-title">{modalContent?.title}</h6>
+            <h6 className="blog-title">{modalContent?.name}</h6>
 
-            <div className="h1-modal-paragraph">
-              {modalContent?.desc.map((elm,i)=><p key={i} >{elm}</p>)}
-            </div>
+           {/*} <div className="h1-modal-paragraph">
+              {modalContent?.message.map((elm,i)=><p key={i} >{elm}</p>)}
+    </div>*/}
 
-            <div className="h1-modal-comment-item">
-              <div className="img">
+           {/*} <div className="h1-modal-comment-item">
+                <div className="img">
                 <Image
                   width={125}
                   height={152}
@@ -58,7 +58,7 @@ export default function Modal({ modalContent, setModalContent }) {
                   alt="comment"
                 />
               </div>
-              <div className="content">
+            <div className="content">
                 <div className="name-date">
                   <h5 className="name">Rafia Ana</h5>
                   <span className="date">15 min ago</span>
@@ -72,9 +72,9 @@ export default function Modal({ modalContent, setModalContent }) {
                   Reply
                 </a>
               </div>
-            </div>
+            </div>*/}
 
-            <div className="h1-modal-comment-box">
+           {/*} <div className="h1-modal-comment-box">
               <h2 className="title">Leave a Reply</h2>
               <textarea
                 cols="30"
@@ -82,7 +82,7 @@ export default function Modal({ modalContent, setModalContent }) {
                 placeholder="write comment"
               ></textarea>
               <button>comment</button>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>

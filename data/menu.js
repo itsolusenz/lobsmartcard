@@ -25,8 +25,9 @@ export const menuItemsTwo = [
 ];
 
 export const menuItemsThree = [
-  { id: 1, href: "https://nbayjobs.com/lobsmart/about.html", icon: "fa-light fa-user", text: "About" },
-
+  { id: 1, href: "https://nbayjobs.com", icon: "fa-light fa-user", text: "About" },
+  { id: 2, href: "/resume-3", icon: "fa-light fa-file-lines", text: "Proucts" },
+  { id: 3, href: "/portfolio-3", icon: "fa-light fa-briefcase", text: "Services" },
 ];
 {/* 
  { id: 2, href: "/resume-3", icon: "fa-light fa-file-lines", text: "Resume" },

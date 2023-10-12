@@ -15,7 +15,10 @@ const chunkArray = (arr, chunkSize) => {
   return result;
 };
 
-export default function BlogsThree() {
+export default function BlogsThree(props) {
+  const { product,title} = props;
+
+  console.log('product',product)
   const [outputArray, setfirst] = useState(chunkArray(blogData, 4));
   const [modalContent, setModalContent] = useState();
 
@@ -23,12 +26,13 @@ export default function BlogsThree() {
   useEffect(() => {
     setShowSlider(true);
   }, []);
+
   return (
     <>
       <div className="LobSmartCard-page-content-wrap">
         <div className="section-wrapper pl-60 pr-60 pt-60">
           <div className="LobSmartCard-page-title-wrap mb-15">
-            <h2 className="page-title">blogs</h2>
+            <h2 className="page-title">{title}</h2>
           </div>
         </div>
 
@@ -48,11 +52,13 @@ export default function BlogsThree() {
                   slidesPerView={1}
                   loop={true}
                 >
-                  {outputArray.map((elm, i) => (
+                  {
+                  product[0].count>0   ?
+                  product.map((elm, i) => (
                     <SwiperSlide key={i}>
                       <div className="swiper-slide">
                         <div className="row">
-                          {elm.map((elm2, i2) => (
+                          {product.map((elm2, i2) => (
                             <div key={i2} className="col-lg-6 col-md-6">
                               <div
                                 className={`blog-slider-single  ${elm2.bgClass} `}
@@ -63,22 +69,36 @@ export default function BlogsThree() {
                                   data-bs-toggle="modal"
                                   data-bs-target="#h1-blog-1"
                                 >
+                                  {elm2.image !='' ?
                                   <Image
                                     width={430}
                                     height={430}
-                                    onClick={() => setModalContent(elm2)}
+                                   // onClick={() => setModalContent(elm2)}
                                     style={{
                                       width: "100%",
                                       height: "fit-content",
                                     }}
-                                    src={elm2.imgSrc}
+                                    src={elm2.image}
                                     alt="blog"
                                   />
+                                  :
+                                  <Image
+                                    width={430}
+                                    height={430}
+                                   // onClick={() => setModalContent(elm2)}
+                                    style={{
+                                      width: "100%",
+                                      height: "fit-content",
+                                    }}
+                                    src={"/assets/img/blog/blog-img-1.png"}
+                                    alt="blog"
+                                  />
+}
                                 </a>
                                 <div className="blog-meta">
-                                  <span className="blog-date">{elm2.date}</span>
+                                  {/*<span className="blog-date">{elm2.date}</span>*/}
                                   <span className="blog-cetagory">
-                                    {elm2.category}
+                                    {elm2.message}
                                   </span>
                                 </div>
                                 <h6
@@ -90,7 +110,7 @@ export default function BlogsThree() {
                                     data-bs-toggle="modal"
                                     data-bs-target="#h1-blog-1"
                                   >
-                                    {elm2.title}
+                                    {elm2.name}
                                   </a>
                                 </h6>
                               </div>
@@ -99,7 +119,9 @@ export default function BlogsThree() {
                         </div>
                       </div>
                     </SwiperSlide>
-                  ))}
+                  ))
+                :<>No Products ..</>
+                }
                 </Swiper>
               )}
               <div className="blog-progation blog-progation-three"></div>
@@ -114,4 +136,5 @@ export default function BlogsThree() {
       <Modal modalContent={modalContent} setModalContent={setModalContent} />
     </>
   );
+                             
 }
