@@ -18,7 +18,7 @@ export default function PersonalInfoThree({id}) {
       
         try {
           console.log('---------',pid)
-            const response = await fetch('http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + pid);
+            const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + pid);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -173,7 +173,7 @@ if (Profilelist.length > 0) {
               src={`${Profileimage}`}
               alt="author"
 />*/}
-   {Profileimage!='http://www.laabamone.com/Lobsmart/images/' ?
+   {Profileimage!='https://www.laabamone.com/Lobsmart/images/' ?
             <Image src={`${Profileimage}`}  width={240}
             height={240} alt="Profile" />
          
@@ -181,7 +181,7 @@ if (Profilelist.length > 0) {
             <Image
               width={240}
               height={240}
-              src={"http://www.laabamone.com/Lobsmart/images/16938326901493467085.jpg"}
+              src={"https://www.laabamone.com/Lobsmart/images/16938326901493467085.jpg"}
               alt="author"
             />
 }

@@ -20,7 +20,7 @@ export default function AboutThree({id}) {
       
       try {
        // console.log('---------',pid)
-          const response = await fetch('http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + pid);
+          const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + pid);
           if (!response.ok) {
               throw new Error('Network response was not ok');
           }

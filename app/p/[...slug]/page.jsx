@@ -23,7 +23,7 @@ export default function Page({params}) {
     
     try {
      // console.log('---------',pid)
-        const response = await fetch('http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + pid);
+        const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + pid);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -100,7 +100,7 @@ else
   const slug1 = context.params.slug[0];
   const slug2 = context.params.slug[1];
 
-  let url = 'http://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + slug1;
+  let url = 'https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uriid=' + slug1;
   let requestOptions = {
       method: "GET",
       headers: {
