@@ -140,7 +140,7 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="ball">
-                  <Image src="/img/backroll1.png" height={800} width={800} alt="img" />
+                  <Image src="/assets/front/img/backroll1.png" height={800} width={800} alt="img" />
                 </div>
               </div>
             </div>
@@ -156,20 +156,20 @@ export default function Home() {
                   />
                 </div>
                 <div className="circle__thumb">
-                  <Image src="/img/banner/banner-thumbbg1.png" height={700} width={700} objectFit="contain" alt="shape" />
+                  <Image src="/assets/front/img/banner/banner-thumbbg1.png" height={700} width={700} objectFit="contain" alt="shape" />
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="wallet">
-          <Image src="/img/banner/wallet.png" height={80} width={100} layout="responsive" alt="img" />
+          <Image src="/assets/front/img/banner/wallet.png" height={80} width={100} layout="responsive" alt="img" />
         </div>
         <div className="hand-wallet">
-          <Image src="/img/banner/hand-wallet.png" height={200} width={200} layout="responsive" alt="img" />
+          <Image src="/assets/front/img/banner/hand-wallet.png" height={200} width={200} layout="responsive" alt="img" />
         </div>
         <div className="mobile-wallet">
-          <Image src="/img/banner/mobile-wallet.png" height={110} width={110} layout="responsive" alt="img" />
+          <Image src="/assets/front/img/banner/mobile-wallet.png" height={110} width={110} layout="responsive" alt="img" />
         </div>
       </section>
 
@@ -180,7 +180,7 @@ export default function Home() {
           <div className="row g-4 align-items-center justify-content-between">
             <div className="col-xl-5 col-lg-5 position-relative">
               <div className="app__thumb ralt">
-                <Image src="/img/app/app.png" height={500} width={500} alt="card" layout="responsive" className="w-100" priority />
+                <Image src="/assets/front/img/app/app.png" height={500} width={500} alt="card" layout="responsive" className="w-100" priority />
               </div>
               <div className="shape__ball">
                 <Image src="/assets/front/img/banner/ball.png" height={500} width={500} layout="responsive" alt="ball" />
@@ -243,10 +243,10 @@ export default function Home() {
                 </ul>
                 <div className="app__store d-flex align-items-center gap-3 flex-wrap wow fadeInDown">
                   <a href="#">
-                    <Image src="/img/app/appstore.png" height={100} width={100} layout="responsive" alt="app" />
+                    <Image src="/assets/front/img/app/appstore.png" height={100} width={100} layout="responsive" alt="app" />
                   </a>
                   <a href="#">
-                    <Image src="/img/app/googlepaly.png" height={100} width={100} layout="responsive" alt="app" />
+                    <Image src="/assets/front/img/app/googlepaly.png" height={100} width={100} layout="responsive" alt="app" />
                   </a>
                 </div>
               </div>
@@ -289,7 +289,7 @@ export default function Home() {
             >
               <div className="howwork__item transition text-center">
                 <div className="thumb transition tershape1 m-auto round50 shadow1">
-                  <Image src="/img/tab.png" height={50} width={50} layout="responsive" alt="work" />
+                  <Image src="/assets/front/img/tab.png" height={50} width={50} layout="responsive" alt="work" />
                 </div>
                 <div className="content mt-24">
                   <h4 className="title mb-16">
@@ -307,7 +307,7 @@ export default function Home() {
             >
               <div className="howwork__item transition text-center">
                 <div className="thumb transition tershape2 m-auto round50 shadow1">
-                  <Image src="/img/shar.png" height={50} width={50} layout="responsive" alt="work" />
+                  <Image src="/assets/front/img/shar.png" height={50} width={50} layout="responsive" alt="work" />
                 </div>
                 <div className="content mt-24">
                   <h4 className="title mb-16">
@@ -325,7 +325,7 @@ export default function Home() {
             >
               <div className="howwork__item transition text-center">
                 <div className="thumb transition m-auto round50 shadow1">
-                  <Image src="/img/hand.png" height={50} width={50} layout="responsive" alt="work" />
+                  <Image src="/assets/front/img/hand.png" height={50} width={50} layout="responsive" alt="work" />
                 </div>
                 <div className="content mt-24">
                   <h4 className="title mb-16">
@@ -345,7 +345,7 @@ export default function Home() {
             >
               <div className="select__cardbox boxes1 d-flex align-items-center">
                 <div className="thumb transition d-flex align-items-center justify-content-center" style={{ backgroundImage: `url("/assets/front/img/work/account.png")`, backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
-                  {/* <Image src="/img/work/account.png" height={0} width={0} objectFit="cover" layout="responsive" alt="img" /> */}
+                  {/* <Image src="/assets/front/img/work/account.png" height={0} width={0} objectFit="cover" layout="responsive" alt="img" /> */}
                 </div>
                 <h4 className="title">SEAMLESS SHARING</h4>
               </div>
@@ -356,7 +356,7 @@ export default function Home() {
             >
               <div className="select__cardbox boxes2 d-flex align-items-center">
                 <div className="thumb transition d-flex align-items-center justify-content-center" style={{ backgroundImage: `url("/assets/front/img/work/monitizeation.png")`, backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
-                  {/* <Image src="/img/work/monitizeation.png" height={0} width={0} objectFit="cover" layout="responsive" alt="img" /> */}
+                  {/* <Image src="/assets/front/img/work/monitizeation.png" height={0} width={0} objectFit="cover" layout="responsive" alt="img" /> */}
                 </div>
                 <h4 className="title">MOTIVATE GO GREEN</h4>
               </div>
@@ -367,7 +367,7 @@ export default function Home() {
             >
               <div className="select__cardbox boxes3 d-flex align-items-center">
                 <div className="thumb transition d-flex align-items-center justify-content-center" style={{ backgroundImage: `url("/assets/front/img/work/search.png")`, backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
-                  {/* <Image src="/img/work/search.png" height={0} width={0} objectFit="cover" layout="responsive" alt="img" /> */}
+                  {/* <Image src="/assets/front/img/work/search.png" height={0} width={0} objectFit="cover" layout="responsive" alt="img" /> */}
                 </div>
                 <h4 className="title">PAPERLESS PROCESS</h4>
               </div>
@@ -384,13 +384,13 @@ export default function Home() {
             <div className="col-xl-6 col-lg-6">
               <div className="choose__thumb ralt">
                 <Image
-                  src="/img/why_we_are_img.png"
+                  src="/assets/front/img/why_we_are_img.png"
                   alt="card"
                   height={25} width={25} layout="responsive"
                   className="choose__mthumb w-100"
                 />
                 <Image
-                  src="/img/work/map.png"
+                  src="/assets/front/img/work/map.png"
                   alt="map-img"
                   height={25} width={25} layout="responsive"
                   className="mapthumb"
@@ -567,7 +567,7 @@ export default function Home() {
             <div className="col-xl-5 col-lg-5 col-md-8">
               <div className="testimonial__thumb ralt wow fadeInDown">
                 <Image
-                  src="/img/testimonial/testimonial1.png"
+                  src="/assets/front/img/testimonial/testimonial1.png"
                   alt="card"
                   height={25} width={25} layout="responsive"
                   className="w-100"
@@ -614,7 +614,7 @@ export default function Home() {
                       </p>
                       <div className="d-flex align-items-center gap-3">
                         <div className="thumb">
-                          <Image src="/img/testimonial/annetee.png" height={25} width={25} layout="responsive" alt="annette" />
+                          <Image src="/assets/front/img/testimonial/annetee.png" height={25} width={25} layout="responsive" alt="annette" />
                         </div>
                         <div className="cont">
                           <span className="fz-20 fw-600 inter ptext">
@@ -643,7 +643,7 @@ export default function Home() {
                       </p>
                       <div className="d-flex align-items-center gap-3">
                         <div className="thumb">
-                          <Image src="/img/testimonial/annetee.png" height={25} width={25} layout="responsive" alt="annette" />
+                          <Image src="/assets/front/img/testimonial/annetee.png" height={25} width={25} layout="responsive" alt="annette" />
                         </div>
                         <div className="cont">
                           <span className="fz-20 fw-600 inter ptext">
@@ -672,7 +672,7 @@ export default function Home() {
                       </p>
                       <div className="d-flex align-items-center gap-3">
                         <div className="thumb">
-                          <Image src="/img/testimonial/annetee.png" height={25} width={25} layout="responsive" alt="annette" />
+                          <Image src="/assets/front/img/testimonial/annetee.png" height={25} width={25} layout="responsive" alt="annette" />
                         </div>
                         <div className="cont">
                           <span className="fz-20 fw-600 inter ptext">
