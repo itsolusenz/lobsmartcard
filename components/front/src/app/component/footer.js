@@ -92,7 +92,7 @@ function Footer() {
                     </li>
                     <li>
                       <a
-                        href="https://www.linkedin.com/company/laabamone-limited"
+                        href="https://www.linkedin.com/company/laabamone-business-solutions-private-limited/"
                         target="_blank"
                       >
                         <i className="fab fa-linkedin-in" />
