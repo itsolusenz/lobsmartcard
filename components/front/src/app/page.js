@@ -148,7 +148,7 @@ export default function Home() {
               <div className="banner__shapethumb ralt">
                 <div className="thumb">
                   <Image
-                    src="/img/banner/banner1.png"
+                    src="/assets/front/img/banner/banner1.png"
                     className="w-100"
                     height={400} width={500}
                     layout="responsive"
