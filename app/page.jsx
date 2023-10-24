@@ -3,7 +3,7 @@ import Buy from "@/components/preview/Buy";
 import CopyRight from "@/components/preview/CopyRight";
 import Demo from "@/components/preview/Demo";
 import Features from "@/components/preview/Features";
-import Home3 from "@/app/(homes)/home-3/page";
+import Home4 from "@/components/front/src/app/page";
 import Footer from "./footer";
 
 import "../public/assets/css/style.css";
@@ -22,7 +22,7 @@ export default function page() {
 
   <CopyRight/>*/}
    
-   <Home3 />
+   <Home4 />
   
   
 

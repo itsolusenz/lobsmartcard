@@ -58,7 +58,7 @@ export default function HeaderFour(props) {
            
             <div className="col-lg-2 col-md-6 col-sm-4 col-4 d-flex align-items-center">
               <div className="LobSmartCard-header-logo">
-                <Link className="site-logo" taret="_blank" href="https://nbayjobs.com/lobsmart/">
+                <Link className="site-logo" taret="_blank" href="/">
                   <Image
                     width={153}
                     height={52}
