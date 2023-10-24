@@ -9,6 +9,7 @@ import Footer from "./footer";
 import "../public/assets/css/style.css";
 import Preloader from "@/components/homes/Preloader";
 export const metadata = {
+  Image:'/favicon.png',
   title: 'LOBSMART - NFC',
   description: 'LOBS Smart Personalized NFC Cards is digitally interactive business Cards it can be customized with User Information'
 }
