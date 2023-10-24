@@ -191,8 +191,8 @@ function Footer() {
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <a target="_blank"
+                        href="https://maps.app.goo.gl/CRhcBYU7yvykeTWu9"
                         className="fz-16 d-flex align-items-center gap-3 fw-400 inter text-white d-block"
 
                       >

@@ -118,7 +118,7 @@ export default function Header(props) {
                     <Link href="/" className={router == "/" ? 'active' : ''}>Home</Link>
                   </li>
                   <li>
-                    <Link href="/about" className={router == "/about" ? 'active' : ''}>Who are you</Link>
+                    <Link href="/about" className={router == "/about" ? 'active' : ''}>Who we are</Link>
                   </li>
                   <li>
                     <Link href="/features" className={router == "/features" ? 'active' : ''}>Features</Link>

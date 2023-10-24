@@ -140,7 +140,7 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="ball">
-                  <Image src="/assets/front/img/backroll1.png" height={800} width={800} alt="img" />
+                  <img src="/assets/front/img/backroll1.png" height={800} width={800} alt="img" />
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="circle__thumb">
-                  <Image src="/assets/front/img/banner/banner-thumbbg1.png" height={700} width={700} objectFit="contain" alt="shape" />
+                  <img src="/assets/front/img/banner/banner-thumbbg1.png" alt="shape" />
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@ export default function Home() {
                   <a href="#">
                     <Image src="/assets/front/img/app/appstore.png" height={100} width={100} layout="responsive" alt="app" />
                   </a>
-                  <a href="#">
+                  <a href="https://play.google.com/store/apps/details?id=com.lobsmartcardnew.lobs&hl=en-IN" target="_blank">
                     <Image src="/assets/front/img/app/googlepaly.png" height={100} width={100} layout="responsive" alt="app" />
                   </a>
                 </div>
@@ -258,7 +258,7 @@ export default function Home() {
       {/* <!-- App End --> */}
 
       {/* HOW IS IT CARD */}
-      <section className="how__worksection ralt bgadd pt-110 pb-120">
+      <section className="how__worksection ralt bgadd pt-110 pb-120" style={{ backgroundColor: 'white', borderTop: '1px solid black' }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-6">
