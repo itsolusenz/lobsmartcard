@@ -7,6 +7,9 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function page() {
    const [navbarFixed, setNavbarFixed] = useState(false);
+   const [cardtype, setcardtype] = useState('0');
+   const [pvccardtype, setpvccardtype] = useState(false);
+   const [metalcardtype, setmetalcardtype] = useState(false);
 
    useEffect(() => {
       const handleScroll = () => {
@@ -32,6 +35,154 @@ export default function page() {
    }, []);
 
    const navbarClass = navbarFixed ? 'navbar-fixed' : '';
+
+   const carddetails_head = [
+      {
+
+         id: '1',
+         name: 'PVC',
+
+      },
+      {
+         id: '2',
+         name: 'Metal',
+
+      }
+   ];
+
+   const carddetails_pvchead = [
+      {
+
+         id: '1',
+         name: 'Matt',
+
+
+      },
+      {
+         id: '2',
+         name: 'Glassy',
+
+      }
+   ];
+   const carddetails_metalhead = [
+      {
+
+         id: '1',
+         name: 'Matt',
+
+      },
+      {
+         id: '2',
+         name: 'Glassy',
+
+      }
+   ];
+   const carddetails = [
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '1',
+         name: 'Matt White',
+         tyepid: '1',
+         img: '/assets/front/card/matt_white.png',
+         typename: 'PVC MATT CARD'
+
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '2',
+         name: 'Matt Black',
+         tyepid: '1',
+         img: '/assets/front/card/matt_black.png',
+         typename: 'PVC MATT CARD'
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '3',
+         name: 'Matt Gold',
+         tyepid: '1',
+         img: '/assets/front/card/matt_gold.png',
+         typename: 'PVC MATT CARD'
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '4',
+         name: 'Glassy Blue',
+         tyepid: '2',
+         img: '/assets/front/card/classy_blue.png',
+         typename: 'PVC GLASSY CARD'
+
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '4',
+         name: 'Braze',
+         tyepid: '2',
+         img: '/assets/front/card/Braze.png',
+         typename: 'PVC GLASSY CARD'
+
+      },
+      {
+         headid: '1',//Metal
+         headname: 'PVC Card',//Metal
+         id: '5',
+         name: 'Glassy Silver',
+         tyepid: '2',
+         img: '/assets/front/card/metal_card1.png',
+         typename: 'PVC GLASSY CARD'
+
+      },
+      {
+         headid: '2',//Metal
+         headname: 'Metal Card',//Metal
+         id: '6',
+         name: 'Matt Silver',
+         tyepid: '2',
+         img: '/assets/front/card/metal_card1.png',
+         typename: 'METAL MATT CARD'
+
+      },
+      {
+         headid: '2',//Metal
+         id: '7',
+         name: 'Glassy Blue',
+         tyepid: '2',
+         img: '/assets/front/card/classy_blue.png',
+         typename: 'METAL GLASSY CARD'
+
+      },
+
+      {
+         headid: '2',//Metal
+         headname: 'Metal Card',//Metal
+         id: '8',
+         name: 'Matt Gold',
+         tyepid: '2',
+         img: '/assets/front/card/matt_gold.png',
+         typename: 'METAL MATT CARD'
+
+      },
+      {
+         headid: '2',//Metal
+         id: '9',
+         name: 'Glassy Gold',
+         tyepid: '2',
+         img: '/assets/front/card/matt_gold.png',
+         typename: 'METAL GLASSY CARD'
+
+      },
+   ];
+
+
+
+
+
+
+
    return (
       <>
          <Header value={navbarClass} />
@@ -107,9 +258,24 @@ export default function page() {
                            </form>
                            <div className="pt-24 tborderdash bborderdash pb-24">
                               <h5 className="title mb-16">
-                                 Account Category
+                                 Card Type
                               </h5>
                               <div className="account__categories d-flex align-items-center flex-wrap">
+
+                                 {carddetails_head.map((a, i) => (
+
+
+                                    <div key={i} className="account-cateitem d-flex align-items-center" >
+                                       <input className="form-check-input" defaultChecked={a.id == cardtype ? true : false} type="radio" name="flexRadioDefault" id={`account${a.id}`} onClick={() => setcardtype(a.id)} />
+                                       <label className="form-check-label fz-18 fw-500 inter title" htmlFor={`account${a.id}`}>
+                                          {a.name}
+                                       </label>
+                                    </div>
+
+                                 ))}
+                              </div>
+
+                              {/*}  <div className="account__categories d-flex align-items-center flex-wrap">
                                  <div className="account-cateitem d-flex align-items-center">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="account1" />
                                     <label className="form-check-label fz-18 fw-500 inter title" htmlFor="account1">
@@ -122,15 +288,61 @@ export default function page() {
                                        Business
                                     </label>
                                  </div>
-                                 {/* <div className="account-cateitem d-flex align-items-center">
+                                 <div className="account-cateitem d-flex align-items-center">
                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="account3"/>
                            <label className="form-check-label fz-18 fw-500 inter title" htmlFor="account3">
                               Worldwide
                            </label>
-                        </div> */}
-                              </div>
+                                    </div> 
+                              </div>*/}
                            </div>
-                           <div className="bank__check__wrap pb-24">
+                           {cardtype == '1' &&
+                              <div className="pt-24 tborderdash bborderdash pb-24">
+                                 <h5 className="title mb-16">
+                                    PVC Card Type
+                                 </h5>
+                                 <div className="account__categories d-flex align-items-center flex-wrap">
+
+                                    {carddetails_pvchead.map((a, i) => (
+
+
+                                       <div key={i} className="account-cateitem d-flex align-items-center">
+                                          <input className="form-check-input" type="radio" name="flexRadioDefault" id="account1" />
+                                          <label className="form-check-label fz-18 fw-500 inter title" htmlFor="account1">
+                                             {a.name}
+                                          </label>
+                                       </div>
+
+                                    ))}
+                                 </div>
+
+
+                              </div>
+                           }
+                           {cardtype == '2' &&
+                              <div className="pt-24 tborderdash bborderdash pb-24">
+                                 <h5 className="title mb-16">
+                                    Metal Card Type
+                                 </h5>
+                                 <div className="account__categories d-flex align-items-center flex-wrap">
+
+                                    {carddetails_metalhead.map((a, i) => (
+
+
+                                       <div key={i} className="account-cateitem d-flex align-items-center" >
+                                          <input className="form-check-input" type="radio" name="flexRadioDefault" id="account1" />
+                                          <label className="form-check-label fz-18 fw-500 inter title" htmlFor="account1">
+                                             {a.name}
+                                          </label>
+                                       </div>
+
+                                    ))}
+                                 </div>
+
+
+                              </div>
+                           }
+                           {/*} <div className="bank__check__wrap pb-24">
                               <h5 className="title mb-16 pt-24">
                                  Bank Category
                               </h5>
@@ -165,7 +377,7 @@ export default function page() {
                                  </label>
                               </div>
                            </div>
-                           <div className="pt-24 tborderdash bborderdash pb-24">
+                          <div className="pt-24 tborderdash bborderdash pb-24">
                               <h5 className="title mb-16">
                                  Desired credit
                               </h5>
@@ -308,7 +520,7 @@ export default function page() {
                                     Cash Back Cards
                                  </label>
                               </div>
-                           </div>
+                           </div>*/}
                            <a href="#0" className="reset__filter justify-content-center fw-600 inter fz-16 d-flex align-items-center gap-2 base">
                               <i className="material-symbols-outlined base">
                                  rotate_right
@@ -320,8 +532,197 @@ export default function page() {
                   </div>
                   <div className="col-xl-8 col-lg-8">
                      <div className="row g-4 justify-content-center">
-                        <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+
+                        {cardtype == '1' &&
+
+                           <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+
+                              <div className="popular__items popular__v2 round16">
+
+
+                                 <div className="card__boxleft">
+                                    <Image src="/assets/front/card/classy_blue.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
+                                    {/*} <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
+                                    <div className="d-flex mb-16 fz-18 fw-400 inter ptext2 gap-1 align-items-center">
+                                       <i className="material-symbols-outlined ratting fz-24 mb-2">
+                                          star
+                                       </i>
+                                       4.5 (47 People Reviews)
+                                    </div>
+                                    <div className="d-flex flex-wrap gap-4 align-items-center">
+                                       <a href="compare-card.html" className="compare__btn d-flex align-items-center">
+                                          <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
+                                             compare_arrows
+                                          </i>
+                                          <span className="fz-14 fw-400 inter ">
+                                             Compare
+                                          </span>
+                                       </a>
+                                       <a href="listing-details.html" className="compare__btn d-flex align-items-center">
+                                          <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
+                                             arrow_right_alt
+                                          </i>
+                                          <span className="fz-14 fw-400 inter ">
+                                             Details
+                                          </span>
+                                       </a>
+                        </div>*/}
+                                 </div>
+
+
+
+
+
+
+
+
+
+
+                                 <div className="card__boxright">
+                                    <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
+                                       <h3 className="title mb-16">
+                                          PVC Card
+                                       </h3>
+                                       {/*} <a href="listing-details.html" className="cmn--btn">
+                                          <span>
+                                             ADD TO CARD
+                                          </span>
+                     </a>*/}
+                                    </div>
+
+                                    <p className="card__info fz-16 inter ptext">
+                                       Our PVC NFC Cards are the ultimate combination of style and durability made from high quality PVC material. These cards feature a Matte finish that’s sure to make a bold statement about your brand. With NFC technology, these cards offer seamless communication. Our PVC NFC Cards can be fully customized to showcase your brand’s personality. Upgrade your networking game and stand out from the crowd. Order yours today and experience the perfect combination of style, functionality and durability!
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+
+                        }
+                        {cardtype == '2' &&
+
+                           <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+
+                              <div className="popular__items popular__v2 round16">
+
+
+                                 <div className="card__boxleft">
+                                    <Image src="/assets/front/card/metal_card.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
+                                    <Image src="/assets/front/card/metal_card1.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
+
+                                    {/*} <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
+         <div className="d-flex mb-16 fz-18 fw-400 inter ptext2 gap-1 align-items-center">
+            <i className="material-symbols-outlined ratting fz-24 mb-2">
+               star
+            </i>
+            4.5 (47 People Reviews)
+         </div>
+         <div className="d-flex flex-wrap gap-4 align-items-center">
+            <a href="compare-card.html" className="compare__btn d-flex align-items-center">
+               <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
+                  compare_arrows
+               </i>
+               <span className="fz-14 fw-400 inter ">
+                  Compare
+               </span>
+            </a>
+            <a href="listing-details.html" className="compare__btn d-flex align-items-center">
+               <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
+                  arrow_right_alt
+               </i>
+               <span className="fz-14 fw-400 inter ">
+                  Details
+               </span>
+            </a>
+</div>*/}
+                                 </div>
+
+
+
+
+
+
+
+
+
+
+                                 <div className="card__boxright">
+                                    <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
+                                       <h3 className="title mb-16">
+                                          Metal Card
+                                       </h3>
+                                       {/*} <a href="listing-details.html" className="cmn--btn">
+               <span>
+                  ADD TO CARD
+               </span>
+</a>*/}
+                                    </div>
+
+                                    <p className="card__info fz-16 inter ptext">
+                                       Crafted from high-quality metal, these cards offer a level of durability and elegance that is unmatched by traditional paper cards. With NFC technology embedded within, these cards enable seamless communication, making networking a breeze. What's more, you can customise these cards with your company's logo, contact information, and any other details you desire, making them the perfect representation of your brand. The utilisation of Metal NFC Cards by Rich Kardz is revolutionising the networking space. Impress your clients and partners with these sleek and professional Metal NFC Cards, and take your business to the next level.
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+
+                        }
+
+                        {carddetails.map((b, inc) => (
+                           (cardtype == b.headid || cardtype == '0') &&
+
+                           <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+
+                              <div className="popular__items popular__v2 round16">
+
+                                 <div className="card__boxright align-items-center">
+                                    <div>
+                                       <Image src={b.img} alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
+
+                                    </div>
+                                    <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
+
+                                       <h6 className="title mb-30 ">
+                                          {b.name}
+                                       </h6>
+                                       <h7 className="title mb-30 " style={{ color: 'blue' }}>
+                                          {b.typename}
+                                       </h7>
+                                    </div>
+
+                                    <div className="d-flex mb-10 align-items-center justify-content-between flex-wrap gap-3">
+
+                                       <a href="#" className="cmn--btn align-items-center">
+                                          <span>
+                                             ADD TO CARD
+                                          </span>
+                                       </a>
+                                    </div>
+
+
+                                 </div>
+                              </div>
+                           </div>
+
+                        )
+                        )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {/*} <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+
                            <div className="popular__items popular__v2 round16">
+
+
                               <div className="card__boxleft">
                                  <Image src="/assets/front/img/cards/card2.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
                                  <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
@@ -350,6 +751,16 @@ export default function page() {
                                     </a>
                                  </div>
                               </div>
+
+
+
+
+
+
+
+
+
+
                               <div className="card__boxright">
                                  <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
                                     <h3 className="title mb-16">
@@ -447,6 +858,8 @@ export default function page() {
                               </div>
                            </div>
                         </div>
+
+
                         <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
                            <div className="popular__items popular__v2 round16">
                               <div className="card__boxleft">
@@ -827,9 +1240,9 @@ export default function page() {
                                  </p>
                               </div>
                            </div>
-                        </div>
+                        </div>*/}
                      </div>
-                     <ul className="pagination justify-content-center mt-40">
+                     {/*} <ul className="pagination justify-content-center mt-40">
                         <li>
                            <a href="#0">
                               <i className="material-symbols-outlined">
@@ -864,7 +1277,7 @@ export default function page() {
                               </i>
                            </a>
                         </li>
-                     </ul>
+                     </ul>*/}
                   </div>
                </div>
             </div>

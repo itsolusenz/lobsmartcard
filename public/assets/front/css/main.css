@@ -3985,8 +3985,9 @@ p {
 
 .account__categories .account-cateitem .form-check-input:checked[type=radio] {
   background-image: none;
-  background: url(../../assets/img/details/dot-check.png) no-repeat center center;
+  /*background: url(../../assets/img/details/dot-check.png) no-repeat center center;*/
   background-size: 0.9vh;
+  background-color: #2a4fbe;
 }
 
 .account__categories .account-cateitem .form-check-input:checked {

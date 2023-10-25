@@ -258,7 +258,7 @@ function Footer() {
         </div>
       </footer>
       <div className="scroll_2nd active">
-        <a aria-label="whatsapp-icon" href="https://api.whatsapp.com/send?phone=9585123995" target="_blank" rel="noreferrer nofollow">
+        <a aria-label="whatsapp-icon" href="https://api.whatsapp.com/send/?phone=919585123995&text=I%27m+interested+in+LobsmartCard+Please+Contact" target="_blank" rel="noreferrer nofollow">
           <img src="/assets/front/img/whtap.webp" alt="whatsapp" style={{ height: '50px' }} className="lazyload" /></a>
 
 
