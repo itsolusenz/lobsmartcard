@@ -4,6 +4,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
+import Head from 'next/head';
 import Preloader from '@/components/homes/Preloader'
 import AboutThree from '@/components/homes/about/AboutThree'
 import BlogsThree from '@/components/homes/blogs/BlogsThree'
@@ -45,8 +46,12 @@ if(Profilelist.length>0)
 {
   console.log('---ddd---',Profilelist[0])
   return (
-    <><Preloader/>
-  
+    <>
+        <Head>
+        <title>My page title</title>
+      </Head>
+    <Preloader/>
+        
       <div className="page-wrapper home-3" >
         
         <HeaderFour  slug="p" slug1={slug1} slug2={slug2} plen={Profilelist[0].proudctdetails[0].count} slen={Profilelist[0].servicedetails[0].count}/>
@@ -79,6 +84,7 @@ else
 {
   return (
     <><Preloader/>
+    
    <div className="page-wrapper home-3" >
         
         <HeaderFour/>
