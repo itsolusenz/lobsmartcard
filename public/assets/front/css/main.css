@@ -2652,7 +2652,13 @@ p {
     width: 150px;
   }
 }
-
+.scroll_2nd {
+  position: fixed;
+  padding: 0;
+  top: 315px;
+  right: 0;
+  z-index: 988;
+}
 @media (max-width: 991px) {
   .tershape2::before {
     display: none;
