@@ -141,7 +141,7 @@ export default function page() {
          headname: 'Metal Card',//Metal
          id: '6',
          name: 'Matt Silver',
-         tyepid: '2',
+         tyepid: '1',
          img: '/assets/front/card/metal_card1.png',
          typename: 'METAL MATT CARD'
 
@@ -161,7 +161,7 @@ export default function page() {
          headname: 'Metal Card',//Metal
          id: '8',
          name: 'Matt Gold',
-         tyepid: '2',
+         tyepid: '1',
          img: '/assets/front/card/matt_gold.png',
          typename: 'METAL MATT CARD'
 
@@ -171,7 +171,7 @@ export default function page() {
          id: '9',
          name: 'Glassy Gold',
          tyepid: '2',
-         img: '/assets/front/card/matt_gold.png',
+         img: '/assets/front/card/Glassy_gold.png',
          typename: 'METAL GLASSY CARD'
 
       },
@@ -304,14 +304,14 @@ export default function page() {
                                  <div className="account__categories d-flex align-items-center flex-wrap">
 
                                     {carddetails_pvchead.map((a, i) => (
-
-
-                                       <div key={i} className="account-cateitem d-flex align-items-center">
-                                          <input className="form-check-input" type="radio" name="flexRadioDefault" id="account1" />
-                                          <label className="form-check-label fz-18 fw-500 inter title" htmlFor="account1">
+                                       <div key={i} className="account-cateitem d-flex align-items-center" >
+                                          <input className="form-check-input" defaultChecked={a.id == pvccardtype ? true : false} type="radio" name="flexRadioDefault" id={`account${a.id}`} onClick={() => setpvccardtype(a.id)} />
+                                          <label className="form-check-label fz-18 fw-500 inter title" htmlFor={`account${a.id}`}>
                                              {a.name}
                                           </label>
                                        </div>
+
+
 
                                     ))}
                                  </div>
@@ -328,13 +328,13 @@ export default function page() {
 
                                     {carddetails_metalhead.map((a, i) => (
 
-
                                        <div key={i} className="account-cateitem d-flex align-items-center" >
-                                          <input className="form-check-input" type="radio" name="flexRadioDefault" id="account1" />
-                                          <label className="form-check-label fz-18 fw-500 inter title" htmlFor="account1">
+                                          <input className="form-check-input" defaultChecked={a.id == metalcardtype ? true : false} type="radio" name="flexRadioDefault" id={`account${a.id}`} onClick={() => setmetalcardtype(a.id)} />
+                                          <label className="form-check-label fz-18 fw-500 inter title" htmlFor={`account${a.id}`}>
                                              {a.name}
                                           </label>
                                        </div>
+
 
                                     ))}
                                  </div>
@@ -667,7 +667,7 @@ export default function page() {
                         }
 
                         {carddetails.map((b, inc) => (
-                           (cardtype == b.headid || cardtype == '0') &&
+                           (cardtype == b.headid || (pvccardtype == b.tyepid && cardtype == '1') || (metalcardtype == b.tyepid && cardtype == '2') || cardtype == '0') &&
 
                            <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
 
