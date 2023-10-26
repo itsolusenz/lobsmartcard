@@ -15,7 +15,7 @@ function Footer() {
       <footer className="footer__section bgadd">
 
         <div className="subcribtion">
-          <div className="container">
+          <div className="container" style={{ paddingTop: '20px' }}>
             <div className="subcribtion__wrapper ralt">
               <div className="subscribe__content">
                 <h2 className="mb-24 title wow fadeInDown">

@@ -10,6 +10,7 @@ export default function page() {
    const [cardtype, setcardtype] = useState('0');
    const [pvccardtype, setpvccardtype] = useState(false);
    const [metalcardtype, setmetalcardtype] = useState(false);
+   const [cartid, setcartid] = useState('');
 
    useEffect(() => {
       const handleScroll = () => {
@@ -85,7 +86,8 @@ export default function page() {
          name: 'Matt White',
          tyepid: '1',
          img: '/assets/front/card/matt_white.png',
-         typename: 'PVC MATT CARD'
+         typename: 'PVC MATT CARD',
+         amt: '2000',
 
       },
       {
@@ -95,6 +97,7 @@ export default function page() {
          name: 'Matt Black',
          tyepid: '1',
          img: '/assets/front/card/matt_black.png',
+         amt: '2000',
          typename: 'PVC MATT CARD'
       },
       {
@@ -104,6 +107,7 @@ export default function page() {
          name: 'Matt Gold',
          tyepid: '1',
          img: '/assets/front/card/matt_gold.png',
+         amt: '2000',
          typename: 'PVC MATT CARD'
       },
       {
@@ -113,45 +117,50 @@ export default function page() {
          name: 'Glassy Blue',
          tyepid: '2',
          img: '/assets/front/card/classy_blue.png',
+         amt: '2000',
          typename: 'PVC GLASSY CARD'
 
       },
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '4',
+         id: '5',
          name: 'Braze',
          tyepid: '2',
          img: '/assets/front/card/Braze.png',
+         amt: '2000',
          typename: 'PVC GLASSY CARD'
 
       },
       {
          headid: '1',//Metal
          headname: 'PVC Card',//Metal
-         id: '5',
+         id: '6',
          name: 'Glassy Silver',
          tyepid: '2',
          img: '/assets/front/card/metal_card1.png',
+         amt: '2000',
          typename: 'PVC GLASSY CARD'
 
       },
       {
          headid: '2',//Metal
          headname: 'Metal Card',//Metal
-         id: '6',
+         id: '7',
          name: 'Matt Silver',
          tyepid: '1',
          img: '/assets/front/card/metal_card1.png',
+         amt: '2000',
          typename: 'METAL MATT CARD'
 
       },
       {
          headid: '2',//Metal
-         id: '7',
+         id: '8',
          name: 'Glassy Blue',
          tyepid: '2',
          img: '/assets/front/card/classy_blue.png',
+         amt: '2000',
          typename: 'METAL GLASSY CARD'
 
       },
@@ -159,28 +168,77 @@ export default function page() {
       {
          headid: '2',//Metal
          headname: 'Metal Card',//Metal
-         id: '8',
+         id: '9',
          name: 'Matt Gold',
          tyepid: '1',
          img: '/assets/front/card/matt_gold.png',
+         amt: '2000',
          typename: 'METAL MATT CARD'
 
       },
       {
          headid: '2',//Metal
-         id: '9',
+         id: '10',
          name: 'Glassy Gold',
          tyepid: '2',
          img: '/assets/front/card/Glassy_gold.png',
+         amt: '2000',
          typename: 'METAL GLASSY CARD'
 
       },
    ];
 
+   const updateCookie = (a) => {
+      localStorage.setItem("CART_STOREAGE_VALUE", a);
+
+   }
+
+   const Add_to_cart = (id, type) => {
+      let res = '';
+
+      if (type == 'add') {
+         if (cartid != '') {
+            res = cartid + '' + id + ',';
+         }
+         else {
+            res = id + ',';
+         }
+         setcartid(res);
+         updateCookie(res);
+         console.log('res1', res);
+
+
+      }
+      if (type == 'remove') {
+         let search = id + ',';
+         let position = cartid.search(search);
+         let res = '';
+         if (position >= 0) {
+            res = cartid.replace(search, "");
+            setcartid(res);
+            updateCookie(res);
+            console.log('res2', res);
+         }
+
+      }
 
 
 
+   }
 
+   const FindCartArr = (id) => {
+
+      let search = id + ',';
+      let position = cartid.search(search);
+      console.log('position', position);
+      if (position >= 0) {
+         return '1';
+      }
+      else {
+         return '0';
+      }
+
+   }
 
 
    return (
@@ -244,10 +302,10 @@ export default function page() {
          <section className="card__details__section pt-120 pb-120 bgadd ralt">
             <div className="container">
                <div className="row g-4">
-                  <div className="col-xl-4 col-lg-4">
+                  <div className="col-xl-12 col-lg-12">
                      <div className="card__sidebar">
                         <div className="card__common__item bgwhite round16 mb-24">
-                           <h4 className="head fw-600 bborderdash title pb-24 mb-24">
+                           {/*} <h4 className="head fw-600 bborderdash title pb-24 mb-24">
                               Filter
                            </h4>
                            <form action="#0" className="d-flex align-items-center mb-24 justify-content-between">
@@ -255,11 +313,11 @@ export default function page() {
                               <i className="material-symbols-outlined">
                                  search
                               </i>
-                           </form>
-                           <div className="pt-24 tborderdash bborderdash pb-24">
-                              <h5 className="title mb-16">
+                           </form>*/}
+                           <div className="pt-24   pb-24">
+                              {/*} <h5 className="title mb-16">
                                  Card Type
-                              </h5>
+                        </h5>*/}
                               <div className="account__categories d-flex align-items-center flex-wrap">
 
                                  {carddetails_head.map((a, i) => (
@@ -521,16 +579,16 @@ export default function page() {
                                  </label>
                               </div>
                            </div>*/}
-                           <a href="#0" className="reset__filter justify-content-center fw-600 inter fz-16 d-flex align-items-center gap-2 base">
+                           {/*} <a href="#0" className="reset__filter justify-content-center fw-600 inter fz-16 d-flex align-items-center gap-2 base">
                               <i className="material-symbols-outlined base">
                                  rotate_right
                               </i>
                               Reset Filters
-                           </a>
+                           </a>*/}
                         </div>
                      </div>
                   </div>
-                  <div className="col-xl-8 col-lg-8">
+                  <div className="col-xl-12 col-lg-12">
                      <div className="row g-4 justify-content-center">
 
                         {cardtype == '1' &&
@@ -667,34 +725,47 @@ export default function page() {
                         }
 
                         {carddetails.map((b, inc) => (
-                           (cardtype == b.headid || (pvccardtype == b.tyepid && cardtype == '1') || (metalcardtype == b.tyepid && cardtype == '2') || cardtype == '0') &&
+                           ((pvccardtype == '' && cardtype == b.headid) || (pvccardtype == b.tyepid && cardtype == b.headid) || (metalcardtype == b.tyepid && cardtype == b.headid) || (metalcardtype == '' && cardtype == b.headid) || (pvccardtype == '' && metalcardtype == '' && cardtype == '0')) &&
 
-                           <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                           <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
 
                               <div className="popular__items popular__v2 round16">
 
                                  <div className="card__boxright align-items-center">
-                                    <div>
+                                    <div >
                                        <Image src={b.img} alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
 
                                     </div>
+
                                     <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
 
-                                       <h6 className="title mb-30 ">
+                                       <h6 className="title  ">
                                           {b.name}
                                        </h6>
-                                       <h7 className="title mb-30 " style={{ color: 'blue' }}>
+                                       <h7 className="title  " style={{ color: 'blue' }}>
                                           {b.typename}
                                        </h7>
                                     </div>
-
                                     <div className="d-flex mb-10 align-items-center justify-content-between flex-wrap gap-3">
+                                       <h5 className="title mb-0 " style={{ color: '#eaac66' }}>
+                                          ₹{b.amt}
+                                       </h5>
+                                       {FindCartArr(b.id) == '1' ?
+                                          <a href="#" onClick={() => Add_to_cart(b.id, 'remove')} className="cmn--btn outline__btn align-items-center">
+                                             <span>
+                                                Remove From Cart
+                                             </span>
+                                          </a>
+                                          :
+                                          <a href="#" onClick={() => Add_to_cart(b.id, 'add')} className="cmn--btn align-items-center">
+                                             <span>
+                                                Add to Cart
+                                             </span>
+                                          </a>
+                                       }
 
-                                       <a href="#" className="cmn--btn align-items-center">
-                                          <span>
-                                             ADD TO CARD
-                                          </span>
-                                       </a>
+
+
                                     </div>
 
 
@@ -718,529 +789,7 @@ export default function page() {
 
 
 
-                        {/*} <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
 
-                           <div className="popular__items popular__v2 round16">
-
-
-                              <div className="card__boxleft">
-                                 <Image src="/assets/front/img/cards/card2.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
-                                 <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
-                                 <div className="d-flex mb-16 fz-18 fw-400 inter ptext2 gap-1 align-items-center">
-                                    <i className="material-symbols-outlined ratting fz-24 mb-2">
-                                       star
-                                    </i>
-                                    4.5 (47 People Reviews)
-                                 </div>
-                                 <div className="d-flex flex-wrap gap-4 align-items-center">
-                                    <a href="compare-card.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          compare_arrows
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Compare
-                                       </span>
-                                    </a>
-                                    <a href="listing-details.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          arrow_right_alt
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Details
-                                       </span>
-                                    </a>
-                                 </div>
-                              </div>
-
-
-
-
-
-
-
-
-
-
-                              <div className="card__boxright">
-                                 <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
-                                    <h3 className="title mb-16">
-                                       JK Bank Ltd
-                                    </h3>
-                                    <a href="listing-details.html" className="cmn--btn">
-                                       <span>
-                                          ADD TO CARD
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="d-flex card__btngrp align-items-center">
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          account_balance_wallet
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Cashback
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          add_card
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Travel Card
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <span className="material-symbols-outlined base fz-18">
-                                          local_atm
-                                       </span>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Bonus Points
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="bank__detals d-flex align-items-center ">
-                                    <ul className="bankd__wrap">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                    <ul className="bankd__wrap left__border">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <p className="card__info fz-16 inter ptext">
-                                    Credit cards are plastic or metal cards used to pay for items or services using credit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-
-
-                        <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-                           <div className="popular__items popular__v2 round16">
-                              <div className="card__boxleft">
-                                 <Image src="/assets/front/img/cards/card1.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
-                                 <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
-                                 <div className="d-flex mb-16 fz-18 fw-400 inter ptext2 gap-1 align-items-center">
-                                    <i className="material-symbols-outlined ratting fz-24 mb-2">
-                                       star
-                                    </i>
-                                    4.5 (47 People Reviews)
-                                 </div>
-                                 <div className="d-flex flex-wrap gap-4 align-items-center">
-                                    <a href="compare-card.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          compare_arrows
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Compare
-                                       </span>
-                                    </a>
-                                    <a href="listing-details.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          arrow_right_alt
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Details
-                                       </span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div className="card__boxright">
-                                 <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
-                                    <h3 className="title mb-16">
-                                       JK Bank Ltd
-                                    </h3>
-                                    <a href="listing-details.html" className="cmn--btn">
-                                       <span>
-                                          ADD TO CARD
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="d-flex card__btngrp align-items-center">
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          account_balance_wallet
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Cashback
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          add_card
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Travel Card
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <span className="material-symbols-outlined base fz-18">
-                                          local_atm
-                                       </span>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Bonus Points
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="bank__detals d-flex align-items-center ">
-                                    <ul className="bankd__wrap">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                    <ul className="bankd__wrap left__border">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <p className="card__info fz-16 inter ptext">
-                                    Credit cards are plastic or metal cards used to pay for items or services using credit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-                           <div className="popular__items popular__v2 round16">
-                              <div className="card__boxleft">
-                                 <Image src="/assets/front/img/cards/card3.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
-                                 <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
-                                 <div className="d-flex mb-16 fz-18 fw-400 inter ptext2 gap-1 align-items-center">
-                                    <i className="material-symbols-outlined ratting fz-24 mb-2">
-                                       star
-                                    </i>
-                                    4.5 (47 People Reviews)
-                                 </div>
-                                 <div className="d-flex flex-wrap gap-4 align-items-center">
-                                    <a href="compare-card.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          compare_arrows
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Compare
-                                       </span>
-                                    </a>
-                                    <a href="listing-details.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          arrow_right_alt
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Details
-                                       </span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div className="card__boxright">
-                                 <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
-                                    <h3 className="title mb-16">
-                                       JK Bank Ltd
-                                    </h3>
-                                    <a href="listing-details.html" className="cmn--btn">
-                                       <span>
-                                          ADD TO CARD
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="d-flex card__btngrp align-items-center">
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          account_balance_wallet
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Cashback
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          add_card
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Travel Card
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <span className="material-symbols-outlined base fz-18">
-                                          local_atm
-                                       </span>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Bonus Points
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="bank__detals d-flex align-items-center ">
-                                    <ul className="bankd__wrap">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                    <ul className="bankd__wrap left__border">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <p className="card__info fz-16 inter ptext">
-                                    Credit cards are plastic or metal cards used to pay for items or services using credit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <div className="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-                           <div className="popular__items popular__v2 round16">
-                              <div className="card__boxleft">
-                                 <Image src="/assets/front/img/cards/card4.png" alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
-                                 <span className="aplication ralt mb-15 d-block fz-14 fw-400 inter ptext2">1 Application – offer of 4 cards</span>
-                                 <div className="d-flex mb-16 fz-18 fw-400 inter ptext2 gap-1 align-items-center">
-                                    <i className="material-symbols-outlined ratting fz-24 mb-2">
-                                       star
-                                    </i>
-                                    4.5 (47 People Reviews)
-                                 </div>
-                                 <div className="d-flex flex-wrap gap-4 align-items-center">
-                                    <a href="compare-card.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          compare_arrows
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Compare
-                                       </span>
-                                    </a>
-                                    <a href="listing-details.html" className="compare__btn d-flex align-items-center">
-                                       <i className="material-symbols-outlined round50 justify-content-center base d-flex align-items-center fs-16">
-                                          arrow_right_alt
-                                       </i>
-                                       <span className="fz-14 fw-400 inter ">
-                                          Details
-                                       </span>
-                                    </a>
-                                 </div>
-                              </div>
-                              <div className="card__boxright">
-                                 <div className="d-flex mb-30 align-items-center justify-content-between flex-wrap gap-3">
-                                    <h3 className="title mb-16">
-                                       JK Bank Ltd
-                                    </h3>
-                                    <a href="listing-details.html" className="cmn--btn">
-                                       <span>
-                                          ADD TO CARD
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="d-flex card__btngrp align-items-center">
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          account_balance_wallet
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Cashback
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <i className="material-symbols-outlined base fz-18">
-                                          add_card
-                                       </i>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Travel Card
-                                       </span>
-                                    </a>
-                                    <a href="#0" className="ctband__item d-flex align-items-center gap-1">
-                                       <span className="material-symbols-outlined base fz-18">
-                                          local_atm
-                                       </span>
-                                       <span className="fz-14 fw-500 inter base">
-                                          Bonus Points
-                                       </span>
-                                    </a>
-                                 </div>
-                                 <div className="bank__detals d-flex align-items-center ">
-                                    <ul className="bankd__wrap">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                    <ul className="bankd__wrap left__border">
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Max credit
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $150,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Income
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             $120,000
-                                          </span>
-                                       </li>
-                                       <li className="d-flex align-items-center justify-content-between">
-                                          <span className="fz-14 fw-400 ptext2 inter">
-                                             Interst-free
-                                          </span>
-                                          <span className="fz-14 fw-400 inter title">
-                                             35 days
-                                          </span>
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <p className="card__info fz-16 inter ptext">
-                                    Credit cards are plastic or metal cards used to pay for items or services using credit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>*/}
                      </div>
                      {/*} <ul className="pagination justify-content-center mt-40">
                         <li>
@@ -1281,7 +830,7 @@ export default function page() {
                   </div>
                </div>
             </div>
-         </section>
+         </section >
          <Footer />
       </>
    )

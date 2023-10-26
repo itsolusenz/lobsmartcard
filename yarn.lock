@@ -19,6 +19,13 @@
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
+"@google-pay/button-react@^3.0.10":
+  version "3.0.10"
+  resolved "https://registry.npmjs.org/@google-pay/button-react/-/button-react-3.0.10.tgz"
+  integrity sha512-6lFESkpkIqnXGbbeD+kZ696+MJI+TrZYFBTuGpSvf98nvaE7fHffeV34i2ebZBqUkLi/4HicoVc8sG71KWKy+g==
+  dependencies:
+    "@types/googlepay" "^0.7.0"
+
 "@next/env@13.4.19":
   version "13.4.19"
   resolved "https://registry.npmjs.org/@next/env/-/env-13.4.19.tgz"
@@ -35,6 +42,11 @@
   integrity sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==
   dependencies:
     tslib "^2.4.0"
+
+"@types/googlepay@^0.7.0":
+  version "0.7.3"
+  resolved "https://registry.npmjs.org/@types/googlepay/-/googlepay-0.7.3.tgz"
+  integrity sha512-X8r8QhVklu/7gJqXgzpOLe7BWFTC/l7fzTHtdi/bw5OBDo3Blk/qPTivq9n0K4AV12pMP5m6yTgOlihsh+KFrQ==
 
 "@types/vcards-js@^2.10.2":
   version "2.10.2"

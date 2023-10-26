@@ -26,6 +26,10 @@ export default function Header(props) {
 
   useEffect(() => {
     // Simulate an API call or some async operation
+    if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
+      let cartid = localStorage.getItem("CART_STOREAGE_VALUE");
+      //alert(cartid);
+    }
     setTimeout(() => {
       setIsLoading(false);
 
@@ -134,7 +138,7 @@ export default function Header(props) {
                 <div className="menu__right__components d-flex align-items-center">
                   <div className="menu__components">
                     <div className="tolly__shop">
-                      <a href="gift-card.html">
+                      <a href="/cart">
                         <i className="material-symbols-outlined">shopping_cart</i>
                       </a>
                     </div>
