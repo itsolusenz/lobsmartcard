@@ -725,7 +725,7 @@ export default function page() {
                         }
 
                         {carddetails.map((b, inc) => (
-                           ((pvccardtype == '' && cardtype == b.headid) || (pvccardtype == b.tyepid && cardtype == b.headid) || (metalcardtype == b.tyepid && cardtype == b.headid) || (metalcardtype == '' && cardtype == b.headid) || (pvccardtype == '' && metalcardtype == '' && cardtype == '0')) &&
+                           ((pvccardtype == b.tyepid && cardtype == b.headid) || (metalcardtype == b.tyepid && cardtype == b.headid) || (pvccardtype == '' && metalcardtype == '' && cardtype == '0')) &&
 
                            <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
 
