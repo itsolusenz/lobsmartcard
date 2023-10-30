@@ -191,11 +191,11 @@ include 'require/header.php';
 
                           <select name="country" id="country" className="form-select country-style" aria-label="Country">
 
-                            <option value="USA">USA</option>
+                            <option value="IN">India</option>
 
-                            <option value="PK">PK</option>
+                            {/*} <option value="PK">PK</option>
 
-                            <option value="BN">BN</option>
+      <option value="BN">BN</option>*/}
 
                           </select>
 
