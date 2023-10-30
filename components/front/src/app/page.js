@@ -4,7 +4,8 @@
 import Footer from "./component/footer"
 import Header from "./component/header"
 import Image from 'next/image';
-
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 import React, { useEffect, useRef, useState } from 'react';
@@ -26,7 +27,7 @@ export default function Home() {
   const [odometerValue3, setOdometerValue3] = useState(0);
   const [odometerValue4, setOdometerValue4] = useState(0);
   const [navbarFixed, setNavbarFixed] = useState(false);
-
+  const [dialog, setdialog] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       console.log("Scroll event triggered"); // Check if the scroll event is being triggered
@@ -102,10 +103,17 @@ export default function Home() {
     };
   }, [odometerValue1, odometerValue2, odometerValue3, odometerValue4]);
 
-
+  const handleClose = () => {
+    setdialog(false);
+  };
 
   return (
     <>
+      <Dialog onClose={handleClose} open={dialog}>
+        <DialogTitle style={{ color: 'blue' }}> <Image src="/assets/front/img/app/appstore.png" height={100} width={100} layout="responsive" alt="app" />
+        </DialogTitle>
+        <p style={{ padding: '20px' }}><h4 style={{ color: 'blue' }}>Coming Soon..</h4></p>
+      </Dialog>
       <Header value={navbarClass} />
       <section className="banner__section bgadd overhid ralt">
         <div className="container">
@@ -247,7 +255,7 @@ export default function Home() {
                   </li>
                 </ul>
                 <div className="app__store d-flex align-items-center gap-3 flex-wrap wow fadeInDown">
-                  <a href="#">
+                  <a href="#" onClick={() => setdialog(true)}>
                     <Image src="/assets/front/img/app/appstore.png" height={100} width={100} layout="responsive" alt="app" />
                   </a>
                   <a href="https://play.google.com/store/apps/details?id=com.lobsmartcardnew.lobs&hl=en-IN" target="_blank">
