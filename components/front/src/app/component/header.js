@@ -138,8 +138,9 @@ export default function Header(props) {
                 <div className="menu__right__components d-flex align-items-center">
                   <div className="menu__components">
                     <div className="tolly__shop">
-                      <a href="/cart">
+                      <a href="/cart"><span className="badge badge-light">9</span>
                         <i className="material-symbols-outlined">shopping_cart</i>
+
                       </a>
                     </div>
                     <a href="/cardDetails" className="cmn--btn">

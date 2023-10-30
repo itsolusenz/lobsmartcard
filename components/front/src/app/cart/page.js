@@ -18,9 +18,9 @@ export default function page() {
          headid: '1',//PVC
          headname: 'PVC Card',
          id: '1',
-         name: 'Matt White',
+         name: 'Black',
          tyepid: '1',
-         img: '/assets/front/card/matt_white.png',
+         img: '/assets/front/card/new/matt_black.png',
          typename: 'PVC MATT CARD',
          amt: '2000',
 
@@ -29,9 +29,9 @@ export default function page() {
          headid: '1',//PVC
          headname: 'PVC Card',
          id: '2',
-         name: 'Matt Black',
+         name: 'California Gold',
          tyepid: '1',
-         img: '/assets/front/card/matt_black.png',
+         img: '/assets/front/card/new/matt_californiagold.png',
          amt: '2000',
          typename: 'PVC MATT CARD'
       },
@@ -39,9 +39,39 @@ export default function page() {
          headid: '1',//PVC
          headname: 'PVC Card',
          id: '3',
-         name: 'Matt Gold',
+         name: 'Gold',
          tyepid: '1',
-         img: '/assets/front/card/matt_gold.png',
+         img: '/assets/front/card/new/matt_gold.png',
+         amt: '2000',
+         typename: 'PVC MATT CARD'
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '3',
+         name: 'Olive',
+         tyepid: '1',
+         img: '/assets/front/card/new/matt_olive.png',
+         amt: '2000',
+         typename: 'PVC MATT CARD'
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '3',
+         name: 'Silver',
+         tyepid: '1',
+         img: '/assets/front/card/new/matt_silver.png',
+         amt: '2000',
+         typename: 'PVC MATT CARD'
+      },
+      {
+         headid: '1',//PVC
+         headname: 'PVC Card',
+         id: '3',
+         name: 'White',
+         tyepid: '1',
+         img: '/assets/front/card/new/matt_white.png',
          amt: '2000',
          typename: 'PVC MATT CARD'
       },
@@ -49,9 +79,9 @@ export default function page() {
          headid: '1',//PVC
          headname: 'PVC Card',
          id: '4',
-         name: 'Glassy Blue',
+         name: 'Blue',
          tyepid: '2',
-         img: '/assets/front/card/classy_blue.png',
+         img: '/assets/front/card/new/glassy_blue.png',
          amt: '2000',
          typename: 'PVC GLASSY CARD'
 
@@ -62,7 +92,7 @@ export default function page() {
          id: '5',
          name: 'Braze',
          tyepid: '2',
-         img: '/assets/front/card/Braze.png',
+         img: '/assets/front/card/new/glassy_braze.png',
          amt: '2000',
          typename: 'PVC GLASSY CARD'
 
@@ -71,56 +101,25 @@ export default function page() {
          headid: '1',//Metal
          headname: 'PVC Card',//Metal
          id: '6',
-         name: 'Glassy Silver',
+         name: 'Gold',
          tyepid: '2',
-         img: '/assets/front/card/metal_card1.png',
+         img: '/assets/front/card/new/glassy_gold.png',
          amt: '2000',
          typename: 'PVC GLASSY CARD'
 
       },
       {
-         headid: '2',//Metal
-         headname: 'Metal Card',//Metal
+         headid: '1',//Metal
+         headname: 'Glassy Card',//Metal
          id: '7',
-         name: 'Matt Silver',
-         tyepid: '1',
-         img: '/assets/front/card/metal_card1.png',
-         amt: '2000',
-         typename: 'METAL MATT CARD'
-
-      },
-      {
-         headid: '2',//Metal
-         id: '8',
-         name: 'Glassy Blue',
+         name: 'Silver',
          tyepid: '2',
-         img: '/assets/front/card/classy_blue.png',
+         img: '/assets/front/card/new/glassy_silver.png',
          amt: '2000',
          typename: 'METAL GLASSY CARD'
 
       },
 
-      {
-         headid: '2',//Metal
-         headname: 'Metal Card',//Metal
-         id: '9',
-         name: 'Matt Gold',
-         tyepid: '1',
-         img: '/assets/front/card/matt_gold.png',
-         amt: '2000',
-         typename: 'METAL MATT CARD'
-
-      },
-      {
-         headid: '2',//Metal
-         id: '10',
-         name: 'Glassy Gold',
-         tyepid: '2',
-         img: '/assets/front/card/Glassy_gold.png',
-         amt: '2000',
-         typename: 'METAL GLASSY CARD'
-
-      },
    ];
    useEffect(() => {
       const handleScroll = () => {

@@ -77,7 +77,7 @@ include 'require/header.php'; ?*/}
             </div>
             <div className="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5">
               <div className="featured__card">
-                <Image src="/assets/front/img/about/abouts.png" className="w-100" alt="img" layout='responsive' width={400} height={200} />
+                <Image src="/assets/front/card/new/head.png" className="w-100" alt="img" layout='responsive' width={400} height={200} />
               </div>
             </div>
           </div>
@@ -114,6 +114,72 @@ include 'require/header.php'; ?*/}
       {/*element*/}
       {/* Hero Section End */}
       {/* How Work Here */}
+
+      {/* How Work End */}
+      {/* Provide Here */}
+
+      <section className="provide__section ralt bgadd  pb-120">
+        <div className="container">
+          <div className="row  g-4 align-items-center justify-content-between">
+            <div className="col-xl-6 col-lg-7">
+              <div className="choose__content">
+                <div className="section__title mb-40">
+                  <h4 className="sub ralt base mb-16 wow fadeInUp">Who We Are</h4>
+                  <h2 className="title mb-24 wow fadeInDown">
+                    We Provide Trusted Lobsmart AI business Card For This World
+                  </h2>
+                  <p className="ptext2 fz-16 fw-400 inter wow fadeInUp">
+                    We understand that the world of Business cards overwhelming, We
+                    LOBS provide smart AI business card for Professional and
+                    business people.
+                  </p>
+                </div>
+                <ul className="choose__listwrap provide__listwrap d-flex align-items-center">
+                  <li className="d-flex mb-24 wow fadeInDown">
+                    <i className="material-symbols-outlined base ifz32 bgwhite round50 d-flex align-items-center justify-content-center">
+                      savings
+                    </i>
+                    <span className="contentbox">
+                      <span className="fz-24 d-block mb-1 fw-600 inter title">
+                        Money Saving
+                      </span>
+                      <span className="ptext2 fz-16 fw-400 inter">
+                        Instead of printing plenty of paper business cards our
+                        onestop solution is here. One smart business cards life,
+                        time customizable, single tap to save contact. QR code for
+                        non NFC
+                      </span>
+                    </span>
+                  </li>
+                  <li className="d-flex wow fadeInUp">
+                    <i className="material-symbols-outlined icolor1 ifz32 bgwhite round50 d-flex align-items-center justify-content-center">
+                      alarm_on
+                    </i>
+                    <span className="contentbox">
+                      <span className="fz-24 d-block mb-1 fw-600 inter title">
+                        Time Saving
+                      </span>
+                      <span className="ptext2 fz-16 fw-400 inter">
+                        No waiting period for call back after supply of business
+                        cards to the customer or clients since the contact can be
+                        saved on their phone easily. Easy to access clients
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-xl-5 col-lg-5">
+              <div className="provide__thumb">
+                <Image src="/assets/front/img/aboutimg.png" alt="card" className="w-100" layout='responsive' width={400} height={700} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="ball">
+          <Image src="/assets/front/img/banner/ball.png" alt="ball" layout='responsive' width={450} height={300} />
+        </div>
+      </section>
       <section className="how__worksection2 pt-110 pb-120">
         <div className="container">
           <div className="row justify-content-center">
@@ -154,7 +220,7 @@ include 'require/header.php'; ?*/}
                 </div>
                 <div className="content mt-24">
                   <h4 className="title mb-16">
-                    <a href="#0">Tab to Share</a>
+                    <a href="#0">Tap and scan</a>
                   </h4>
                   <p className="fz-14 fw-400 inter title"></p>
                 </div>
@@ -224,70 +290,6 @@ include 'require/header.php'; ?*/}
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      {/* How Work End */}
-      {/* Provide Here */}
-      <section className="provide__section ralt bgadd  pb-120">
-        <div className="container">
-          <div className="row pt-120 g-4 align-items-center justify-content-between">
-            <div className="col-xl-6 col-lg-7">
-              <div className="choose__content">
-                <div className="section__title mb-40">
-                  <h4 className="sub ralt base mb-16 wow fadeInUp">Who We Are</h4>
-                  <h2 className="title mb-24 wow fadeInDown">
-                    We Provide Trusted Lobsmart AI business Card For This World
-                  </h2>
-                  <p className="ptext2 fz-16 fw-400 inter wow fadeInUp">
-                    We understand that the world of Business cards overwhelming, We
-                    LOBS provide smart AI business card for Professional and
-                    business people.
-                  </p>
-                </div>
-                <ul className="choose__listwrap provide__listwrap d-flex align-items-center">
-                  <li className="d-flex mb-24 wow fadeInDown">
-                    <i className="material-symbols-outlined base ifz32 bgwhite round50 d-flex align-items-center justify-content-center">
-                      savings
-                    </i>
-                    <span className="contentbox">
-                      <span className="fz-24 d-block mb-1 fw-600 inter title">
-                        Money Saving
-                      </span>
-                      <span className="ptext2 fz-16 fw-400 inter">
-                        Instead of printing plenty of paper business cards our
-                        onestop solution is here. One smart business cards life,
-                        time customizable, single tap to save contact. QR code for
-                        non NFC
-                      </span>
-                    </span>
-                  </li>
-                  <li className="d-flex wow fadeInUp">
-                    <i className="material-symbols-outlined icolor1 ifz32 bgwhite round50 d-flex align-items-center justify-content-center">
-                      alarm_on
-                    </i>
-                    <span className="contentbox">
-                      <span className="fz-24 d-block mb-1 fw-600 inter title">
-                        Time Saving
-                      </span>
-                      <span className="ptext2 fz-16 fw-400 inter">
-                        No waiting period for call back after supply of business
-                        cards to the customer or clients since the contact can be
-                        saved on their phone easily. Easy to access clients
-                      </span>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xl-5 col-lg-5">
-              <div className="provide__thumb">
-                <Image src="/assets/front/img/aboutimg.png" alt="card" className="w-100" layout='responsive' width={400} height={700} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="ball">
-          <Image src="/assets/front/img/banner/ball.png" alt="ball" layout='responsive' width={450} height={300} />
         </div>
       </section>
       {/* Provide End */}

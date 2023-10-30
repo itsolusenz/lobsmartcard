@@ -125,8 +125,7 @@ export default function Home() {
                   Find the <span className="gratext">Personalized</span> NFC Cards
                 </span>
                 <p className="mb-40 title wow fadeInDown" data-wow-duration="0.8s">
-                  LOBS Smart Personalized NFC Cards is digitally interactive business
-                  Cards it can be customized with User Information
+                  LOBS Smart Personalized NFC Cards are digitally interactive business cards that can be customized with user information
                 </p>
                 <div
                   className="btn__grp d-flex align-items-center wow fadeInDown"
@@ -192,11 +191,17 @@ export default function Home() {
                   <h4 className="sub ralt base mb-16 wow fadeInDown">
                     Download Our Apps
                   </h4>
-                  <h2 className="title mb-24 wow fadeInUp">
+                  <h3 className="title mb-24 wow fadeInUp">
                     Follow Four Quick Steps To Buy Our Card With Confidence
-                  </h2>
-                  <p className="ptext2 fz-16 fw-400 inter wow fadeInDown">
-                    Take your credit card search on the go with our easy-to-use mobile apps. Download them today and get access to our powerful credit card search tools anytime, anywhere. With our apps, you can
+                  </h3>
+                  <p className="ptext2 fz-16 fw-400 inter wow fadeInDown" style={{ textAlign: 'left', textAlign: 'justify' }}>
+                    Our NFC Cards are the ultimate combination of style and durability made from high quality PVC material. These cards feature a Matte finish that’s sure to make a bold statement about your brand. With NFC technology, these cards offer seamless communication.
+                    Our NFC Cards can be fully customized to showcase your brand’s personality. Upgrade your networking game and stand out from the crowd.
+                    Order yours today and experience the perfect combination of style, functionality and durability!
+
+
+
+                    {/*} Take your credit card search on the go with our easy-to-use mobile apps. Download them today and get access to our powerful credit card search tools anytime, anywhere. With our apps, you can*/}
                   </p>
                 </div>
                 <ul className="app__listwrap mb-40">
@@ -276,8 +281,7 @@ export default function Home() {
                   className="ptext2 fz-16 fw-400 inter wow fadeInUp"
                   data-wow-duration="0.9s"
                 >
-                  Buying a NFC enabled AI Business card from a LOBSMART gives you more
-                  professional way to handle and organize your circle.
+                  Buying an NFC-enabled AI business card from LOBSMART gives you a more professional way to handle and organize your circle
                 </p>
               </div>
             </div>
@@ -582,7 +586,7 @@ export default function Home() {
                     Feedback From Our Valued Customers For Marketplace
                   </h2>
                   <p className="ptext2 fz-16 fw-400 inter wow fadeInDown">
-                    We understand that choosing a credit card can be overwhelming,
+                    We understand that choosing a NFC card can be overwhelming,
                     especially with so many options available. That's why we've
                     created a user-friendly platform
                   </p>
@@ -608,8 +612,8 @@ export default function Home() {
                         <i className="material-symbols-outlined ratting">star</i>
                       </div>
                       <p className="ptext3 inter fz-18 fw-400 mb-30">
-                        Thanks to the credit card marketplace website, I was able to
-                        find the perfect credit card to fit my needs. The website was
+                        Thanks to the LOBSMARTCARD website, I was able to
+                        find the perfect NFC card to fit my needs. The website was
                         easy to navigate and provided me with all the information
                       </p>
                       <div className="d-flex align-items-center gap-3">

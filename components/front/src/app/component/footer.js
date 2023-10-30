@@ -52,7 +52,7 @@ function Footer() {
             <div className="row g-4">
               <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                 <div className="footer__item">
-                  <a href="." className="footer__logo mb-24 d-block">
+                  <a href="/" className="footer__logo mb-24 d-block">
                     <Image
                       src="/assets/front/img/lobs.png"
                       alt="logo"
@@ -84,7 +84,7 @@ function Footer() {
                     </li>
                     <li>
                       <a
-                        href="https://www.facebook.com/laabamoneerp/"
+                        href="https://www.twitter.com/laabamoneerp/"
                         target="_blank"
                       >
                         <i className="fab fa-twitter" />
@@ -117,13 +117,13 @@ function Footer() {
                   </a>
                   <ul className="quick__link">
                     <li>
-                      <a href="." className="fz-16 fw-400 inter text-white d-block">
+                      <a href="/" className="fz-16 fw-400 inter text-white d-block">
                         Home
                       </a>
                     </li>
                     <li>
                       <a
-                        href="about.html"
+                        href="/about"
                         className="fz-16 fw-400 inter text-white d-block"
                       >
                         Who We are
@@ -131,7 +131,7 @@ function Footer() {
                     </li>
                     <li>
                       <a
-                        href="features.html"
+                        href="/features"
                         className="fz-16 fw-400 inter text-white d-block"
                       >
                         Features
@@ -139,7 +139,7 @@ function Footer() {
                     </li>
                     <li>
                       <a
-                        href="faq.html"
+                        href="/faq"
                         className="fz-16 fw-400 inter text-white d-block"
                       >
                         Have Query ?
@@ -147,7 +147,7 @@ function Footer() {
                     </li>
                     <li>
                       <a
-                        href="contact.html"
+                        href="/contact"
                         className="fz-16 fw-400 inter text-white d-block"
                       >
                         Contact
