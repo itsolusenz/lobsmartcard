@@ -13,6 +13,12 @@ export default function page() {
    const [cartid, setcartid] = useState('');
 
    useEffect(() => {
+      function callCart() {
+         if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
+            let res = localStorage.getItem("CART_STOREAGE_VALUE");
+            setcartid(res);
+         }
+      }
       const handleScroll = () => {
          console.log("Scroll event triggered"); // Check if the scroll event is being triggered
          const scrollY = window.scrollY;
@@ -27,12 +33,15 @@ export default function page() {
          }
 
       };
-
+      callCart();
       window.addEventListener('scroll', handleScroll);
 
       return () => {
          window.removeEventListener('scroll', handleScroll);
       };
+
+
+
    }, []);
 
    const navbarClass = navbarFixed ? 'navbar-fixed' : '';
@@ -113,7 +122,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '3',
+         id: '4',
          name: 'Olive',
          tyepid: '1',
          img: '/assets/front/card/new/matt_olive.png',
@@ -123,7 +132,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '3',
+         id: '5',
          name: 'Silver',
          tyepid: '1',
          img: '/assets/front/card/new/matt_silver.png',
@@ -133,7 +142,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '3',
+         id: '6',
          name: 'White',
          tyepid: '1',
          img: '/assets/front/card/new/matt_white.png',
@@ -143,7 +152,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '4',
+         id: '7',
          name: 'Blue',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_blue.png',
@@ -154,7 +163,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '5',
+         id: '8',
          name: 'Braze',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_braze.png',
@@ -165,7 +174,7 @@ export default function page() {
       {
          headid: '1',//Metal
          headname: 'PVC Card',//Metal
-         id: '6',
+         id: '9',
          name: 'Gold',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_gold.png',
@@ -176,7 +185,7 @@ export default function page() {
       {
          headid: '1',//Metal
          headname: 'Glassy Card',//Metal
-         id: '7',
+         id: '10',
          name: 'Silver',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_silver.png',
@@ -242,7 +251,7 @@ export default function page() {
 
    return (
       <>
-         <Header value={navbarClass} />
+         <Header value={navbarClass} cart_id={cartid} />
          <div className="breadcumnd__wrapper">
             <div className="container">
                <div className="row align-items-center justify-content-between">
@@ -714,7 +723,7 @@ export default function page() {
                                     </div>
 
                                     <p className="card__info fz-16 inter ptext">
-                                       Crafted from high-quality metal, these cards offer a level of durability and elegance that is unmatched by traditional paper cards. With NFC technology embedded within, these cards enable seamless communication, making networking a breeze. What's more, you can customise these cards with your company's logo, contact information, and any other details you desire, making them the perfect representation of your brand. The utilisation of Metal NFC Cards by Rich Kardz is revolutionising the networking space. Impress your clients and partners with these sleek and professional Metal NFC Cards, and take your business to the next level.
+                                       Crafted from high-quality metal, these cards offer a level of durability and elegance that is unmatched by traditional paper cards. With NFC technology embedded within, these cards enable seamless communication, making networking a breeze. What's more, you can customise these cards with your company's logo, contact information, and any other details you desire, making them the perfect representation of your brand. The utilisation of Metal NFC Cards is revolutionising the networking space. Impress your clients and partners with these sleek and professional Metal NFC Cards, and take your business to the next level.
                                     </p>
                                  </div>
                               </div>

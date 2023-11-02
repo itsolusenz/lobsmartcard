@@ -48,7 +48,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '3',
+         id: '4',
          name: 'Olive',
          tyepid: '1',
          img: '/assets/front/card/new/matt_olive.png',
@@ -58,7 +58,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '3',
+         id: '5',
          name: 'Silver',
          tyepid: '1',
          img: '/assets/front/card/new/matt_silver.png',
@@ -68,7 +68,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '3',
+         id: '6',
          name: 'White',
          tyepid: '1',
          img: '/assets/front/card/new/matt_white.png',
@@ -78,7 +78,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '4',
+         id: '7',
          name: 'Blue',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_blue.png',
@@ -89,7 +89,7 @@ export default function page() {
       {
          headid: '1',//PVC
          headname: 'PVC Card',
-         id: '5',
+         id: '8',
          name: 'Braze',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_braze.png',
@@ -100,7 +100,7 @@ export default function page() {
       {
          headid: '1',//Metal
          headname: 'PVC Card',//Metal
-         id: '6',
+         id: '9',
          name: 'Gold',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_gold.png',
@@ -111,7 +111,7 @@ export default function page() {
       {
          headid: '1',//Metal
          headname: 'Glassy Card',//Metal
-         id: '7',
+         id: '10',
          name: 'Silver',
          tyepid: '2',
          img: '/assets/front/card/new/glassy_silver.png',
@@ -141,9 +141,10 @@ export default function page() {
          let j;
          let restot = 0;
 
-         console.log('-------s-', value.length);
+         console.log('resssssssss', value.length);
          for (j = 0; j < carddetails.length; j++) {
             for (i = 0; i < value.length; i++) {
+
                if (value[i] == carddetails[j]['id']) {
                   restot = Number(restot) + Number(carddetails[j]['amt'])
 
@@ -160,7 +161,8 @@ export default function page() {
       if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
          let cartid = localStorage.getItem("CART_STOREAGE_VALUE");
          console.log('cartid', cartid);
-         let res = cartid.split(",");
+         let res1 = cartid.slice(0, -1);
+         let res = res1.split(",");
          setcartarrid(res);
          console.log('len', res.length);
          setTotal(res);

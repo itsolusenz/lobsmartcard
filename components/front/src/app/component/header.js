@@ -11,10 +11,17 @@ import { usePathname } from 'next/navigation'
 
 export default function Header(props) {
   const router = usePathname();
-  console.log('router', router);
+  console.log('props', props.cart_id);
+  let cart_id = '';
+  if (router == "/cardDetails") {
+    cart_id = props.cart_id;
+  } else {
+    cart_id = localStorage.getItem("CART_STOREAGE_VALUE");
+  }
+
   const [isLoading, setIsLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
-
+  const [Cartcnt, setCartcnt] = useState(0);
   const toggleActive = () => {
     // Toggle the isActive state when the button is clicked
     setIsActive(!isActive);
@@ -26,15 +33,25 @@ export default function Header(props) {
 
   useEffect(() => {
     // Simulate an API call or some async operation
-    if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
-      let cartid = localStorage.getItem("CART_STOREAGE_VALUE");
-      //alert(cartid);
+    function callcartfunc() {
+      if (cart_id != null && cart_id != undefined && cart_id != '') {
+        let cartid = cart_id;
+        let res = cartid.slice(0, -1);
+        console.log("-----", res);
+        let cart_cnt = res.split(',');
+        let cart_cnt1 = cart_cnt.length;
+        console.log("cart_cnt", cart_cnt1);
+        setCartcnt(cart_cnt1);
+        //alert(cartid);
+      }
     }
+
     setTimeout(() => {
       setIsLoading(false);
 
     }, 2000);
-  }, [router]);
+    callcartfunc();
+  }, [router, cart_id]);
 
   return (
     <>
@@ -137,15 +154,34 @@ export default function Header(props) {
 
                 <div className="menu__right__components d-flex align-items-center">
                   <div className="menu__components">
-                    <div className="tolly__shop">
-                      <a href="/cart"><span className="badge badge-light">9</span>
-                        <i className="material-symbols-outlined">shopping_cart</i>
+                    {/*<div className="work__icon arrow3 d-flex align-items-center justify-content-center m-auto ralt round50 shadow1">
+                      <span className="badge base5bg d-flex align-items-center justify-content-center fz-18 fw-600 text-white inter round50">
+                        03
+                      </span>
 
+                      <a href="/cart">
+                        <i className="material-symbols-outlined">shopping_cart</i>
+                      </a>
+
+                    </div>*/}
+
+                    <div>
+                      <a href="/cardDetails" className="cmn--btn">
+                        <span>Buy Now</span>
                       </a>
                     </div>
-                    <a href="/cardDetails" className="cmn--btn">
-                      <span>Buy Now</span>
-                    </a>
+                    <div className="tolly__shop">
+
+
+                      <a href="/cart">
+                        <span className="badgecart basebg d-flex align-items-center justify-content-center fz-10 fw-600 text-white inter round50">
+                          {Cartcnt}
+                        </span>
+                        <i className="material-symbols-outlined">shopping_cart</i>
+                      </a>
+
+                    </div>
+
                   </div>
                   <div className={`header-bar d-lg-none  ${buttonClassName}`} onClick={toggleActive}>
                     <span />
