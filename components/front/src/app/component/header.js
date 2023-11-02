@@ -12,12 +12,8 @@ import { usePathname } from 'next/navigation'
 export default function Header(props) {
   const router = usePathname();
   console.log('props', props.cart_id);
-  let cart_id = '';
-  if (router == "/cardDetails") {
-    cart_id = props.cart_id;
-  } else {
-    cart_id = localStorage.getItem("CART_STOREAGE_VALUE");
-  }
+  let { cart_id } = props;
+
 
   const [isLoading, setIsLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
@@ -34,6 +30,13 @@ export default function Header(props) {
   useEffect(() => {
     // Simulate an API call or some async operation
     function callcartfunc() {
+      if (router == "/cardDetails") {
+        cart_id = cart_id;
+      } else {
+        cart_id = localStorage.getItem("CART_STOREAGE_VALUE");
+      }
+
+
       if (cart_id != null && cart_id != undefined && cart_id != '') {
         let cartid = cart_id;
         let res = cartid.slice(0, -1);
