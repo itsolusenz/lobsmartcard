@@ -239,7 +239,7 @@ function Footer() {
             <ul className="help__support d-flex align-items-center">
               <li>
                 <a
-                  href="privacy-policy.html"
+                  href="privacy-policy"
                   className="text-white fz-16 fw-400 inter"
                 >
                   Privacy policy
@@ -247,10 +247,26 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="terms-and-conditions.html"
+                  href="terms-and-conditions"
                   className="text-white fz-16 fw-400 inter"
                 >
                   Terms &amp; Conditions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="return-and-refund-policy"
+                  className="text-white fz-16 fw-400 inter"
+                >
+                  Return & Refund Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="shipping-delivery-policy"
+                  className="text-white fz-16 fw-400 inter"
+                >
+                  Shipping & Delivery Policy
                 </a>
               </li>
             </ul>

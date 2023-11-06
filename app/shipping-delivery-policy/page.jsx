@@ -1,15 +1,15 @@
 import Preloader from '@/components/homes/Preloader'
-import Privacy from '@/components/front/src/app/component/privcy'
+import Shipping from '@/components/front/src/app/component/shipping'
 import React from 'react'
 export const metadata = {
-  title: 'LobSmartCard Privacy',
+  title: 'LobSmartCard - Terms and Conditons',
   description: 'Discover Botami,the most impressive portfolio template for work showcase, blog'
 }
 export default function page() {
   return (<>
 
   
-  <Privacy />
+  <Shipping />
   
   </>
     
