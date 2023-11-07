@@ -115,8 +115,290 @@ export default function features() {
       <img src="/assets/front/img/banner/chok4.png" alt="element" />
     </div> */}
       {/*element*/}
+      <section className="compare__section ralt bgadd pt-120 pb-120">
+        <div className="container">
+          <div className="additional__info mt-40 bgwhite round16">
 
-      <section className="additional__info bgwhite round16" style={{ justifyContent: "center", display: "flex" }}>
+            <h5 className="title addi__head round16">
+              Features
+            </h5>
+            <div className="table__here">
+              <table className="table">
+                <tbody>
+                  <tr >
+
+                    <td className="fz-16 fw-600 inter ttile">
+
+                    </td>
+                    <td className="fz-16 fw-600 inter ttile">
+                      PAPER BUSINESS CARD
+                    </td>
+                    <td className="fz-16 fw-600 inter ttile">
+                      OTHER DIGITAL BUSINESS CARD
+                    </td>
+                    <td className="fz-16 fw-600 inter ttile">
+                      JUST LOBS
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Display Contact Info
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Instantly Update
+                    </td>
+
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Video Embeds
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Custom icon, title, link
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Advanced Analytics
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Mobile App on ios/Android
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Business & Social Media
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      LOBS Personal(Share one link directly)
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Lead Generation
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Email Signature
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Schedule Meetings
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td className="fz-16 fw-600 inter ttile">
+                      Multiple Theme
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base2">
+                        close
+                      </i>
+                    </td>
+                    <td>
+                      <i className="material-symbols-outlined base">
+                        done
+                      </i>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div></div>
+      </section>
+      {/*<section className="additional__info bgwhite round16" style={{ justifyContent: "center", display: "flex" }}>
+
         <div className="title addi__head round16">
           <div className="">
             <table className="table table-borderless table-striped">
@@ -129,7 +411,7 @@ export default function features() {
                 </tr>
               </thead>
               <tbody style={{ textAlign: "center" }}>
-                <tr>
+                <tr >
                   <th>Display Contact Info</th>
                   <td>✔</td>
                   <td>✔</td>
@@ -206,7 +488,7 @@ export default function features() {
             </table>
           </div>
         </div>
-      </section>
+      </section>*/}
 
 
       {/* <div className="additional__info mt-40 bgwhite round16">
