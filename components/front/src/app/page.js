@@ -491,7 +491,7 @@ export default function Home() {
       </section>
 
 
-      <section className="top__reted ralt bgadd pb-120 pt-120" >
+      {/*}  <section className="top__reted ralt bgadd pb-120 pt-120" >
         <div className="counter__wrap pb-120 px-4 round16 container">
           <div className="row g-3 justify-content-center">
             <div className="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-8">
@@ -572,7 +572,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
       <section className="testimonial__section pb-120 pt-120">
         <div className="container">
           <div className="row g-4 align-items-center justify-content-between">
