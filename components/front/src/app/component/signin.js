@@ -12,9 +12,11 @@ function Signup() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [selectstatus, setselectstatus] = useState('');
    const [Countrylist, setCountrylist] = useState([]);
-   const [phone, setphone] = useState('');
    const [err, seterr] = useState('');
    const [succ, setsucc] = useState('');
+   const [phone, setphone] = useState('');
+   const [webpass, setwebpass] = useState('');
+   const [viewotp, setviewotp] = useState('password');
    useEffect(() => {
 
 
@@ -51,14 +53,14 @@ function Signup() {
       let acc_cnt = '0';
       let res = '91' + phone;
       console.log('----', res);
-      const response = await axios.get("https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&mobile=" + res);
+      const response = await axios.get("https://www.laabamone.com/Lobsmart/api.php?eventtype=web_login&mobile=" + res + "&password=" + webpass);
       console.log('loginmobcnt--', response.data[0].count);
       acc_cnt = response.data[0].count;
       if (acc_cnt > '0') {
-         seterr("Mobile number Already Exists..")
+         window.location.href = "/";
       }
       else {
-         seterr('');
+         seterr('Invalid Login Details');
       }
 
 
@@ -149,68 +151,76 @@ function Signup() {
                                     <Alert severity="error">Error — {err}</Alert>
                                  }
                               </div>
-                              <div className="col-lg-3">
+                              <div className="row g-4 ">
+
+                                 <div className="col-lg-3">
 
 
 
-                                 <div className={`nice-select mb-16 bg-trans ${selectstatus}`} tabindex="0" onClick={() => change_selectstatus(selectstatus != '' ? '' : 'open')}>
-                                    <span className="current" >
-                                       +91
-                                    </span>
-                                    <ul class="list">
-                                       <li data-value="1" class="option selected">
+                                    <div className={`nice-select mb-16 bg-trans ${selectstatus}`} tabindex="0" onClick={() => change_selectstatus(selectstatus != '' ? '' : 'open')}>
+                                       <span className="current" >
                                           +91
-                                       </li><li data-value="2" class="option">
-                                          +35
-                                       </li>
-                                       <li data-value="2" class="option">
-                                          +61
-                                       </li>
-                                       {/*}{
+                                       </span>
+                                       <ul className="list">
+                                          <li data-value="1" className="option selected">
+                                             +91
+                                          </li><li data-value="2" className="option">
+                                             +35
+                                          </li>
+                                          <li data-value="2" className="option">
+                                             +61
+                                          </li>
+                                          {/*}{
                                           Countrylist.map((a, b) => (
-                                             <li data-value="2" class="option">
+                                             <li data-value="2" className="option">
                                                 {a.countries_name}
                                              </li>
                                           ))
                                        }
-                                      <li data-value="1" class="option selected">
+                                      <li data-value="1" className="option selected">
                                           Select More Card
-                                       </li><li data-value="2" class="option">
+                                       </li><li data-value="2" className="option">
                                           Select New Card
-                                       </li><li data-value="3" class="option">
+                                       </li><li data-value="3" className="option">
                                           Select Update Card
                                     </li>*/}
-                                    </ul>
-                                 </div>
-
-                              </div>
-                              <div className="col-lg-9">
-                                 <div className="frm__grp">
-
-                                    <input type="number" value={phone} onChange={(e) => setphone(e.target.value)} placeholder="Enter Mobile Number..." />
+                                       </ul>
+                                    </div>
 
                                  </div>
-                              </div>
-                              <div className="col-lg-12">
-                                 <div className="frm__grp">
+                                 <div className="col-lg-9">
+                                    <div className="frm__grp">
 
-                                    <input type="number" value={phone} onChange={(e) => setphone(e.target.value)} placeholder="Password" />
-                                    <a href="#" class="base fz-14 inter d-flex justify-content-end mt-2">Forget password</a>
+                                       <input required type="number" value={phone} onChange={(e) => setphone(e.target.value)} placeholder="Enter Mobile Number..." />
 
+                                    </div>
+                                 </div>
+                                 <div className="col-lg-12">
+                                    <div className="frm__grp">
+                                       <input type={viewotp} required value={webpass} onChange={(e) => setwebpass(e.target.value)} placeholder="Enter Password..." />
+                                       {viewotp == 'password' ?
+                                          <i class="far fa-eye" onClick={() => setviewotp('text')} id="togglePassword" style={{ marginLeft: '-30px', cursor: 'pointer', color: 'blue' }}></i>
+                                          :
+                                          <i class="far fa-eye-slash" onClick={() => setviewotp('password')} id="togglePassword" style={{ marginLeft: '-30px', cursor: 'pointer', color: 'blue' }}></i>
+                                       }
+
+                                    </div>
+                                 </div>
+                                 <p className="fz-16 fw-400 title inter" style={{ paddingTop: '80px' }}>
+                                    Don't have an account? <a href="/signup" className="base">Signup</a>
+                                 </p>
+                                 <div className="col-lg-6">
+                                    <div className="frm__grp">
+                                       <button type="submit" className="cmn--btn" >
+                                          <span>
+                                             Sign In
+                                          </span>
+                                       </button>
+                                    </div>
                                  </div>
                               </div>
-                              <p className="fz-16 fw-400 title inter" style={{ paddingTop: '80px' }}>
-                                 Do you have an account? <a href="singin.html" className="base">Signin</a>
-                              </p>
-                              <div className="col-lg-6">
-                                 <div className="frm__grp">
-                                    <button type="submit" className="cmn--btn" >
-                                       <span>
-                                          Sign Up
-                                       </span>
-                                    </button>
-                                 </div>
-                              </div>
+
+
                            </div>
                         </form>
                      </div>

@@ -21,12 +21,14 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { decode as base64_decode, encode as base64_encode } from 'base-64';
 
-export default function profile_details() {
+export default function profile_details(props) {
+    console.log("props", props)
+    const { viewtype } = props;
     //  console.log('activeStep', activeStep)
     // jsCookie.set('pagename', 'customer');
     // const { cusid } = useParams();
-    // console.log(cusid);
-    const cusid = '';
+    console.log('viewtype', viewtype);
+
     const [Errorval, setErrorval] = useState('');
     const [companyerror, setcompanyerror] = useState('');
     const [inverror, setinverror] = useState('');
@@ -90,7 +92,7 @@ export default function profile_details() {
     const [createObjectURL_pimage, setCreateObjectURL_pimage] = useState(null);
     const [createObjectURL_simage, setCreateObjectURL_simage] = useState(null);
 
-
+    const [cusid, setcusid] = useState('');
     const [status, setstatus] = useState('1');
     const [setupcompid, Setsetupcompid] = useState('');
     const [logcomp, setlogcomp] = useState('');
@@ -108,13 +110,12 @@ export default function profile_details() {
     const [p_uniqueid, setp_uniqueid] = useState('');
     const [p_uniqueiderr, setp_uniqueiderr] = useState('');
 
-    useEffect(() => {
+    useEffect(async () => {
         // Perform localStorage action
-
 
         const getProfile = async (a) => {
 
-            const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&uniqueid=' + a);
+            const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&profileid=' + a);
             const json = await response.json();
             console.log('res', json);
             setprofiledata(json);
@@ -188,10 +189,13 @@ export default function profile_details() {
 
         }
 
-        if (cusid != null && cusid != undefined && cusid != '') {
-            getProfile(cusid);
-            setlogcompid(cusid);
-            // getSetupcompany(cusid);
+        let cus1id = localStorage.getItem("LOGIN_USER_ID");
+        console.log('---', cus1id);
+        if (cus1id != null && cus1id != undefined && cus1id != '') {
+            setcusid(cus1id);
+            getProfile(cus1id);
+            setlogcompid(cus1id);
+
 
         }
         else {
@@ -204,7 +208,7 @@ export default function profile_details() {
 
 
 
-    }, [cusid])
+    }, [viewtype])
     const SaveServiceImage = (e) => {
         const SIZE = 20 * 1024;
         if (e.target.files && e.target.files[0]) {
@@ -482,7 +486,7 @@ export default function profile_details() {
 
             let str = '';
             if (logcompid != null && logcompid != '' && logcompid != undefined) {
-                str = '&uniqueid=' + logcompid;
+                str = '&profileid=' + logcompid;
             }
             console.log(str);
             console.log('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_addprofile'
@@ -1748,116 +1752,6 @@ export default function profile_details() {
                     <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
 
                     <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
-
-                        <div className="row col-md-12" >
-                            <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
-                                <h3 className="mb-40 title">Social Media:</h3>
-                            </div>
-                            <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
-
-                            </div>
-                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                <TextField
-                                    value={fb}
-                                    onChange={(e) => {
-                                        setfb(e.target.value)
-                                        // , setadd2error('') 
-                                    }}
-                                    fullWidth label="Facebook Url" variant="outlined">
-
-
-                                </TextField>
-                            </div>
-                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                <TextField
-                                    value={twitter}
-                                    onChange={(e) => {
-                                        settwitter(e.target.value)
-                                        // , setadd2error('') 
-                                    }}
-                                    fullWidth label="Twitter url" variant="outlined">
-
-
-                                </TextField>
-                            </div>
-                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                <TextField
-                                    value={linkedin}
-                                    onChange={(e) => {
-                                        setlinkedin(e.target.value)
-                                        // , setadd2error('') 
-                                    }}
-                                    fullWidth label="Linkedin url" variant="outlined">
-
-
-                                </TextField>
-                            </div>
-                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                <TextField
-                                    value={insta}
-                                    onChange={(e) => {
-                                        setinsta(e.target.value)
-                                        // , setadd2error('') 
-                                    }}
-                                    fullWidth label="Instagram url" variant="outlined">
-
-
-                                </TextField>
-                            </div>
-                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                <TextField
-                                    value={youtube}
-                                    onChange={(e) => {
-                                        setyoutube(e.target.value)
-                                        // , setadd2error('') 
-                                    }}
-                                    fullWidth label="Youtube url" variant="outlined">
-
-
-                                </TextField>
-                            </div>
-                        </div>
-
-                    </Box>
-                    <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
-
-                    <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
-
-                        <div className="row col-md-12" >
-                            <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
-                                <h3 className="mb-40 title">Others :</h3>
-                            </div>
-                            <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
-
-                            </div>
-                            <div className="col-md-12" style={{ paddingTop: '10px' }}>
-
-                                <TextField
-                                    multiline
-                                    rows={6}
-                                    value={aboutcontent}
-                                    onChange={(e) => {
-                                        setaboutcontent(e.target.value)
-                                        // , setadd2error('') 
-                                    }}
-                                    fullWidth label="About Content" variant="outlined">
-
-
-                                </TextField>
-                            </div>
-
-                        </div>
-
-                    </Box>
-
-                    <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
-
-                    <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
                         <div className="row col-md-12" >
                             <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
                                 <h3 className="mb-40 title">Profile Image:</h3>
@@ -1916,6 +1810,122 @@ export default function profile_details() {
                             </div>
                         }
                     </div>
+
+                    <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
+
+                    {viewtype == 2 &&
+
+                        <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
+
+                            <div className="row col-md-12" >
+                                <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
+                                    <h3 className="mb-40 title">Social Media:</h3>
+                                </div>
+                                <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
+
+                                </div>
+                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                    <TextField
+                                        value={fb}
+                                        onChange={(e) => {
+                                            setfb(e.target.value)
+                                            // , setadd2error('') 
+                                        }}
+                                        fullWidth label="Facebook Url" variant="outlined">
+
+
+                                    </TextField>
+                                </div>
+                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                    <TextField
+                                        value={twitter}
+                                        onChange={(e) => {
+                                            settwitter(e.target.value)
+                                            // , setadd2error('') 
+                                        }}
+                                        fullWidth label="Twitter url" variant="outlined">
+
+
+                                    </TextField>
+                                </div>
+                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                    <TextField
+                                        value={linkedin}
+                                        onChange={(e) => {
+                                            setlinkedin(e.target.value)
+                                            // , setadd2error('') 
+                                        }}
+                                        fullWidth label="Linkedin url" variant="outlined">
+
+
+                                    </TextField>
+                                </div>
+                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                    <TextField
+                                        value={insta}
+                                        onChange={(e) => {
+                                            setinsta(e.target.value)
+                                            // , setadd2error('') 
+                                        }}
+                                        fullWidth label="Instagram url" variant="outlined">
+
+
+                                    </TextField>
+                                </div>
+                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                    <TextField
+                                        value={youtube}
+                                        onChange={(e) => {
+                                            setyoutube(e.target.value)
+                                            // , setadd2error('') 
+                                        }}
+                                        fullWidth label="Youtube url" variant="outlined">
+
+
+                                    </TextField>
+                                </div>
+                            </div>
+
+                        </Box>
+                    }
+                    <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
+                    {viewtype == 3 &&
+                        <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
+
+                            <div className="row col-md-12" >
+                                <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
+                                    <h3 className="mb-40 title">Others :</h3>
+                                </div>
+                                <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
+
+                                </div>
+                                <div className="col-md-12" style={{ paddingTop: '10px' }}>
+
+                                    <TextField
+                                        multiline
+                                        rows={6}
+                                        value={aboutcontent}
+                                        onChange={(e) => {
+                                            setaboutcontent(e.target.value)
+                                            // , setadd2error('') 
+                                        }}
+                                        fullWidth label="About Content" variant="outlined">
+
+
+                                    </TextField>
+                                </div>
+
+                            </div>
+
+                        </Box>
+                    }
+
+
 
 
                 </Box>

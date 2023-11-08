@@ -9,6 +9,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import Profile_details from './profile_details';
+import Changepass from './changepass';
 function Profile() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [selectstatus, setselectstatus] = useState('');
@@ -16,6 +17,7 @@ function Profile() {
    const [phone, setphone] = useState('');
    const [err, seterr] = useState('');
    const [succ, setsucc] = useState('');
+   const [pageview, setpageview] = React.useState('0');
    useEffect(() => {
 
 
@@ -64,6 +66,9 @@ function Profile() {
 
 
    }
+   const changepage = (a) => {
+      setpageview(a);
+   }
    const navbarClass = navbarFixed ? 'navbar-fixed' : '';
    return (
       <>
@@ -86,7 +91,7 @@ function Profile() {
 
                            </h4>
                            <ul class="card__categories">
-                              <li>
+                              <li style={{ backgroundColor: `${pageview == '0' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('0')}>
                                  <a href="#0" class="d-flex align-items-center">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        card_travel
@@ -96,8 +101,8 @@ function Profile() {
                                     </span>
                                  </a>
                               </li>
-                              <li>
-                                 <a href="#0" class="d-flex align-items-center">
+                              <li style={{ backgroundColor: `${pageview == '1' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('1')}>
+                                 <a hover href="#1" className="d-flex align-items-center ">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        credit_card
                                     </i>
@@ -106,8 +111,8 @@ function Profile() {
                                     </span>
                                  </a>
                               </li>
-                              <li>
-                                 <a href="#0" class="d-flex align-items-center">
+                              <li style={{ backgroundColor: `${pageview == '2' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('2')}>
+                                 <a href="#2" class="d-flex align-items-center">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        card_membership
                                     </i>
@@ -116,8 +121,8 @@ function Profile() {
                                     </span>
                                  </a>
                               </li>
-                              <li>
-                                 <a href="#0" class="d-flex align-items-center">
+                              <li style={{ backgroundColor: `${pageview == '3' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('3')}>
+                                 <a href="#3" class="d-flex align-items-center">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        social_leaderboard
                                     </i>
@@ -173,16 +178,23 @@ function Profile() {
                   </div>
                   <div class="col-xl-8 col-lg-8">
                      <div class="balance__transfercard p-8 bgwhite mb-40 round16">
+                        {pageview == '0' ?
+                           <div class="balance__transferbody">
 
-                        <div class="balance__transferbody">
-                           <Profile_details />
-                        </div>
+                              <Profile_details />
+                           </div>
+                           : pageview == '1' ?
+                              <div class="balance__transferbody">
+                                 <Changepass />
+                              </div>
+                              :
+                              ''}
                      </div>
 
                   </div>
                </div>
             </div>
-         </section>
+         </section >
 
 
 

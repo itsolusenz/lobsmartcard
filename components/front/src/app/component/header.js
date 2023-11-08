@@ -18,6 +18,7 @@ export default function Header(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
   const [Cartcnt, setCartcnt] = useState(0);
+  const [loginid, setloginid] = useState(0);
   const toggleActive = () => {
     // Toggle the isActive state when the button is clicked
     setIsActive(!isActive);
@@ -35,7 +36,7 @@ export default function Header(props) {
       } else {
         cart_id = localStorage.getItem("CART_STOREAGE_VALUE");
       }
-
+      setloginid(localStorage.getItem("LOGIN_USER_ID"))
 
       if (cart_id != null && cart_id != undefined && cart_id != '') {
         let cartid = cart_id;
@@ -188,6 +189,21 @@ export default function Header(props) {
                         <span>Buy Now</span>
                       </a>
                     </div>
+                    {(loginid != '' && loginid != null && loginid != undefined) ?
+                      <div className="tolly__shop">
+                        <a href="/profile">
+                          <i className="far fa-user"></i>
+
+                        </a>
+                      </div>
+                      :
+                      <div>
+                        <a href="/signin" className="cmn--btn outline__btn">
+                          <span>Login</span>
+                        </a>
+                      </div>
+                    }
+
                     <div className="tolly__shop">
 
 
