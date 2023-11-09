@@ -13,10 +13,89 @@ function ChangePass() {
     const [webcpass, setwebcpass] = useState('');
     const [viewcotp, setviewcotp] = useState('password');
     const [err, seterr] = useState('');
+    const [succ, setsucc] = useState('');
+    const [mobile, setmobile] = useState('');
+
+    useEffect(async () => {
+        // Perform localStorage action
+
+        const getProfile = async (a) => {
+
+            const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&profileid=' + a);
+            const json = await response.json();
+            console.log('res', json);
+            setmobile(json[0].mobile);
+
+        }
+
+
+        let cus1id = localStorage.getItem("LOGIN_USER_ID");
+        console.log('---', cus1id);
+        if (cus1id != null && cus1id != undefined && cus1id != '') {
+
+            getProfile(cus1id);
+
+
+
+        }
+
+
+
+
+
+
+
+    }, [])
+
+
+
+    const ChangePassword = () => {
+
+        if (webcpass != webpass) {
+            seterr("Password and confirm password not match")
+        }
+        else {
+            console.log('https://www.laabamone.com/Lobsmart/api.php?eventtype=web_changepass&mobile='
+                + mobile + '&password=' + webpass);
+
+
+            fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=web_changepass&mobile='
+                + mobile + '&password=' + webpass
+            )
+                .then((res) => res.json())
+                .then(
+                    (result) => {
+                        console.log('yessssssss');
+
+                        const message = result[0]['message'];
+                        if (message == 'success') {
+                            setsucc("Password Changed Successfully..");
+                            setwebpass('');
+                            setwebcpass('');
+                        }
+                        else {
+                            const errormsg = result[0]['errormsg'];
+                            seterr(errormsg);
+
+                        }
+
+
+                        console.log(result);
+                    },
+                    (error) => {
+                        console.log('no');
+                        console.log(error);
+                        // toast.error("Try again..Data not update..");
+                        // setButtonloader(1);
+                    }
+                );
+        }
+
+    }
     return (
 
 
-        <section className="signup__section pt-120 pb-120">
+        <section className="signup__section">
             <div className="container">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-lg-12">
@@ -30,6 +109,9 @@ function ChangePass() {
                                     <div className="col-lg-12">
                                         {err != '' &&
                                             <Alert severity="error">Error — {err}</Alert>
+                                        }
+                                        {succ != '' &&
+                                            <Alert severity="success">Success — {succ}</Alert>
                                         }
                                     </div>
                                     <div className="row g-4 ">
@@ -59,9 +141,9 @@ function ChangePass() {
 
                                         <div className="col-lg-6">
                                             <div className="frm__grp">
-                                                <button type="submit" className="cmn--btn" >
+                                                <button type="button" className="cmn--btn" onClick={() => ChangePassword()}>
                                                     <span>
-                                                        Update
+                                                        Change
                                                     </span>
                                                 </button>
                                             </div>

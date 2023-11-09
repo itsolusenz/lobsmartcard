@@ -4,20 +4,21 @@
 import React from 'react'
 import Header from './header'
 import Footer from './footer'
+import Product from './product'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
-import Profile_details from './profile_details';
+
 import Changepass from './changepass';
-function Profile() {
+function Change_password() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [selectstatus, setselectstatus] = useState('');
    const [Countrylist, setCountrylist] = useState([]);
    const [phone, setphone] = useState('');
    const [err, seterr] = useState('');
    const [succ, setsucc] = useState('');
-   const [pageview, setpageview] = React.useState('0');
+   const [pageview, setpageview] = React.useState('1');
    useEffect(() => {
 
 
@@ -91,22 +92,22 @@ function Profile() {
 
                            </h4>
                            <ul class="card__categories">
-                              <li style={{ background: `linear-gradient(101.84deg, #452FF4 1.08%, rgba(178, 65, 226, 0.7725490196) 98.75%)`, borderRadius: '24px', color: 'white' }} onClick={() => changepage('0')}>
+                              <li  >
                                  <a href="/profile" class="d-flex align-items-center">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        card_travel
                                     </i>
-                                    <span class="fz-18 fw-500 title inter" style={{ color: '#fff' }}>
+                                    <span class="fz-18 fw-500 title inter" >
                                        Profile
                                     </span>
                                  </a>
                               </li>
-                              <li >
+                              <li style={{ background: `linear-gradient(101.84deg, #452FF4 1.08%, rgba(178, 65, 226, 0.7725490196) 98.75%)`, borderRadius: '24px', color: 'white' }}>
                                  <a href="/change_password" className="d-flex align-items-center ">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        credit_card
                                     </i>
-                                    <span class="fz-18 fw-500 title inter">
+                                    <span class="fz-18 fw-500 title inter" style={{ color: '#fff' }}>
                                        Change Password
                                     </span>
                                  </a>
@@ -131,17 +132,90 @@ function Profile() {
                                     </span>
                                  </a>
                               </li>
-                              <li >
-                                 <a href="/logout" className="d-flex align-items-center">
+
+                           </ul>
+                           {/*} <ul class="card__categories">
+                              <li style={{ backgroundColor: `${pageview == '0' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('0')}>
+                                 <a href="/profile" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       card_travel
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Profile
+                                    </span>
+                                 </a>
+                              </li>
+                              <li style={{ background: `linear-gradient(101.84deg, #452FF4 1.08%, rgba(178, 65, 226, 0.7725490196) 98.75%)`, borderRadius: '24px', color: 'white' }} onClick={() => changepage('1')}>
+                                 <a hover href="#1" className="d-flex align-items-center ">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       credit_card
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Change Password
+                                    </span>
+                                 </a>
+                              </li>
+                              <li style={{ backgroundColor: `${pageview == '2' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('2')}>
+                                 <a href="#2" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       card_membership
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Product
+                                    </span>
+                                 </a>
+                              </li>
+                              <li style={{ backgroundColor: `${pageview == '3' ? '#e0e2f1' : '#f3eef8'}`, borderRadius: '24px' }} onClick={() => changepage('3')}>
+                                 <a href="#3" class="d-flex align-items-center">
                                     <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
                                        social_leaderboard
                                     </i>
                                     <span class="fz-18 fw-500 title inter">
-                                       Logout
+                                       Service
                                     </span>
                                  </a>
                               </li>
-                           </ul>
+                               <li>
+                                 <a href="#0" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       bar_chart_4_bars
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Business cards
+                                    </span>
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="#0" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       account_balance_wallet
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Secured Credit Cards
+                                    </span>
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="#0" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       credit_card
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Luxury Credit Cards
+                                    </span>
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="#0" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       credit_card
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       Luxury Credit Cards
+                                    </span>
+                                 </a>
+                              </li>
+                           </ul>*/}
                         </div>
 
                      </div>
@@ -150,9 +224,8 @@ function Profile() {
                      <div class="balance__transfercard p-8 bgwhite mb-40 round16">
 
                         <div class="balance__transferbody">
-                           <Profile_details />
+                           <Changepass />
                         </div>
-
                      </div>
 
                   </div>
@@ -169,4 +242,4 @@ function Profile() {
       </>
    );
 }
-export default Profile;
+export default Change_password;

@@ -57,8 +57,8 @@ function Signup() {
       console.log('loginmobcnt--', response.data[0].count);
       acc_cnt = response.data[0].count;
       if (acc_cnt > '0') {
-         localStorage.setItem('Profileid', response.data[0].id);
-         window.location.href = "/";
+         localStorage.setItem('LOGIN_USER_ID', response.data[0].id);
+         window.location.href = "/profile";
       }
       else {
          seterr('Invalid Login Details');

@@ -11,7 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 //import Breadcrumb from "../../common/breadcrumb";
 //import { ToastContainer, toast } from "react-toastify";
 import Input from '@mui/material/Input';
-import "react-toastify/dist/ReactToastify.css";
+
 //import Productview from './productview';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -21,13 +21,7 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { decode as base64_decode, encode as base64_encode } from 'base-64';
 
-export default function profile_details(props) {
-    console.log("props", props)
-    const { viewtype } = props;
-    //  console.log('activeStep', activeStep)
-    // jsCookie.set('pagename', 'customer');
-    // const { cusid } = useParams();
-    console.log('viewtype', viewtype);
+function profile_details() {
 
     const [Errorval, setErrorval] = useState('');
     const [companyerror, setcompanyerror] = useState('');
@@ -109,6 +103,8 @@ export default function profile_details(props) {
     const [pageurl, setpageurl] = useState('');
     const [p_uniqueid, setp_uniqueid] = useState('');
     const [p_uniqueiderr, setp_uniqueiderr] = useState('');
+    const [err, seterr] = useState('');
+    const [succ, setsucc] = useState('');
 
     useEffect(async () => {
         // Perform localStorage action
@@ -208,7 +204,7 @@ export default function profile_details(props) {
 
 
 
-    }, [viewtype])
+    }, [])
     const SaveServiceImage = (e) => {
         const SIZE = 20 * 1024;
         if (e.target.files && e.target.files[0]) {
@@ -256,6 +252,7 @@ export default function profile_details(props) {
         if (e.target.files && e.target.files[0]) {
 
             if (e.target.files[0].size > SIZE) {
+                seterr("Profile Image Size greater than 20kb");
 
                 // setsizeerr('File size greater than 20kb');
                 // toast.error("Profile Image Size greater than 20kb");
@@ -298,6 +295,7 @@ export default function profile_details(props) {
 
                     console.log('result', response);
                     setButtonloader('1');
+                    setsucc("Successfully Added...")
                     // toast.success("Updated Successfully...");
 
                     // setActiveStep('2');
@@ -309,64 +307,7 @@ export default function profile_details(props) {
                     console.log({ status: `upload failed ${error}` });
                 })
         }
-        if (simage.name != '' && simage.name != undefined && simage.name != null) {
-            setButtonloader('2');
-            let url = "https://www.laabamone.com/Lobsmart/api.php"
-            const formData = new FormData();
-            formData.append('eventtype', 'lob_addprofile_image');
-            formData.append('id', a);
-            formData.append('simage', simage);
-            let config = {
-                headers: {
-                    'content-type': 'multipart/form-data',
-                },
-            };
 
-            axios.post(url, formData, config)
-                .then((response) => {
-
-                    console.log('result', response);
-                    setButtonloader('1');
-                    // toast.success("Updated Successfully...");
-                    //  window.location.href = "/customeredit/" + a;
-                    // setActiveStep('2');
-
-                })
-                .catch((error) => {
-                    // toast.success("Error...");
-                    setButtonloader('1');
-                    console.log({ status: `upload failed ${error}` });
-                })
-        }
-        if (pimage.name != '' && pimage.name != undefined && pimage.name != null) {
-            setButtonloader('2');
-            let url = "https://www.laabamone.com/Lobsmart/api.php"
-            const formData = new FormData();
-            formData.append('eventtype', 'lob_addprofile_image');
-            formData.append('id', a);
-            formData.append('pimage', pimage);
-            let config = {
-                headers: {
-                    'content-type': 'multipart/form-data',
-                },
-            };
-
-            axios.post(url, formData, config)
-                .then((response) => {
-
-                    console.log('result', response);
-                    setButtonloader('1');
-                    //  toast.success("Updated Successfully...");
-                    // window.location.href = "/customeredit/" + a;
-                    // setActiveStep('2');
-
-                })
-                .catch((error) => {
-                    // toast.success("Error...");
-                    setButtonloader('1');
-                    console.log({ status: `upload failed ${error}` });
-                })
-        }
 
         // toast.success("Updated Successfully...");
 
@@ -468,6 +409,7 @@ export default function profile_details(props) {
         if (designation != undefined && designation != null && designation != '') {
             setdesignationerror();
             error = 0;
+            seterr("All Field Required");
         }
         else {
             setdesignationerror('Required');
@@ -569,7 +511,8 @@ export default function profile_details(props) {
                         const message = result[0]['message'];
                         if (id != undefined && message == 'success') {
 
-                            setButtonloader(1);
+                            //  setButtonloader(1);
+
                             registerDocument1(id);
                             setErrorval('');
 
@@ -577,6 +520,7 @@ export default function profile_details(props) {
                         else {
                             const errormsg = result[0]['errormsg'];
                             // toast.error(errormsg)
+                            eterr("errormsg");
                             setErrorval(errormsg);
                             setButtonloader(1);
                         }
@@ -587,6 +531,7 @@ export default function profile_details(props) {
                     (error) => {
                         console.log('no');
                         console.log(error);
+                        seterr("Error");
                         // toast.error("Try again..Data not update..");
                         setButtonloader(1);
                     }
@@ -623,15 +568,10 @@ export default function profile_details(props) {
     const deleteProduct = (a) => {
 
     }
-    console.log("/profile", profiledata.length)
+
     if (profiledata.length > 0) {
 
         return (
-
-
-
-
-
 
 
 
@@ -641,9 +581,12 @@ export default function profile_details(props) {
 
                 <Box fullWidth sx={{ paddingBottom: '20px', borderRadius: '6px' }}>
                     <div className="col-md-12" style={{ padding: '10px' }}>
-                        {/*}  <div className="register-form-title text-center">
-                                                <p style={{ color: 'red' }}>{Errorval}</p>
-    </div>*/}
+                        {err != '' &&
+                            <Alert severity="error">Error — {err}</Alert>
+                        }
+                        {succ != '' &&
+                            <Alert severity="success">Success — {succ}</Alert>
+                        }
                     </div>
                     {sizeerr != '' &&
                         <Alert severity="error">{sizeerr}</Alert>
@@ -1131,158 +1074,7 @@ export default function profile_details(props) {
                         </div>
 
                     </Box>
-                    <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
 
-                    <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
-
-                        <div className="row col-md-12" >
-                            <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
-                                <h3 className="mb-40 title">Products:</h3>
-                            </div>
-                            <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell><b>S.no</b></TableCell>
-                                            <TableCell><b>Product Name</b></TableCell>
-                                            <TableCell>Description</TableCell>
-                                            <TableCell>Link</TableCell>
-                                            <TableCell><b>Image</b></TableCell>
-                                            <TableCell><b>Action</b></TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {
-
-
-                                            profiledata[0].proudctdetails.map((res, a) => res.id != undefined ?
-
-
-                                                <TableRow>
-                                                    <TableCell > {res.sno}</TableCell>
-                                                    <TableCell > {res.name}</TableCell>
-                                                    <TableCell > {res.message}</TableCell>
-                                                    <TableCell > {res.link}</TableCell>
-                                                    <TableCell ><img src={res.image} width={50} /></TableCell>
-                                                    <TableCell >
-                                                        <a href={`/productedit/${profiledata[0].id}/${res.id}`} target="_blank">
-                                                            <i
-                                                                className="fa fa-edit"
-                                                                style={{
-                                                                    width: 35,
-                                                                    fontSize: 20,
-                                                                    padding: 11,
-                                                                    color: "#557191",
-                                                                }}
-                                                            ></i>
-                                                        </a>
-                                                        <a href="#" onClick={() => deleteProduct(res.id)}>
-                                                            <i
-                                                                className="fa fa-trash"
-                                                                style={{
-                                                                    width: 35,
-                                                                    fontSize: 20,
-                                                                    padding: 11,
-                                                                    color: "#e4566e",
-                                                                }}
-                                                            ></i>
-                                                        </a>
-                                                    </TableCell>
-                                                </TableRow>
-
-                                                :
-                                                <TableRow>
-                                                    <TableCell colSpan={6} align='center'>No Data Available</TableCell>
-                                                </TableRow>
-                                            )}
-
-                                    </TableBody>
-                                </Table>
-
-                            </div>
-
-                            <a href={`/productview/${profiledata[0].id}`} className="btn btn-primary btn-square bootstrap-touchspin-down" target="_blank"><i className='fa fa-add'></i>Add Product</a>
-                        </div>
-
-                    </Box>
-                    <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
-
-                    <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
-
-                        <div className="row col-md-12" >
-                            <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
-                                <h3 className="mb-40 title">Services:</h3>
-                            </div>
-                            <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell><b>S.no</b></TableCell>
-                                            <TableCell><b>Service Name</b></TableCell>
-                                            <TableCell>Description</TableCell>
-                                            <TableCell>Link</TableCell>
-                                            <TableCell><b>Image</b></TableCell>
-                                            <TableCell><b>Action</b></TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-
-                                        {
-
-                                            profiledata[0].servicedetails.map((res, a) => res.id != undefined ?
-
-
-                                                <TableRow>
-                                                    <TableCell > {res.sno}</TableCell>
-                                                    <TableCell > {res.name}</TableCell>
-                                                    <TableCell > {res.message}</TableCell>
-                                                    <TableCell > {res.link}</TableCell>
-                                                    <TableCell ><img src={res.image} width={50} /></TableCell>
-                                                    <TableCell >
-                                                        <a href={`/serviceedit/${profiledata[0].id}/${res.id}`} target="_blank">
-                                                            <i
-                                                                className="fa fa-edit"
-                                                                style={{
-                                                                    width: 35,
-                                                                    fontSize: 20,
-                                                                    padding: 11,
-                                                                    color: "#557191",
-                                                                }}
-                                                            ></i>
-                                                        </a>
-                                                        <a href="#" onClick={() => deleteProduct(res.id)}>
-                                                            <i
-                                                                className="fa fa-trash"
-                                                                style={{
-                                                                    width: 35,
-                                                                    fontSize: 20,
-                                                                    padding: 11,
-                                                                    color: "#e4566e",
-                                                                }}
-                                                            ></i>
-                                                        </a>
-                                                    </TableCell>
-                                                </TableRow>
-
-                                                :
-                                                <TableRow>
-                                                    <TableCell colSpan={6} align='center'>No Data Available</TableCell>
-                                                </TableRow>
-                                            )}
-
-                                    </TableBody>
-                                </Table>
-
-                            </div>
-
-                            <a href={`/serviceview/${profiledata[0].id}`} className="btn btn-primary btn-square bootstrap-touchspin-down" target="_blank"><i className='fa fa-add'></i>Add Service</a>
-
-
-
-
-                        </div>
-
-                    </Box>
                     <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
 
                     <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
@@ -1294,6 +1086,7 @@ export default function profile_details(props) {
 
                             </div>
                             <div className="row col-md-12" >
+                                <span style={{ color: 'red' }}>{err}</span>
                                 <div className="col-md-3 "></div>
                                 <div className="col-md-3 ">
 
@@ -1301,7 +1094,7 @@ export default function profile_details(props) {
                                         variant="contained"
                                         component="label"
                                     >
-                                        <b style={{ fontSize: '25px' }}> +</b>
+                                        <b style={{ fontSize: '25px', color: 'black' }}> +</b>
                                         <input
 
                                             onChange={(e) => saveDocument1(e)}
@@ -1310,6 +1103,7 @@ export default function profile_details(props) {
                                             accept="image/x-png,image/jpeg,image/jpg"
                                             hidden
                                         />
+
                                     </Box>
                                 </div>
                                 <div className="col-md-6 ">
@@ -1813,117 +1607,117 @@ export default function profile_details(props) {
 
                     <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
 
-                    {viewtype == 2 &&
-
-                        <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
-
-                            <div className="row col-md-12" >
-                                <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
-                                    <h3 className="mb-40 title">Social Media:</h3>
-                                </div>
-                                <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
-
-                                </div>
-                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                    <TextField
-                                        value={fb}
-                                        onChange={(e) => {
-                                            setfb(e.target.value)
-                                            // , setadd2error('') 
-                                        }}
-                                        fullWidth label="Facebook Url" variant="outlined">
 
 
-                                    </TextField>
-                                </div>
-                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
+                    <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
 
-                                    <TextField
-                                        value={twitter}
-                                        onChange={(e) => {
-                                            settwitter(e.target.value)
-                                            // , setadd2error('') 
-                                        }}
-                                        fullWidth label="Twitter url" variant="outlined">
-
-
-                                    </TextField>
-                                </div>
-                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                    <TextField
-                                        value={linkedin}
-                                        onChange={(e) => {
-                                            setlinkedin(e.target.value)
-                                            // , setadd2error('') 
-                                        }}
-                                        fullWidth label="Linkedin url" variant="outlined">
-
-
-                                    </TextField>
-                                </div>
-                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                    <TextField
-                                        value={insta}
-                                        onChange={(e) => {
-                                            setinsta(e.target.value)
-                                            // , setadd2error('') 
-                                        }}
-                                        fullWidth label="Instagram url" variant="outlined">
-
-
-                                    </TextField>
-                                </div>
-                                <div className="col-md-6" style={{ paddingTop: '10px' }}>
-
-                                    <TextField
-                                        value={youtube}
-                                        onChange={(e) => {
-                                            setyoutube(e.target.value)
-                                            // , setadd2error('') 
-                                        }}
-                                        fullWidth label="Youtube url" variant="outlined">
-
-
-                                    </TextField>
-                                </div>
+                        <div className="row col-md-12" >
+                            <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
+                                <h3 className="mb-40 title">Social Media:</h3>
                             </div>
+                            <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
 
-                        </Box>
-                    }
+                            </div>
+                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                <TextField
+                                    value={fb}
+                                    onChange={(e) => {
+                                        setfb(e.target.value)
+                                        // , setadd2error('') 
+                                    }}
+                                    fullWidth label="Facebook Url" variant="outlined">
+
+
+                                </TextField>
+                            </div>
+                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                <TextField
+                                    value={twitter}
+                                    onChange={(e) => {
+                                        settwitter(e.target.value)
+                                        // , setadd2error('') 
+                                    }}
+                                    fullWidth label="Twitter url" variant="outlined">
+
+
+                                </TextField>
+                            </div>
+                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                <TextField
+                                    value={linkedin}
+                                    onChange={(e) => {
+                                        setlinkedin(e.target.value)
+                                        // , setadd2error('') 
+                                    }}
+                                    fullWidth label="Linkedin url" variant="outlined">
+
+
+                                </TextField>
+                            </div>
+                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                <TextField
+                                    value={insta}
+                                    onChange={(e) => {
+                                        setinsta(e.target.value)
+                                        // , setadd2error('') 
+                                    }}
+                                    fullWidth label="Instagram url" variant="outlined">
+
+
+                                </TextField>
+                            </div>
+                            <div className="col-md-6" style={{ paddingTop: '10px' }}>
+
+                                <TextField
+                                    value={youtube}
+                                    onChange={(e) => {
+                                        setyoutube(e.target.value)
+                                        // , setadd2error('') 
+                                    }}
+                                    fullWidth label="Youtube url" variant="outlined">
+
+
+                                </TextField>
+                            </div>
+                        </div>
+
+                    </Box>
+
                     <div className="col-md-12 " style={{ paddingBottom: '20px' }}></div>
-                    {viewtype == 3 &&
-                        <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
 
-                            <div className="row col-md-12" >
-                                <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
-                                    <h3 className="mb-40 title">Others :</h3>
-                                </div>
-                                <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
+                    <Box fullWidth sx={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
 
-                                </div>
-                                <div className="col-md-12" style={{ paddingTop: '10px' }}>
-
-                                    <TextField
-                                        multiline
-                                        rows={6}
-                                        value={aboutcontent}
-                                        onChange={(e) => {
-                                            setaboutcontent(e.target.value)
-                                            // , setadd2error('') 
-                                        }}
-                                        fullWidth label="About Content" variant="outlined">
-
-
-                                    </TextField>
-                                </div>
+                        <div className="row col-md-12" >
+                            <div className="col-md-12 " style={{ borderBottom: '.5px solid #557191' }}>
+                                <h3 className="mb-40 title">Others :</h3>
+                            </div>
+                            <div className="col-md-12 " style={{ paddingBottom: '20px' }}>
 
                             </div>
+                            <div className="col-md-12" style={{ paddingTop: '10px' }}>
 
-                        </Box>
-                    }
+                                <TextField
+                                    multiline
+                                    rows={6}
+                                    value={aboutcontent}
+                                    onChange={(e) => {
+                                        setaboutcontent(e.target.value)
+                                        // , setadd2error('') 
+                                    }}
+                                    fullWidth label="About Content" variant="outlined">
+
+
+                                </TextField>
+                            </div>
+
+                        </div>
+
+                    </Box>
+
 
 
 
@@ -1943,3 +1737,4 @@ export default function profile_details(props) {
 
 
 }
+export default profile_details;
