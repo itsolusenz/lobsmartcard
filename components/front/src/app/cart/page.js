@@ -5,6 +5,9 @@ import Footer from '../component/footer'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import GooglePayButton from '@google-pay/button-react';
+const axios = require('axios');
+import { decode as base64_decode, encode as base64_encode } from 'base-64';
+const crypto = require('crypto');
 export default function page() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [cardtype, setcardtype] = useState('0');
@@ -174,6 +177,87 @@ export default function page() {
          window.removeEventListener('scroll', handleScroll);
       };
    }, []);
+
+   const Paynow = () => {
+      try {
+         const data = {
+            "merchantId": "M1UDVMBUZGN6",
+            "merchantTransactionId": "REQU2311071320501401389251",
+            "merchantUserId": "M1UDVMBUZGN6",
+            "amount": 1,
+            "redirectUrl": "https://www.lobsmartcard.me/",
+            "redirectMode": "REDIRECT",
+            "mobileNumber": "919361931050",
+            "paymentInstrument": {
+               "type": "PAY_PAGE"
+            }
+         }
+         const salt_key = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
+         const payload = JSON.stringify(data);
+         const payloadMain = Buffer.from(payload).toString('base64');
+         const keyIndex = 1;
+         const string = payloadMain + '/pg/v1/pay' + salt_key;
+         const sha256 = crypto.createHash('sha256').update(string).digest('hex');
+         const checksum = sha256 + '###' + keyIndex;
+
+         const prod_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
+         const options = {
+            method: 'POST',
+            url: prod_URL,
+            headers: {
+               accept: 'application/json',
+               'Content-Type': 'application/json',
+               'X-VERIFY': checksum
+            },
+            data: {
+               request: payloadMain
+            }
+         };
+
+         axios.request(options).then(function (response) {
+            console.log(response.data)
+            // return res.redirect(response.data.data.instrumentResponse.redirectInfo.url)
+         })
+            .catch(function (error) {
+               console.error(error);
+            });
+
+      } catch (error) {
+         console.error(error);
+      }
+
+
+
+
+
+
+
+      /* const payload1 = JSON.stringify(data)
+       const payload = base64_encode(payload1);
+       const key = '099eb0cd-02cf-4e2a-8aca-3e6c6aff0399';
+       const keyindex = '1';
+       const string = "SHA256" + payload + "/pg/v1/pay" + key + "###" + keyindex;
+       console.log("string", string);
+
+
+
+
+
+      const options = {
+         method: 'POST',
+         url: 'https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay',
+         headers: { accept: 'application/json', 'Content-Type': 'application/json' }
+      };
+
+      axios
+         .request(options)
+         .then(function (response) {
+            console.log(response.data);
+         })
+         .catch(function (error) {
+            console.error(error);
+         });*/
+   }
 
    const navbarClass = navbarFixed ? 'navbar-fixed' : '';
 
@@ -351,7 +435,16 @@ export default function page() {
 
                                     </div>
                                     <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
-                                       <GooglePayButton
+
+                                       <div className="frm__grp">
+                                          <button type="button" className="cmn--btn" onClick={Paynow} >
+                                             <span>
+                                                Pay now
+                                             </span>
+                                          </button>
+                                       </div>
+
+                                       {/*}    <GooglePayButton
                                           environment="TEST"
                                           paymentRequest={{
                                              apiVersion: 2,
@@ -387,7 +480,7 @@ export default function page() {
                                           onLoadPaymentData={paymentRequest => {
                                              console.log('load payment data', paymentRequest);
                                           }}
-                                       />
+                                       />*/}
 
                                     </div>
                                  </div>
