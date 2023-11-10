@@ -179,16 +179,9 @@ export default function page() {
    }, []);
 
    const Paynow = () => {
-      axios.post('/api').then(res => {
-         window.location.href = "https://mercury-uat.phonepe.com/transact/simulator?token=9E7mYEWviFlagB06K57DXxQpeHfDcRETOhbtSdZaS8"
-         setTimeout(() => {
 
-         }, 1500);
-      })
-         .catch(error => {
-            //setLoading2(false)
-            console.error(error);
-         });
+      window.location.href = "/checkout"
+
 
 
    }
@@ -421,7 +414,7 @@ export default function page() {
                                        <div className="frm__grp">
                                           <button type="button" className="cmn--btn" onClick={Paynow} >
                                              <span>
-                                                Pay now
+                                                Checkout
                                              </span>
                                           </button>
                                        </div>
