@@ -201,7 +201,7 @@ function profile_details() {
         }
         else {
             Getnexturiid();
-
+window.location.href="/signin"
         }
 
 
