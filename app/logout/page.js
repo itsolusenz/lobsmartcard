@@ -4,44 +4,44 @@ import Header from '@/components/front/src/app/component/header'
 import Footer from '@/components/front/src/app/component/footer'
 function Logout() {
 
-    useEffect(() => {
-        const clear = () => {
-            localStorage.setItem("LOGIN_USER_ID", "");
-            const id = setTimeout(() => {
-                window.location.href = "/";
+   useEffect(() => {
+      const clear = () => {
+         localStorage.setItem("LOGIN_USER_ID", "");
+         const id = setTimeout(() => {
+            window.location.href = "/";
 
-            }, 2000);
-        }
-        clear();
+         }, 2000);
+      }
+      clear();
 
 
-    }, []);
-    return (
-        <>
+   }, []);
+   return (
+      <>
 
-            <Header />
+         <Header />
 
-            <section className="signup__section pt-120 pb-120">
-                <div className="container">
-                    <div className="row justify-content-center align-items-center">
-                        <div className="col-lg-6">
-                            <div className="signup__boxes round16">
-                                <h3 class="title mb-16">
-                                    Logout
-                                </h3>
-                                <p class="fz-16 title fw-400 inter mb-40">
-                                    You are Signed out...
-                                </p>
+         <section className="signup__section pt-120 pb-120">
+            <div className="container">
+               <div className="row justify-content-center align-items-center">
+                  <div className="col-lg-6">
+                     <div className="signup__boxes round16">
+                        <h3 class="title mb-16">
+                           Logout
+                        </h3>
+                        <p class="fz-16 title fw-400 inter mb-40">
+                           You are Signed out...
+                        </p>
 
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="signup__thumb">
-                                <img src="/assets/front/img/faq/signup-thumb.png" className="w-100" alt="img" />
-                            </div>
-                        </div>
-                    </div>
-                    {/*}  <div className="row justify-content-center align-items-center">
+                     </div>
+                  </div>
+                  <div className="col-lg-6">
+                     <div className="signup__thumb">
+                        <img src="/assets/front/img/faq/signup-thumb.png" className="w-100" alt="img" />
+                     </div>
+                  </div>
+               </div>
+               {/*}  <div className="row justify-content-center align-items-center">
                   <div className="col-lg-6">
                      <div className="signup__boxes round16">
                         <h3 className="title mb-16">
@@ -98,13 +98,13 @@ function Logout() {
                      </div>
                   </div>
                </div>*/}
-                </div>
-            </section>
+            </div>
+         </section>
 
-            <Footer />
-        </>
+         <Footer />
+      </>
 
-    );
+   );
 
 
 }

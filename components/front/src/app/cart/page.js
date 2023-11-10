@@ -179,85 +179,67 @@ export default function page() {
    }, []);
 
    const Paynow = () => {
-      try {
-         const data = {
-            "merchantId": "M1UDVMBUZGN6",
-            "merchantTransactionId": "REQU2311071320501401389251",
-            "merchantUserId": "M1UDVMBUZGN6",
-            "amount": 1,
-            "redirectUrl": "https://www.lobsmartcard.me/",
-            "redirectMode": "REDIRECT",
-            "mobileNumber": "919361931050",
-            "paymentInstrument": {
-               "type": "PAY_PAGE"
-            }
-         }
-         const salt_key = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
-         const payload = JSON.stringify(data);
-         const payloadMain = Buffer.from(payload).toString('base64');
-         const keyIndex = 1;
-         const string = payloadMain + '/pg/v1/pay' + salt_key;
-         const sha256 = crypto.createHash('sha256').update(string).digest('hex');
-         const checksum = sha256 + '###' + keyIndex;
+      axios.post('/api').then(res => {
+         window.location.href = "https://mercury-uat.phonepe.com/transact/simulator?token=9E7mYEWviFlagB06K57DXxQpeHfDcRETOhbtSdZaS8"
+         setTimeout(() => {
 
-         const prod_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
-         const options = {
-            method: 'POST',
-            url: prod_URL,
-            headers: {
-               accept: 'application/json',
-               'Content-Type': 'application/json',
-               'X-VERIFY': checksum
-            },
-            data: {
-               request: payloadMain
-            }
-         };
-
-         axios.request(options).then(function (response) {
-            console.log(response.data)
-            // return res.redirect(response.data.data.instrumentResponse.redirectInfo.url)
-         })
-            .catch(function (error) {
-               console.error(error);
-            });
-
-      } catch (error) {
-         console.error(error);
-      }
-
-
-
-
-
-
-
-      /* const payload1 = JSON.stringify(data)
-       const payload = base64_encode(payload1);
-       const key = '099eb0cd-02cf-4e2a-8aca-3e6c6aff0399';
-       const keyindex = '1';
-       const string = "SHA256" + payload + "/pg/v1/pay" + key + "###" + keyindex;
-       console.log("string", string);
-
-
-
-
-
-      const options = {
-         method: 'POST',
-         url: 'https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay',
-         headers: { accept: 'application/json', 'Content-Type': 'application/json' }
-      };
-
-      axios
-         .request(options)
-         .then(function (response) {
-            console.log(response.data);
-         })
-         .catch(function (error) {
+         }, 1500);
+      })
+         .catch(error => {
+            //setLoading2(false)
             console.error(error);
-         });*/
+         });
+
+
    }
+
+   /*   (async function () {
+         // event.preventDefault();
+
+         const response1234 = await axios.get("/api");
+         console.log('---res', response1234)
+
+
+      })();*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* const payload1 = JSON.stringify(data)
+    const payload = base64_encode(payload1);
+    const key = '099eb0cd-02cf-4e2a-8aca-3e6c6aff0399';
+    const keyindex = '1';
+    const string = "SHA256" + payload + "/pg/v1/pay" + key + "###" + keyindex;
+    console.log("string", string);
+
+
+
+
+
+   const options = {
+      method: 'POST',
+      url: 'https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay',
+      headers: { accept: 'application/json', 'Content-Type': 'application/json' }
+   };
+
+   axios
+      .request(options)
+      .then(function (response) {
+         console.log(response.data);
+      })
+      .catch(function (error) {
+         console.error(error);
+      });*/
+
 
    const navbarClass = navbarFixed ? 'navbar-fixed' : '';
 
