@@ -29,10 +29,10 @@ function Change_password() {
          // Check if the scroll position is greater than or equal to the banner section height
          if (scrollY >= 300) {
             setNavbarFixed(true);
-            console.log("Navbar is fixed");
+            // console.log("Navbar is fixed");
          } else {
             setNavbarFixed(false);
-            console.log("Navbar is not fixed");
+            // console.log("Navbar is not fixed");
          }
 
       };

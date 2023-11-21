@@ -4,15 +4,21 @@ import Header from '../component/header'
 import Footer from '../component/footer'
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-
+import axios from "axios";
 export default function page() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [cardtype, setcardtype] = useState('0');
    const [pvccardtype, setpvccardtype] = useState(false);
    const [metalcardtype, setmetalcardtype] = useState(false);
    const [cartid, setcartid] = useState('');
+   const [carddetails, setcarddetails] = useState('');
 
    useEffect(() => {
+      const ListItem = async () => {
+         const res = await axios.get("https://www.laabamone.com/Lobsmart/api.php?eventtype=card_list")
+         console.log("resss", res.data);
+         setcarddetails(res.data);
+      }
       function callCart() {
          if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
             let res = localStorage.getItem("CART_STOREAGE_VALUE");
@@ -20,20 +26,21 @@ export default function page() {
          }
       }
       const handleScroll = () => {
-         console.log("Scroll event triggered"); // Check if the scroll event is being triggered
+         //  console.log("Scroll event triggered"); // Check if the scroll event is being triggered
          const scrollY = window.scrollY;
 
          // Check if the scroll position is greater than or equal to the banner section height
          if (scrollY >= 300) {
             setNavbarFixed(true);
-            console.log("Navbar is fixed");
+            // console.log("Navbar is fixed");
          } else {
             setNavbarFixed(false);
-            console.log("Navbar is not fixed");
+            // console.log("Navbar is not fixed");
          }
 
       };
       callCart();
+      ListItem();
       window.addEventListener('scroll', handleScroll);
 
       return () => {
@@ -86,114 +93,6 @@ export default function page() {
          name: 'Glassy',
 
       }
-   ];
-   const carddetails = [
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '1',
-         name: 'Black',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_black.png',
-         typename: 'PVC MATT CARD',
-         amt: '2000',
-
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '2',
-         name: 'California Gold',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_californiagold.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '3',
-         name: 'Gold',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_gold.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '4',
-         name: 'Olive',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_olive.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '5',
-         name: 'Silver',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_silver.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '6',
-         name: 'White',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_white.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '7',
-         name: 'Blue',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_blue.png',
-         amt: '2000',
-         typename: 'PVC GLASSY CARD'
-
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '8',
-         name: 'Braze',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_braze.png',
-         amt: '2000',
-         typename: 'PVC GLASSY CARD'
-
-      },
-      {
-         headid: '1',//Metal
-         headname: 'PVC Card',//Metal
-         id: '9',
-         name: 'Gold',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_gold.png',
-         amt: '2000',
-         typename: 'PVC GLASSY CARD'
-
-      },
-      {
-         headid: '1',//Metal
-         headname: 'Glassy Card',//Metal
-         id: '10',
-         name: 'Silver',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_silver.png',
-         amt: '2000',
-         typename: 'METAL GLASSY CARD'
-
-      },
-
    ];
 
    const updateCookie = (a) => {
@@ -731,59 +630,61 @@ export default function page() {
 
                         }
 
-                        {carddetails.map((b, inc) => (
-                           ((pvccardtype == b.tyepid && cardtype == '1') || (pvccardtype == b.tyepid && cardtype == '2') || (cardtype == b.headid && pvccardtype == '' && metalcardtype == '') || (cardtype == 0))
+                        {
+                           carddetails.length > '0' &&
+                           carddetails.map((b, inc) => (
+                              ((pvccardtype == b.tyepid && cardtype == '1') || (pvccardtype == b.tyepid && cardtype == '2') || (cardtype == b.headid && pvccardtype == '' && metalcardtype == '') || (cardtype == 0))
 
-                           &&
+                              &&
 
-                           <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
+                              <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
 
-                              <div className="popular__items popular__v2 round16">
+                                 <div className="popular__items popular__v2 round16">
 
-                                 <div className="card__boxright align-items-center">
-                                    <div >
-                                       <Image src={b.img} alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
+                                    <div className="card__boxright align-items-center">
+                                       <div >
+                                          <Image src={b.img} alt="card" className="w-100 mb-24" layout='responsive' width={1000} height={150} />
+
+                                       </div>
+
+                                       <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
+
+                                          <h6 className="title  ">
+                                             {b.name}
+                                          </h6>
+                                          <h7 className="title  " style={{ color: 'blue' }}>
+                                             {b.typename}
+                                          </h7>
+                                       </div>
+                                       <div className="d-flex mb-10 align-items-center justify-content-between flex-wrap gap-3">
+                                          <h5 className="title mb-0 " style={{ color: '#eaac66' }}>
+                                             ₹{b.amt}
+                                          </h5>
+                                          {FindCartArr(b.id) == '1' ?
+                                             <a href="#" onClick={() => Add_to_cart(b.id, 'remove')} className="cmn--btn outline__btn align-items-center">
+                                                <span>
+                                                   Remove From Cart
+                                                </span>
+                                             </a>
+                                             :
+                                             <a href="#" onClick={() => Add_to_cart(b.id, 'add')} className="cmn--btn align-items-center">
+                                                <span>
+                                                   Add to Cart
+                                                </span>
+                                             </a>
+                                          }
+
+
+
+                                       </div>
+
 
                                     </div>
-
-                                    <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
-
-                                       <h6 className="title  ">
-                                          {b.name}
-                                       </h6>
-                                       <h7 className="title  " style={{ color: 'blue' }}>
-                                          {b.typename}
-                                       </h7>
-                                    </div>
-                                    <div className="d-flex mb-10 align-items-center justify-content-between flex-wrap gap-3">
-                                       <h5 className="title mb-0 " style={{ color: '#eaac66' }}>
-                                          ₹{b.amt}
-                                       </h5>
-                                       {FindCartArr(b.id) == '1' ?
-                                          <a href="#" onClick={() => Add_to_cart(b.id, 'remove')} className="cmn--btn outline__btn align-items-center">
-                                             <span>
-                                                Remove From Cart
-                                             </span>
-                                          </a>
-                                          :
-                                          <a href="#" onClick={() => Add_to_cart(b.id, 'add')} className="cmn--btn align-items-center">
-                                             <span>
-                                                Add to Cart
-                                             </span>
-                                          </a>
-                                       }
-
-
-
-                                    </div>
-
-
                                  </div>
                               </div>
-                           </div>
 
-                        )
-                        )}
+                           )
+                           )}
 
 
 

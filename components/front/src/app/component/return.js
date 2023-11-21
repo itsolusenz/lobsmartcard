@@ -18,7 +18,7 @@ function Privacy() {
     useEffect(() => {
 
         const handleScroll = () => {
-            console.log("Scroll event triggered"); // Check if the scroll event is being triggered
+            // console.log("Scroll event triggered"); // Check if the scroll event is being triggered
             const scrollY = window.scrollY;
 
             // Check if the scroll position is greater than or equal to the banner section height
@@ -76,7 +76,7 @@ function Privacy() {
                                         </i>
                                     </li>
                                     <li className="fz-16 base2 fw-40 inter">
-                                    Return and Refund Policy
+                                        Return and Refund Policy
                                     </li>
                                 </ul>
                             </div>

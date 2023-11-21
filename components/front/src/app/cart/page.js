@@ -7,135 +7,45 @@ import { useState, useEffect, useRef } from 'react';
 import GooglePayButton from '@google-pay/button-react';
 const axios = require('axios');
 import { decode as base64_decode, encode as base64_encode } from 'base-64';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import Alert from '@mui/material/Alert';
+
+import { TransitionProps } from '@mui/material/transitions';
 const crypto = require('crypto');
 export default function page() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [cardtype, setcardtype] = useState('0');
+   const [succ, setsucc] = useState('');
    const [pvccardtype, setpvccardtype] = useState(false);
    const [metalcardtype, setmetalcardtype] = useState(false);
    const [cartid, setcartid] = useState('');
    const [cartarrid, setcartarrid] = useState([]);
    const [carttot, setcarttot] = useState('0.00');
-   const carddetails = [
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '1',
-         name: 'Black',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_black.png',
-         typename: 'PVC MATT CARD',
-         amt: '2000',
+   const [carddetails, setcarddetails] = useState('');
+   const [confirmmodal, setconfirmmodal] = useState(false);
+   const [removeid, setremoveid] = useState(false);
 
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '2',
-         name: 'California Gold',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_californiagold.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '3',
-         name: 'Gold',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_gold.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '4',
-         name: 'Olive',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_olive.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '5',
-         name: 'Silver',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_silver.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '6',
-         name: 'White',
-         tyepid: '1',
-         img: '/assets/front/card/new/matt_white.png',
-         amt: '2000',
-         typename: 'PVC MATT CARD'
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '7',
-         name: 'Blue',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_blue.png',
-         amt: '2000',
-         typename: 'PVC GLASSY CARD'
-
-      },
-      {
-         headid: '1',//PVC
-         headname: 'PVC Card',
-         id: '8',
-         name: 'Braze',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_braze.png',
-         amt: '2000',
-         typename: 'PVC GLASSY CARD'
-
-      },
-      {
-         headid: '1',//Metal
-         headname: 'PVC Card',//Metal
-         id: '9',
-         name: 'Gold',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_gold.png',
-         amt: '2000',
-         typename: 'PVC GLASSY CARD'
-
-      },
-      {
-         headid: '1',//Metal
-         headname: 'Glassy Card',//Metal
-         id: '10',
-         name: 'Silver',
-         tyepid: '2',
-         img: '/assets/front/card/new/glassy_silver.png',
-         amt: '2000',
-         typename: 'METAL GLASSY CARD'
-
-      },
-
-   ];
+   const Transition = React.forwardRef(function Transition(props, ref) {
+      return <Slide direction="up" ref={ref} {...props} />;
+   });
    useEffect(() => {
       const handleScroll = () => {
-         console.log("Scroll event triggered"); // Check if the scroll event is being triggered
+         // console.log("Scroll event triggered"); // Check if the scroll event is being triggered
          const scrollY = window.scrollY;
 
          // Check if the scroll position is greater than or equal to the banner section height
          if (scrollY >= 300) {
             setNavbarFixed(true);
-            console.log("Navbar is fixed");
+            //  console.log("Navbar is fixed");
          } else {
             setNavbarFixed(false);
-            console.log("Navbar is not fixed");
+            // console.log("Navbar is not fixed");
          }
 
       };
@@ -160,7 +70,11 @@ export default function page() {
          console.log('--------', restot);
          // return restot;
       }
-
+      const ListItem = async () => {
+         const res = await axios.get("https://www.laabamone.com/Lobsmart/api.php?eventtype=card_list")
+         console.log("resss", res.data);
+         setcarddetails(res.data);
+      }
       if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
          let cartid = localStorage.getItem("CART_STOREAGE_VALUE");
          console.log('cartid', cartid);
@@ -171,6 +85,7 @@ export default function page() {
          setTotal(res);
          //alert(cartid);
       }
+      ListItem();
       window.addEventListener('scroll', handleScroll);
 
       return () => {
@@ -284,7 +199,7 @@ export default function page() {
 
    }
 
-   const Add_to_cart = (id, type) => {
+   function Add_to_cart(id, type) {
       let res = '';
 
       if (type == 'add') {
@@ -302,6 +217,8 @@ export default function page() {
       }
       if (type == 'remove') {
          let search = id + ',';
+         let cartid = localStorage.getItem("CART_STOREAGE_VALUE");
+         console.log(cartid, 'cartid')
          let position = cartid.search(search);
          let res = '';
          if (position >= 0) {
@@ -309,6 +226,10 @@ export default function page() {
             setcartid(res);
             updateCookie(res);
             console.log('res2', res);
+            setsucc("item removed successfully..");
+            window.location.href = "/cart";
+
+            return false;
          }
 
       }
@@ -321,7 +242,7 @@ export default function page() {
 
       let search = id + ',';
       let position = cartid.search(search);
-      console.log('position', position);
+      //  console.log('position', position);
       if (position >= 0) {
          return '1';
       }
@@ -330,10 +251,41 @@ export default function page() {
       }
 
    }
+   const Modalclose = (a) => {
+      // event.preventDefault();
+      setconfirmmodal(false);
 
+      if (a == 1) {
+
+         Add_to_cart(removeid, 'remove')
+      }
+
+
+   };
+   const callfunc = (a) => {
+      setconfirmmodal(true);
+      setremoveid(a)
+   }
    return (
       <>
-         <Header value={navbarClass} />
+         <Dialog
+            open={confirmmodal}
+            TransitionComponent={Transition}
+            keepMounted
+            aria-describedby="alert-dialog-slide-description"
+         >
+            <DialogTitle style={{ color: 'red' }}>{"please confirm to remove the product from the cart? "}</DialogTitle>
+            <DialogContent>
+               <DialogContentText id="alert-dialog-slide-description">
+                  Click `confirm`, if you want to  remove the item from the cart. otherwise click `Not, confirm`
+               </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+               <Button type='button' onClick={() => Modalclose('2')}>Not, confirm</Button>
+               <Button type='button' onClick={() => Modalclose('1')}>Confirm</Button>
+            </DialogActions>
+         </Dialog>
+         <Header value={navbarClass} cart_id={cartid} />
 
          <section className="card__details__section pt-120 pb-120 bgadd ralt">
             <div className="container">
@@ -342,8 +294,7 @@ export default function page() {
                   <div className="col-xl-12 col-lg-12">
                      <div className="row g-4 justify-content-center">
 
-
-                        {cartarrid.length > 0 ?
+                        {cartarrid.length > 0 && carddetails.length > 0 ?
                            <>
                               {carddetails.map((b, inc) => (
                                  cartarrid.map((arr, i) => (
@@ -351,11 +302,13 @@ export default function page() {
                                     arr == b.id ?
 
                                        <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
+                                          {succ != '' &&
+                                             <Alert severity='success' sx={{ color: 'green' }}>success ! {succ}</Alert>}
 
                                           <div className="popular__items popular__v2 round16">
-                                             <div className="card__boxleft" style={{ width: '80%' }}>
-                                                <div className="w-100 d-flex mb-30 align-items-center justify-content-between flex-wrap gap-2">
-                                                   <img src={b.img} alt="card" style={{ width: '200px' }} className="w-10 mb-24" />
+                                             <div className="card__boxleft" style={{ width: '70%' }}>
+                                                <div className="w-100 d-flex  align-items-center justify-content-between flex-wrap gap-2">
+                                                   <img src={b.img} alt="card" style={{ width: '150px' }} className="w-10 mb-24" />
 
                                                    <h6 className="title mb-30  ">
                                                       {b.name}
@@ -369,11 +322,23 @@ export default function page() {
                                                 </div>
                                              </div>
 
-                                             <div className="card__boxright " style={{ width: '20%' }}>
+                                             <div className="card__boxright " style={{ width: '30%' }}>
                                                 <div className="d-flex mb-10 align-items-center flex-wrap gap-3">
-                                                   <h5 className="title mb-30 " style={{ color: '#eaac66' }}>
-                                                      ₹{b.amt}
-                                                   </h5>
+                                                   <div className="w-100 d-flex  align-items-center justify-content-between flex-wrap gap-2">
+
+                                                      <h5 className="title mb-30 " style={{ color: '#eaac66' }}>
+                                                         ₹{b.amt}
+                                                      </h5>
+                                                      <h7 className="title mb-30  " style={{ color: 'blue' }}>
+                                                         <a href="#" onClick={() => { callfunc(b.id) }} className="cmn--btn outline__btn align-items-center">
+                                                            <span>
+                                                               <i className='fa fa-close'></i>
+                                                            </span>
+                                                         </a>
+                                                      </h7>
+
+                                                   </div>
+
 
                                                 </div>
 

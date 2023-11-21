@@ -30,7 +30,7 @@ export default function Home() {
   const [dialog, setdialog] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      console.log("Scroll event triggered"); // Check if the scroll event is being triggered
+    //  console.log("Scroll event triggered"); // Check if the scroll event is being triggered
       const scrollY = window.scrollY;
 
       // Check if the scroll position is greater than or equal to the banner section height
