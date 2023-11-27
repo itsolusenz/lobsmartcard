@@ -201,7 +201,7 @@ function profile_details() {
         }
         else {
             Getnexturiid();
-window.location.href="/signin"
+            window.location.href = "/signin"
         }
 
 
@@ -801,7 +801,7 @@ window.location.href="/signin"
             </Box>
             <Box fullWidth sx={{ padding: '30px', width: '50%' }}>
 
-                <Item />
+                <Item landmark={landmark} mobile={phone} name={name} lname={lname} email={email} add1={add1} add2={add2} city={city} state={state} postcode={postcode} countryval={countryval} />
             </Box>
 
         </Box >

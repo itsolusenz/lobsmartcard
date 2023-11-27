@@ -29,8 +29,9 @@ export default function page() {
    const [carttot, setcarttot] = useState('0.00');
    const [carddetails, setcarddetails] = useState('');
    const [confirmmodal, setconfirmmodal] = useState(false);
+   const [confirmcheckout, setconfirmcheckout] = useState(false);
    const [removeid, setremoveid] = useState(false);
-
+   const [cusid, setcusid] = useState('0');
    const Transition = React.forwardRef(function Transition(props, ref) {
       return <Slide direction="up" ref={ref} {...props} />;
    });
@@ -84,6 +85,11 @@ export default function page() {
          console.log('len', res.length);
          setTotal(res);
          //alert(cartid);
+      }
+      let cus1id = localStorage.getItem("LOGIN_USER_ID");
+      console.log('---', cus1id);
+      if (cus1id != null && cus1id != undefined && cus1id != '') {
+         setcusid(cus1id);
       }
       ListItem();
       window.addEventListener('scroll', handleScroll);
@@ -266,6 +272,15 @@ export default function page() {
       setconfirmmodal(true);
       setremoveid(a)
    }
+   const checkoutmodalclose = (a) => {
+      if (cusid == '0') {
+         window.location.href = "/signin";
+      }
+      else if (cusid > 0) {
+         window.location.href = "/checkout";
+      }
+
+   }
    return (
       <>
          <Dialog
@@ -283,6 +298,19 @@ export default function page() {
             <DialogActions>
                <Button type='button' onClick={() => Modalclose('2')}>Not, confirm</Button>
                <Button type='button' onClick={() => Modalclose('1')}>Confirm</Button>
+            </DialogActions>
+         </Dialog>
+         <Dialog
+            open={confirmcheckout}
+            TransitionComponent={Transition}
+            keepMounted
+            aria-describedby="alert-dialog-slide-description"
+         >
+            <DialogTitle style={{ color: '#2f4fbe', fontWeight: 700 }}>Are You Sure You Want To CheckOut</DialogTitle>
+
+            <DialogActions>
+               <Button type='button' onClick={() => checkoutmodalclose('1')}>{cusid == '0' ? "LOGIN TO CHECKOUT" : "CHECKOUT"}</Button>
+               <Button type='button' onClick={() => setconfirmcheckout(false)}>CANCEL</Button>
             </DialogActions>
          </Dialog>
          <Header value={navbarClass} cart_id={cartid} />
@@ -377,9 +405,9 @@ export default function page() {
                                     <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
 
                                        <div className="frm__grp">
-                                          <button type="button" className="cmn--btn" onClick={Paynow} >
+                                          <button type="button" className="cmn--btn" onClick={() => setconfirmcheckout(true)} >
                                              <span>
-                                                Checkout
+                                                PROCEED TO CHECKOUT
                                              </span>
                                           </button>
                                        </div>

@@ -90,15 +90,20 @@ function Signup() {
       console.log('loginmobcnt--', response.data[0].count);
       acc_cnt = response.data[0].count;
       if (acc_cnt > '0') {
-         seterr("Mobile number Already Exists..");
+         localStorage.setItem("LOGIN_USER_ID", response.data[0].id);
+         setpageview('1');
          setopenloader(false);
+         resendOTP();
+         //  seterr("Mobile number Already Exists..");
+
       }
       else {
          seterr('');
 
 
          console.log("pass", webpass);
-         let pass = webpass;
+         // let pass = webpass;
+         let pass = 'admin123456';
          const PIN = pass;
          var attributeList = [];
          let phoneNumber = '+91' + phone;
@@ -143,15 +148,33 @@ function Signup() {
 
 
    }
+   const resendOTP = () => {
+
+      cognitoUser.resendConfirmationCode(function (err, result) {
+         if (err) {
+            alert(err.message || JSON.stringify(err));
+            return;
+         }
+         else {
+            console.log(result);
+            //  setpageview('2');
+         }
+
+      });
+
+   }
    const onVerify = () => {
       setopenloader(true);
 
       const confirm_code = otp
       cognitoUser.confirmRegistration(confirm_code, true, function (err, result) {
          if (err) {
-            //alert(err.message || JSON.stringify(err));               
-            setopenloader(false);
-            seterr('OTP Not Matched..')
+            if (err == "User cannot be confirmed. Current status is CONFIRMED") {
+               // console.log(err.message || JSON.stringify(err));
+               setopenloader(false);
+               window.location.href = "/dashboard";
+               // seterr('OTP Not Matched..')
+            }
          }
          else {
             setwebpass(otp);
@@ -366,7 +389,7 @@ function Signup() {
 
                                     </div>
                                  </div>
-                                 <div className="col-lg-12">
+                                 {/*} <div className="col-lg-12">
                                     <div className="frm__grp">
                                        <input type={viewotp} required value={webpass} onChange={(e) => setwebpass(e.target.value)} placeholder="Enter Password..." />
                                        {viewotp == 'password' ?
@@ -377,8 +400,8 @@ function Signup() {
                                        <p style={{ color: 'red', fontSize: '13px' }}>&nbsp;(Note: Password must be 16 characters .)</p>
 
                                     </div>
-                                 </div>
-                                 <p className="fz-16 fw-400 title inter" style={{ paddingTop: '80px' }}>
+                                 </div>*/}
+                                 <p className="fz-16 fw-400 title inter" style={{ paddingTop: '0px' }}>
                                     Do you have an account? <a href="/signin" className="base">Signin</a>
                                  </p>
                                  <div className="col-lg-6">

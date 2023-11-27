@@ -8,7 +8,17 @@ import GooglePayButton from '@google-pay/button-react';
 const axios = require('axios');
 import { decode as base64_decode, encode as base64_encode } from 'base-64';
 const crypto = require('crypto');
-export default function page() {
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import Alert from '@mui/material/Alert';
+import { Typography, Divider } from '@mui/material';
+export default function page(props) {
+    const { landmark, mobile, name, lname, email, add1, add2, city, state, postcode, countryval } = props
     const [navbarFixed, setNavbarFixed] = useState(false);
     const [cardtype, setcardtype] = useState('0');
     const [pvccardtype, setpvccardtype] = useState(false);
@@ -16,6 +26,11 @@ export default function page() {
     const [cartid, setcartid] = useState('');
     const [cartarrid, setcartarrid] = useState([]);
     const [carttot, setcarttot] = useState('0.00');
+    const [confirmcheckout, setconfirmcheckout] = useState(false);
+    const [profiledata, setprofiledata] = useState('');
+    const [cusid, setcusid] = useState('0');
+    const [nettotal, setnettotal] = useState('0');
+    const [tax, settax] = useState('0');
     const carddetails = [
         {
             headid: '1',//PVC
@@ -157,10 +172,27 @@ export default function page() {
             //  alert(restot);
             //let res = Number(carttot) + Number(value);
             setcarttot(restot);
+            let tax = (parseInt(restot) * 0.12); //10% tax
+            settax(tax);
+            let total = parseInt(tax) + parseInt(restot);
+            setnettotal(total);
             console.log('--------', restot);
             // return restot;
         }
+        const getProfile = async (a) => {
 
+            const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&profileid=' + a);
+            const json = await response.json();
+            console.log('res', json);
+            setprofiledata(json);
+
+        }
+        let cus1id = localStorage.getItem("LOGIN_USER_ID");
+
+        if (cus1id != null && cus1id != undefined && cus1id != '') {
+            setcusid(cus1id);
+            getProfile(cus1id);
+        }
         if (localStorage.getItem("CART_STOREAGE_VALUE") != null && localStorage.getItem("CART_STOREAGE_VALUE") != undefined && localStorage.getItem("CART_STOREAGE_VALUE") != '') {
             let cartid = localStorage.getItem("CART_STOREAGE_VALUE");
             console.log('cartid', cartid);
@@ -177,10 +209,12 @@ export default function page() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
     const Paynow = () => {
         axios.post('/api').then(res => {
-            window.location.href = "https://mercury-uat.phonepe.com/transact/simulator?token=9E7mYEWviFlagB06K57DXxQpeHfDcRETOhbtSdZaS8"
+            // window.location.href = "https://mercury-uat.phonepe.com/transact/simulator?token=9E7mYEWviFlagB06K57DXxQpeHfDcRETOhbtSdZaS8"
             setTimeout(() => {
 
             }, 1500);
@@ -337,11 +371,114 @@ export default function page() {
         }
 
     }
+    const Saveorderdetails = async () => {
 
+        let total = (parseInt(carttot) * 0.12) + parseInt(carttot); //10% tax
+
+
+        console.log('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_createorder&name=' + name +
+            '&lname=' + lname +
+            '&email=' + email +
+            '&mobile=' + mobile +
+            '&country=' + countryval +
+            '&state=' + state +
+            '&city=' + city +
+            '&postcode=' + postcode +
+            '&landmark=' + landmark +
+            '&flat=' + add1 +
+            '&street=' + add2 +
+            '&cusid=' + cusid +
+            '&item_ids=' + cartarrid +
+            '&pay_type=0' +
+            '&subtotal=' + carttot +
+            '&tax=10' +
+            '&total=' + total);
+        fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_createorder&name=' + name +
+            '&lname=' + lname +
+            '&email=' + email +
+            '&mobile=' + mobile +
+            '&country=' + countryval +
+            '&state=' + state +
+            '&city=' + city +
+            '&postcode=' + postcode +
+            '&landmark=' + landmark +
+            '&flat=' + add1 +
+            '&street=' + add2 +
+            '&cusid=' + cusid +
+            '&items_id=' + cartarrid +
+            '&pay_type=0' +
+            '&subtotal=' + carttot +
+            '&tax=10' +
+            '&total=' + total
+        )
+            .then((res) => res.json())
+            .then(
+                (result) => {
+                    console.log('yessssssss');
+                    const id = result[0]['uniqueid'];
+                    const message = result[0]['message'];
+                    if (id != undefined && message == 'success') {
+
+                        Paynow();
+
+                    }
+                    else {
+                        const errormsg = result[0]['errormsg'];
+                        // toast.error(errormsg)
+                        eterr("errormsg");
+                        setErrorval(errormsg);
+                        setButtonloader(1);
+                    }
+
+
+                    console.log(result);
+                },
+                (error) => {
+                    console.log('no');
+                    console.log(error);
+                    seterr("Error");
+                    // toast.error("Try again..Data not update..");
+                    setButtonloader(1);
+                }
+            );
+    }
+    const checkoutmodalclose = (a) => {
+        Saveorderdetails();
+
+    }
     return (
         <>
 
+            <Dialog
+                open={confirmcheckout}
+                TransitionComponent={Transition}
+                keepMounted
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle style={{ color: '#2f4fbe', fontWeight: 700 }}>Review Your Details</DialogTitle>
+                <DialogContent>
+                    {profiledata.length > 0 ?
+                        <DialogContentText id="alert-dialog-slide-description">
 
+                            <Typography><b>Customer:</b> {name} {lname}</Typography>
+                            <Typography><b>Contact Number:</b> + {mobile}</Typography>
+                            <Typography><b>email:</b> {email}</Typography>
+                            <Divider>&nbsp;</Divider>
+                            <Typography><b>Shipping Address:</b> {add1} {add2}<br />
+                                {state},{city}-{postcode}</Typography>
+                            <Typography><b>Billing Address:</b> Same as shipping</Typography>
+
+
+                        </DialogContentText>
+                        :
+                        <>Loading..</>
+                    }
+                </DialogContent>
+                <DialogActions>
+                    <Button type='button' onClick={() => checkoutmodalclose('1')}>PLACE ORDER</Button>
+                    <Button type='button' onClick={() => setconfirmcheckout(false)}>CANCEL</Button>
+                </DialogActions>
+            </Dialog>
 
             <div className="row g-4" style={{ padding: '20px', borderRadius: '6px', border: '1px solid #557191' }}>
 
@@ -358,10 +495,10 @@ export default function page() {
 
                                             <div className="col-xxl-8 col-xl-12 col-lg-8 col-md-8">
 
-                                                <div className="popular__items popular__v2 round16">
+                                                <div className="popular__items popular__v2 round16" style={{ padding: '0px' }}>
                                                     <div className="card__boxleft" style={{ width: '80%' }}>
                                                         <div className="w-100 d-flex mb-30 align-items-center justify-content-between flex-wrap gap-2">
-                                                            <img src={b.img} alt="card" style={{ width: '50px' }} className="w-10 mb-24" />
+                                                            <img src={b.img} alt="card" style={{ width: '100px' }} className="w-10 mb-24" />
 
                                                             <h6 className="title mb-30  ">
                                                                 {b.name}
@@ -389,33 +526,64 @@ export default function page() {
                                             </div>
                                             : null
                                     ))))}
-                                <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8">
-                                    <div className="popular__items popular__v2 round16">
-                                        <div style={{ width: '80%', alignItems: 'right' }}>
-
-                                            <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
-                                                <h6 className="title  ">Total</h6>
-                                            </div>
+                                <Divider>&nbsp;</Divider>
+                                <div className="row col-md-12">
 
 
-                                        </div>
-                                        <div className="card__boxright" style={{ width: '20%' }}>
-                                            <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
-                                                <h6 className="title  ">₹{carttot}</h6>
-                                            </div>
-                                        </div>
+                                    <div className='col-md-8'>
+
+                                        <h6 className="title " style={{ textAlign: 'right' }}>SubTotal</h6>
+
 
                                     </div>
+                                    <div className='col-md-4'>
+
+                                        <h6 className="title  " style={{ textAlign: 'right' }}>₹{carttot}</h6>
+
+                                    </div>
+
                                 </div>
-                                <div className="d-flex mb-5 align-items-center justify-content-between flex-wrap gap-3">
+                                <div className="row col-md-12">
 
-                                    <div className="frm__grp">
-                                        <button type="button" className="cmn--btn" onClick={Paynow} >
-                                            <span>
-                                                Pay now
-                                            </span>
-                                        </button>
+
+                                    <div className='col-md-8'>
+
+                                        <h6 className="title " style={{ textAlign: 'right' }}>Tax</h6>
+
+
                                     </div>
+                                    <div className='col-md-4'>
+
+                                        <h6 className="title  " style={{ textAlign: 'right' }}>₹{tax}</h6>
+
+                                    </div>
+
+                                </div>
+                                <Divider>&nbsp;</Divider>
+                                <div className="row col-md-12">
+
+
+                                    <div className='col-md-8'>
+
+                                        <h6 className="title " style={{ textAlign: 'right' }}>Total</h6>
+
+
+                                    </div>
+                                    <div className='col-md-4'>
+
+                                        <h6 className="title" style={{ textAlign: 'right' }}>₹{nettotal}</h6>
+
+                                    </div>
+
+                                </div>
+
+                                <div className="row col-md-12">
+
+                                    <button type="button" className="cmn--btn" onClick={() => setconfirmcheckout(true)} >
+                                        <span>
+                                            Review your details to Place Order
+                                        </span>
+                                    </button>
 
                                     {/*}    <GooglePayButton
                                           environment="TEST"

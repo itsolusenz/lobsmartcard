@@ -8,6 +8,15 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
+import OtpInput from 'react-otp-input';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import UserPool from "./UserPool";
+var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+var poolData = {
+   UserPoolId: "ap-southeast-1_j3pKjNtoC",
+   ClientId: "3894j3pqig36mp1fhpr9dv294b",
+};
 function Signup() {
    const [navbarFixed, setNavbarFixed] = useState(false);
    const [selectstatus, setselectstatus] = useState('');
@@ -17,6 +26,9 @@ function Signup() {
    const [phone, setphone] = useState('');
    const [webpass, setwebpass] = useState('');
    const [viewotp, setviewotp] = useState('password');
+   const [pageview, setpageview] = useState('0');
+   const [otp, setOtp] = useState('');
+   const [openloader, setopenloader] = React.useState(false);
    useEffect(() => {
 
 
@@ -48,6 +60,14 @@ function Signup() {
 
       setselectstatus(value);
    }
+   var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+   var phonenumber_pool = '+91' + phone;
+
+   var userData = {
+      Username: phonenumber_pool,
+      Pool: userPool,
+   };
+   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
    const signup_submit = async (event) => {
       event.preventDefault();
       let acc_cnt = '0';
@@ -57,8 +77,11 @@ function Signup() {
       console.log('loginmobcnt--', response.data[0].count);
       acc_cnt = response.data[0].count;
       if (acc_cnt > '0') {
+         setopenloader(false);
+         setpageview('1');
          localStorage.setItem('LOGIN_USER_ID', response.data[0].id);
-         window.location.href = "/profile";
+         resendOTP();
+         // window.location.href = "/profile";
       }
       else {
          seterr('Invalid Login Details');
@@ -66,10 +89,60 @@ function Signup() {
 
 
    }
+   const resendOTP = () => {
+
+      cognitoUser.resendConfirmationCode(function (err, result) {
+         if (err) {
+            alert(err.message || JSON.stringify(err));
+            return;
+         }
+         else {
+            console.log(result);
+            //  setpageview('2');
+         }
+
+      });
+
+   }
+   const onVerify = () => {
+      setopenloader(true);
+     
+      const confirm_code = otp
+      cognitoUser.confirmRegistration(confirm_code, true, function (err, result) {
+         if (err) {
+            //  console.log(err.message);
+            if (err.message == "User cannot be confirmed. Current status is CONFIRMED") {
+               // console.log(err.message || JSON.stringify(err));
+               window.location.href = "/dashboard";
+               setopenloader(false);
+               // seterr('OTP Not Matched..')
+            }
+         }
+         else {
+            setwebpass(otp);
+            setpageview('2');
+            setopenloader(false);
+         }
+      });
+
+
+
+
+
+   }
    const navbarClass = navbarFixed ? 'navbar-fixed' : '';
    return (
       <>
+         <div>
 
+            <Backdrop
+               sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+               open={openloader}
+               onClick={() => setopenloader(false)}
+            >
+               <CircularProgress color="inherit" />
+            </Backdrop>
+         </div>
 
          <Header value={navbarClass} />
 
@@ -142,7 +215,7 @@ function Signup() {
                         <h3 class="title mb-16">
                            Welcome Back!
                         </h3>
-                        <p class="fz-16 title fw-400 inter mb-40">
+                        <p class="fz-16 title fw-400 inter mb-0">
                            Sign in to your account and join us
                         </p>
                         <form action="#0" className="write__review" onSubmit={signup_submit} >
@@ -152,26 +225,27 @@ function Signup() {
                                     <Alert severity="error">Error — {err}</Alert>
                                  }
                               </div>
-                              <div className="row g-4 ">
+                              {pageview == '0' &&
+                                 <div className="row g-4 ">
 
-                                 <div className="col-lg-3">
+                                    <div className="col-lg-3">
 
 
 
-                                    <div className={`nice-select mb-16 bg-trans ${selectstatus}`} tabindex="0" onClick={() => change_selectstatus(selectstatus != '' ? '' : 'open')}>
-                                       <span className="current" >
-                                          +91
-                                       </span>
-                                       <ul className="list">
-                                          <li data-value="1" className="option selected">
+                                       <div className={`nice-select mb-16 bg-trans ${selectstatus}`} tabindex="0" onClick={() => change_selectstatus(selectstatus != '' ? '' : 'open')}>
+                                          <span className="current" >
                                              +91
-                                          </li><li data-value="2" className="option">
-                                             +35
-                                          </li>
-                                          <li data-value="2" className="option">
-                                             +61
-                                          </li>
-                                          {/*}{
+                                          </span>
+                                          <ul className="list">
+                                             <li data-value="1" className="option selected">
+                                                +91
+                                             </li><li data-value="2" className="option">
+                                                +35
+                                             </li>
+                                             <li data-value="2" className="option">
+                                                +61
+                                             </li>
+                                             {/*}{
                                           Countrylist.map((a, b) => (
                                              <li data-value="2" className="option">
                                                 {a.countries_name}
@@ -185,42 +259,70 @@ function Signup() {
                                        </li><li data-value="3" className="option">
                                           Select Update Card
                                     </li>*/}
-                                       </ul>
-                                    </div>
-
-                                 </div>
-                                 <div className="col-lg-9">
-                                    <div className="frm__grp">
-
-                                       <input required type="number" value={phone} onChange={(e) => setphone(e.target.value)} placeholder="Enter Mobile Number..." />
+                                          </ul>
+                                       </div>
 
                                     </div>
-                                 </div>
-                                 <div className="col-lg-12">
-                                    <div className="frm__grp">
-                                       <input type={viewotp} required value={webpass} onChange={(e) => setwebpass(e.target.value)} placeholder="Enter Password..." />
-                                       {viewotp == 'password' ?
-                                          <i class="far fa-eye" onClick={() => setviewotp('text')} id="togglePassword" style={{ marginLeft: '-30px', cursor: 'pointer', color: 'blue' }}></i>
-                                          :
-                                          <i class="far fa-eye-slash" onClick={() => setviewotp('password')} id="togglePassword" style={{ marginLeft: '-30px', cursor: 'pointer', color: 'blue' }}></i>
-                                       }
+                                    <div className="col-lg-9">
+                                       <div className="frm__grp">
 
+                                          <input required type="number" value={phone} onChange={(e) => setphone(e.target.value)} placeholder="Enter Mobile Number..." />
+
+                                       </div>
+                                    </div>
+                                    {/*} <div className="col-lg-12">
+                                       <div className="frm__grp">
+                                          <input type={viewotp} required value={webpass} onChange={(e) => setwebpass(e.target.value)} placeholder="Enter Password..." />
+                                          {viewotp == 'password' ?
+                                             <i class="far fa-eye" onClick={() => setviewotp('text')} id="togglePassword" style={{ marginLeft: '-30px', cursor: 'pointer', color: 'blue' }}></i>
+                                             :
+                                             <i class="far fa-eye-slash" onClick={() => setviewotp('password')} id="togglePassword" style={{ marginLeft: '-30px', cursor: 'pointer', color: 'blue' }}></i>
+                                          }
+
+                                       </div>
+                                    </div>*/}
+                                    <p className="fz-16 fw-400 title inter" style={{ paddingTop: '0px' }}>
+                                       Don't have an account? <a href="/signup" className="base">Signup</a>
+                                    </p>
+                                    <div className="col-lg-6">
+                                       <div className="frm__grp">
+                                          <button type="submit" className="cmn--btn" >
+                                             <span>
+                                                Sign In
+                                             </span>
+                                          </button>
+                                       </div>
                                     </div>
                                  </div>
-                                 <p className="fz-16 fw-400 title inter" style={{ paddingTop: '80px' }}>
-                                    Don't have an account? <a href="/signup" className="base">Signup</a>
-                                 </p>
-                                 <div className="col-lg-6">
-                                    <div className="frm__grp">
-                                       <button type="submit" className="cmn--btn" >
-                                          <span>
-                                             Sign In
-                                          </span>
-                                       </button>
+                              }
+                              {pageview == '1' &&
+                                 <div className="row g-4 ">
+
+
+                                    <div className="col-lg-12">
+
+                                       <OtpInput
+                                          inputStyle={{ color: '#112f75', width: '20%', padding: '15px 0px' }}
+                                          value={otp}
+                                          onChange={setOtp}
+                                          numInputs={6}
+                                          renderSeparator={<span >-</span>}
+                                          renderInput={(props) => <input  {...props} />}
+                                       /></div>
+                                    <p className="fz-16 fw-400 title inter" style={{ paddingTop: '80px' }}>
+                                       Do you have an account? <a href="/signin" className="base">Signin</a>
+                                    </p>
+                                    <div className="col-lg-6">
+                                       <div className="frm__grp">
+                                          <button type="button" className="cmn--btn" onClick={() => onVerify()}>
+                                             <span>
+                                                Verify
+                                             </span>
+                                          </button>
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
-
+                              }
 
                            </div>
                         </form>
