@@ -405,7 +405,7 @@ export default function page(props) {
             '&flat=' + add1 +
             '&street=' + add2 +
             '&cusid=' + cusid +
-            '&items_id=' + cartarrid +
+            '&item_ids=' + cartarrid +
             '&pay_type=0' +
             '&subtotal=' + carttot +
             '&tax=10' +
@@ -414,7 +414,7 @@ export default function page(props) {
             .then((res) => res.json())
             .then(
                 (result) => {
-                    console.log('yessssssss');
+                    console.log('yessssssss', result);
                     const id = result[0]['uniqueid'];
                     const message = result[0]['message'];
                     if (id != undefined && message == 'success') {

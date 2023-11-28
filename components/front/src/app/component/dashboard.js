@@ -40,6 +40,11 @@ function Profile() {
 
          const response = await fetch('https://www.laabamone.com/Lobsmart/api.php?eventtype=lob_Getprofile&profileid=' + a);
          const json = await response.json();
+         if (json[0].count == 0) {
+            localStorage.clear();
+            window.location.href = "/signin";
+
+         }
          console.log('res', json);
          setprofiledata(json);
 
@@ -146,6 +151,16 @@ function Profile() {
                                     </i>
                                     <span class="fz-18 fw-500 title inter">
                                        Service
+                                    </span>
+                                 </a>
+                              </li>
+                              <li >
+                                 <a href="/myorder" class="d-flex align-items-center">
+                                    <i class="material-symbols-outlined d-flex align-items-center justify-content-center base">
+                                       social_leaderboard
+                                    </i>
+                                    <span class="fz-18 fw-500 title inter">
+                                       My Order
                                     </span>
                                  </a>
                               </li>

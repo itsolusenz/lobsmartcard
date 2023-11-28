@@ -191,7 +191,7 @@ export default function Header(props) {
                     </div>
                     {(loginid != '' && loginid != null && loginid != undefined) ?
                       <div className="tolly__shop">
-                        <a href="/profile">
+                        <a href="/dashboard">
                           <i className="far fa-user"></i>
 
                         </a>
