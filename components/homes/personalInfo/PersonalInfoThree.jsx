@@ -173,7 +173,7 @@ if (Profilelist.length > 0) {
               src={`${Profileimage}`}
               alt="author"
 />*/}
-   {Profileimage!='https://www.laabamone.com/Lobsmart/images/' ?
+   {Profileimage!='https://www.laabamone.com/Lobsmart/images/' && Profileimage!='' ?
             <Image src={`${Profileimage}`}  width={240}
             height={240} alt="Profile" />
          
